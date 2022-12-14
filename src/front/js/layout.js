@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import { Landing } from "./pages/landingpage";
 import { Home } from "./pages/home";
 import { Checkin } from "./pages/checkin";
 import { SingleVideo } from "./pages/singlevideo";
@@ -24,7 +25,8 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
-            <Route element={<Home />} path="/" />
+            <Route element={<Landing />} path="/" />
+            <Route element={<Home />} path="/home" />
             <Route element={<Checkin />} path="/checkin" />
             <Route element={<Setting />} path="/checkin/:theid" />
             <Route element={<Profile />} path="/checkin/:theid" />
