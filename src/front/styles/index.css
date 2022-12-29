@@ -5,7 +5,11 @@ body {
   background-color: black;
 }
 
-.footer,
 .navbar-brand {
+  color: #42c920;
+  background-color: black;
+}
+
+.footer {
   color: #42c920;
 }
