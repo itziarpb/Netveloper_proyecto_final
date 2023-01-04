@@ -8,6 +8,7 @@ import { Checkin } from "./pages/checkin";
 import { SingleVideo } from "./pages/singlevideo";
 import { Setting } from "./pages/settings";
 import { Profile } from "./pages/profile";
+import { Login } from "./pages/login";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -28,8 +29,9 @@ const Layout = () => {
             <Route element={<Landing />} path="/" />
             <Route element={<Home />} path="/home" />
             <Route element={<Checkin />} path="/checkin" />
-            <Route element={<Setting />} path="/checkin/:theid" />
-            <Route element={<Profile />} path="/checkin/:theid" />
+            <Route element={<Login />} path="/login" />
+            <Route element={<Setting />} path="/setting/:theid" />
+            <Route element={<Profile />} path="/profile/:theid" />
             <Route element={<SingleVideo />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
