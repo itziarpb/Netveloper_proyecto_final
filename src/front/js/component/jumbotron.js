@@ -13,10 +13,9 @@ export const Jumbotron = () => {
   const [img2, setImg2] = useState([]);
   const [img3, setImg3] = useState([]);
 
-  
-/*---------------------------------------------------------------*/  
-/* Llamadas a la api para obtener los ID de cada canal de youtube*/
-/*---------------------------------------------------------------*/
+  /*---------------------------------------------------------------*/
+  /* Llamadas a la api para obtener los ID de cada canal de youtube*/
+  /*---------------------------------------------------------------*/
 
   /*Canal de nategentile7*/
 
@@ -32,7 +31,6 @@ export const Jumbotron = () => {
 
       .then((response) => {
         setId1(response.items[0].id.channelId);
-        console.log(response.items[0].id.channelId);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
@@ -70,21 +68,77 @@ export const Jumbotron = () => {
 
       .then((response) => {
         setId3(response.items[0].id.channelId);
-        
+        console.log(response.items[0].id.channelId);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
 
-/*---------------------------------------------------------------*/  
-/*Llamadas a la api para obtener el channelbanner de cada canal*/
-/*---------------------------------------------------------------*/
+  /*---------------------------------------------------------------*/
+  /*Llamadas a la api para obtener el channelbanner de cada canal*/
+  /*---------------------------------------------------------------*/
 
-/*ChannelBaner de nategentile7*/
+  /*ChannelBaner de nategentile7*/
 
-  
+  useEffect(() => {
+    fetch(
+      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UC36xmz34q02JYaZYKrMwXng&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
+    )
+      .then((response) => {
+        console.log(response.ok); // will be true if the response is successfull
+        console.log(response.status); // the status code = 200 or code = 400 etc.
+        return response.json();
+      })
 
+      .then((response) => {
+        setImg(response.items[0].brandingSettings.image.bannerExternalUrl);
+        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
-  let extension = img3+`=w1920`
+  /*ChannelBaner de holamundo*/
+
+  useEffect(() => {
+    fetch(
+      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UC4FHiPgS1KXkUMx3dxBUtPg&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
+    )
+      .then((response) => {
+        console.log(response.ok); // will be true if the response is successfull
+        console.log(response.status); // the status code = 200 or code = 400 etc.
+        return response.json();
+      })
+
+      .then((response) => {
+        setImg2(response.items[0].brandingSettings.image.bannerExternalUrl);
+        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
+
+  /*ChannelBaner de midudev*/
+
+  useEffect(() => {
+    fetch(
+      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UC8LeXCWOalN8SxlrPcG-PaQ&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
+    )
+      .then((response) => {
+        console.log(response.ok); // will be true if the response is successfull
+        console.log(response.status); // the status code = 200 or code = 400 etc.
+        return response.json();
+      })
+
+      .then((response) => {
+        setImg3(response.items[0].brandingSettings.image.bannerExternalUrl);
+        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
+
+  /*Mejora de la resolución previa al className*/
+  let extension1 = img + `=w1920`;
+  let extension2 = img2 + `=w1920`;
+  let extension3 = img3 + `=w1920`;
+
   return (
     <>
       <div
@@ -118,20 +172,21 @@ export const Jumbotron = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={id1} className="d-block w-100 clasejumbotron"
-            ></img>
-          </div>
-
-          <div className="carousel-item">
-            <img
-              src={id2}
+              src={extension1}
               className="d-block w-100 clasejumbotron"
             ></img>
           </div>
 
           <div className="carousel-item">
             <img
-              src={extension}
+              src={extension2}
+              className="d-block w-100 clasejumbotron"
+            ></img>
+          </div>
+
+          <div className="carousel-item">
+            <img
+              src={extension3}
               className="d-block w-100 clasejumbotron"
               alt="..."
             ></img>
