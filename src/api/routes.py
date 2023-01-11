@@ -49,3 +49,14 @@ def get_playLaters():
     return jsonify(data), 200
 
 #TODOS LOS POST
+@api.route('/user', methods=['POST'])
+def register_user():  
+    try:
+        data = request.json
+        user = User(username=data["username"], email=data["email"], password=data["password"])
+        db.session.add(user)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        return jsonify({"message": "No se pudo registrar"}), 400
+    return jsonify({"message": "Usuario registrado"}), 200

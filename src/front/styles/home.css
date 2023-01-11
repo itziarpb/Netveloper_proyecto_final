@@ -1,13 +1,45 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.scroll {
+  overflow-x: auto;
+  display: flex;
+  height: 280px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+/* style scrollbar */
+::-webkit-scrollbar {
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #42c920;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0a740c;
+}
+/* style scrollbar */
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
 
 .clasejumbotron {
   object-fit: cover;
   width: 600px;
   height: 450px;
+
+.cardCarousel {
+  font-size: 14px;
+}
+
+.titleCarousel {
+  color: #fed049;
+  margin-top: 15px;
+}
+
+.cardCarousel img {
+  height: 180px;
+  width: 100%;
 }
