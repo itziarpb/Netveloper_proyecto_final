@@ -25,15 +25,14 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Navbar />
-          <Jumbotron />
           <Routes>
             <Route element={<Landing />} path="/" />
             <Route element={<Home />} path="/home" />
             <Route element={<Checkin />} path="/checkin" />
             <Route element={<Setting />} path="/checkin/:theid" />
             <Route element={<Profile />} path="/checkin/:theid" />
-            <Route element={<SingleVideo />} path="/single/:theid" />
-            <Route element={<h1>Not found!</h1>} />
+            <Route element={<SingleVideo />} path="/single" />
+            <Route element={<h1>Not found!</h1>} path= "*" />
           </Routes>
           <Footer />
         </ScrollToTop>
