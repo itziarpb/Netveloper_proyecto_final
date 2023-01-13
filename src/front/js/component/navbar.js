@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/netveloper_nombre.png";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid">
@@ -22,16 +24,25 @@ export const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link to="/profile" className="nav-link">
-                Perfil
-              </Link>
-            </li>
+            {store.token != null && (
+              <li className="nav-item">
+                <Link to="/profile" className="nav-link">
+                  Perfil
+                </Link>
+              </li>
+            )}
             <li className="nav-item">
               <Link to="/setting" className="nav-link">
                 Ajustes
               </Link>
             </li>
+            {store.token == null && (
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Iniciar sesión
+                </Link>
+              </li>
+            )}
           </ul>
           <form className="d-flex">
             <input
