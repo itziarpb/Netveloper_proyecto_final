@@ -4,62 +4,63 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-class Channel(db.model):
+class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    channelId = db.Column(db.String(120), unique=True, nullable=False)
-    channelBanner = db.Column(db.String(120), unique=True, nullable=False)
-    channelTitle = db.Column(db.String(80), unique=True, nullable=False)
-    playList = 
+    channelid = db.Column(db.String(120), unique=True, nullable=False)
+    channelbanner = db.Column(db.String(120), unique=True, nullable=False)
+    channeltitle = db.Column(db.String(80), unique=True, nullable=False)
+    
 
     def __repr__(self):
-        return f'<Channel {self.channelTitle}>'
+        return f'<Channel {self.channeltitle}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "channelId": self.channelId,
-            "channelBanner": self.channelBanner,
-            "channelTitle": self.channelTitle
+            "channelid": self.channelid,
+            "channelbanner": self.channelbanner,
+            "channeltitle": self.channeltitle
 
         }
 
-class PlayListItems(db.model):
+class PlayListItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    playListId = db.Column(db.String(120), unique=True, nullable=False)
-    playListTitle = db.Column(db.String(80), unique=True, nullable=False)
-    playListDescription = db.Column(db.String(120), unique=True, nullable=False)
-    playListPosition = db.Column(db.Integer, unique=True, nullable=False)
+    playlistid = db.Column(db.String(120), unique=True, nullable=False)
+    playlistitle = db.Column(db.String(80), unique=True, nullable=False)
+    playlistdescription = db.Column(db.String(120), unique=True, nullable=False)
+    playlistposition = db.Column(db.Integer, unique=True, nullable=False)
+    
 
     def __repr__(self):
-        return f'<PlayListItems {self.playListTitle}>'
+        return f'<PlayListItems {self.playlisttitle}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "playListId": self.playListId,
-            "playListTitle": self.playListTitle,
-            "playListDescription": self.playListDescription,
-            "playListPosition": self.playListPosition
+            "playlistid": self.playlistid,
+            "playlisttitle": self.playlisttitle,
+            "playlistdescription": self.playlistdescription,
+            "playlistposition": self.playlistposition
         }
           
 
-class Video(db.model):
+class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    videoId = db.Column(db.String(120), unique=True, nullable=False)
-    videoTitle = db.Column(db.String(80), unique=True, nullable=False)
-    videoDescription = db.Column(db.String(120), unique=True, nullable=False)
-    videoPlayer = db.Column(db.String(120), unique=True, nullable=False)
+    videoid = db.Column(db.String(120), unique=True, nullable=False)
+    videotitle = db.Column(db.String(80), unique=True, nullable=False)
+    videodescription = db.Column(db.String(120), unique=True, nullable=False)
+    videoplayer = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return f'<Video {self.videoTitle}>'
+        return f'<Video {self.videotitle}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "videoId": self.videoId,
-            "videoTitle": self.videoTitle,
-            "videoDescription": self.playvideoDescription,
-            "videoPlayer": self.videoPlayer
+            "videoid": self.videoid,
+            "videotitle": self.videotitle,
+            "videodescription": self.playvideodescription,
+            "videoplayer": self.videoplayer
         }
 
 
@@ -98,22 +99,22 @@ class Category(db.Model):
             "category": self.category,
         }
 
-class Video(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(120), unique=True, nullable=False)
-    url = db.Column(db.String(120), unique=True, nullable=False)
-    api_id = db.Column(db.Integer, unique=True, nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
-    category = db.relationship(Category)
+#class Video(db.Model):
+    #id = db.Column(db.Integer, primary_key=True)
+    #title = db.Column(db.String(120), unique=True, nullable=False)
+    #url = db.Column(db.String(120), unique=True, nullable=False)
+    #api_id = db.Column(db.Integer, unique=True, nullable=False)
+    #category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    #category = db.relationship(Category)
     
-    def __repr__(self):
-        return f'<Video {self.title}>'
+    #def __repr__(self):
+        #return f'<Video {self.title}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "title": self.title,
-        }
+    #def serialize(self):
+        #return {
+            #"id": self.id,
+            #"title": self.title,
+        #}
 
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
