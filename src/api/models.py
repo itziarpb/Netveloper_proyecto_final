@@ -98,7 +98,7 @@ class Category(db.Model):
             "category": self.category,
         }
 
-#class Video(db.Model):
+#class Video(db.Model): (Te la dejo comentada, no se si usaremos algún parámetro de esta que creaste)
     #id = db.Column(db.Integer, primary_key=True)
     #title = db.Column(db.String(120), unique=True, nullable=False)
     #url = db.Column(db.String(120), unique=True, nullable=False)
