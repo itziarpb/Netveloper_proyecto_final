@@ -8,8 +8,7 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     channelid = db.Column(db.String(120), unique=True, nullable=False)
     channelbanner = db.Column(db.String(120), unique=True, nullable=False)
-    channeltitle = db.Column(db.String(80), unique=True, nullable=False)
-    
+    channeltitle = db.Column(db.String(80), unique=True, nullable=False)    
 
     def __repr__(self):
         return f'<Channel {self.channeltitle}>'
@@ -20,16 +19,15 @@ class Channel(db.Model):
             "channelid": self.channelid,
             "channelbanner": self.channelbanner,
             "channeltitle": self.channeltitle
-
         }
 
 class PlayListItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     playlistid = db.Column(db.String(120), unique=True, nullable=False)
-    playlistitle = db.Column(db.String(80), unique=True, nullable=False)
+    playlisttitle = db.Column(db.String(80), unique=True, nullable=False)
     playlistdescription = db.Column(db.String(120), unique=True, nullable=False)
     playlistposition = db.Column(db.Integer, unique=True, nullable=False)
-    
+    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)    
 
     def __repr__(self):
         return f'<PlayListItems {self.playlisttitle}>'
@@ -50,6 +48,7 @@ class Video(db.Model):
     videotitle = db.Column(db.String(80), unique=True, nullable=False)
     videodescription = db.Column(db.String(120), unique=True, nullable=False)
     videoplayer = db.Column(db.String(120), unique=True, nullable=False)
+    playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'), nullable=False)
 
     def __repr__(self):
         return f'<Video {self.videotitle}>'
@@ -57,9 +56,9 @@ class Video(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "videoid": self.videoid,
+            "video_id": self.videoid,
             "videotitle": self.videotitle,
-            "videodescription": self.playvideodescription,
+            "videodescription": self.videodescription,
             "videoplayer": self.videoplayer
         }
 
@@ -121,7 +120,6 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     user = db.relationship(User)
-    video = db.relationship(Video)
 
     def serialize(self):
         return {
@@ -134,7 +132,7 @@ class PlayLater(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     user = db.relationship(User)
-    video = db.relationship(Video)
+
 
     def serialize(self):
         return {
@@ -148,7 +146,6 @@ class Coment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     user = db.relationship(User)
-    video = db.relationship(Video)
     
     def __repr__(self):
         return f'<Coments {self.title}>'

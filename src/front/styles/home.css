@@ -24,11 +24,11 @@
 }
 /* style scrollbar */
 
-
 .clasejumbotron {
   object-fit: cover;
   width: 600px;
   height: 450px;
+}
 
 .cardCarousel {
   font-size: 14px;
