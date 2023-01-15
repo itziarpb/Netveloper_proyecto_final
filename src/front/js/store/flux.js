@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
+      dataUser: [],
     },
     actions: {
       //
@@ -39,6 +40,23 @@ const getState = ({ getStore, getActions, setStore }) => {
         localStorage.removeItem("token");
         console.log("login out");
         setStore({ token: null });
+      },
+      getUser: async () => {
+        try {
+          const store = getStore();
+          const resp = await fetch(process.env.BACKEND_URL + "/api/user", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + store.token,
+            },
+          });
+          const data = await resp.json();
+          setStore({ dataUser: data });
+          return dataUser;
+        } catch (error) {
+          console.error("Ha ocurrido un error", error);
+        }
       },
     },
   };
