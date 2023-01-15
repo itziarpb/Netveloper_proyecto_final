@@ -11,7 +11,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 api = Blueprint('api', __name__)
 
 #TODOS LOS GETS
-@api.route('/user', methods=['GET'])
+@api.route('/users', methods=['GET'])
 def get_users():
 
     users = User.query.all()
@@ -24,6 +24,22 @@ def get_categories():
 
     categories = Category.query.all()
     data = [category.serialize() for category in categories]
+    
+    return jsonify(data), 200
+
+@api.route('/channels', methods=['GET'])
+def get_channels():
+
+    channels = Channel.query.all()
+    data = [channel.serialize() for channel in channels]
+    
+    return jsonify(data), 200
+
+@api.route('/playlists', methods=['GET'])
+def get_playlists():
+
+    playlists = PlayListItems.query.all()
+    data = [playlist.serialize() for playlist in playlists]
     
     return jsonify(data), 200
 
