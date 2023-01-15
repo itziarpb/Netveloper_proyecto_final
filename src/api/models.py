@@ -57,8 +57,8 @@ class PlayListItems(db.Model):
     playlistid = db.Column(db.String(120), unique=True, nullable=False)
     playlisttitle = db.Column(db.String(80), unique=True, nullable=False)
     playlistimg = db.Column(db.String(80), unique=True, nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)   
-    catefory_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'))   
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     channel = db.relationship(Channel)
     category = db.relationship(Category)
 
@@ -71,6 +71,7 @@ class PlayListItems(db.Model):
             "playlistid": self.playlistid,
             "playlisttitle": self.playlisttitle,
             "playlistimg": self.playlistimg,
+            "playlistCategory": self.category_id,
         }
           
 
@@ -80,9 +81,9 @@ class Video(db.Model):
     videotitle = db.Column(db.String(80), unique=True, nullable=False)
     videodescription = db.Column(db.String(120), unique=True, nullable=True)
     videoplayer = db.Column(db.String(120), unique=True, nullable=True)
-    playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'), nullable=True)
-    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)   
-    catefory_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'))
+    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'))   
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     playlistitems = db.relationship(PlayListItems)
     channel = db.relationship(Channel)
     category = db.relationship(Category)

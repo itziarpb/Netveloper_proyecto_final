@@ -5,7 +5,6 @@ import { Context } from "../store/appContext";
 export const Profile = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  console.log(store.dataUser);
 
   const handleClick = () => {
     actions.logout();

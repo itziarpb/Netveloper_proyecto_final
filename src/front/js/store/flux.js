@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       dataUser: [],
+      dataPlayList: [],
     },
     actions: {
       //
@@ -11,6 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (token && token != "" && token != undefined)
           setStore({ token: token });
       },
+
       login: async (email, password) => {
         try {
           const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
@@ -36,11 +38,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Ha ocurrido un error", error);
         }
       },
+
       logout: () => {
         localStorage.removeItem("token");
         console.log("login out");
         setStore({ token: null });
       },
+
       getUser: async () => {
         try {
           const store = getStore();
@@ -53,7 +57,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           const data = await resp.json();
           setStore({ dataUser: data });
-          return dataUser;
+          return store.dataUser;
+        } catch (error) {
+          console.error("Ha ocurrido un error", error);
+        }
+      },
+
+      getPlayList: async () => {
+        try {
+          const store = getStore();
+          const resp = await fetch(process.env.BACKEND_URL + "/api/playlists", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await resp.json();
+          setStore({ dataPlayList: data });
+          return store.dataPlayList;
         } catch (error) {
           console.error("Ha ocurrido un error", error);
         }
