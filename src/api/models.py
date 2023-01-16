@@ -25,8 +25,9 @@ class PlayListItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     playlistid = db.Column(db.String(120), unique=True, nullable=False)
     playlisttitle = db.Column(db.String(80), unique=True, nullable=False)
-    playlistdescription = db.Column(db.String(120), unique=True, nullable=False)
-    playlistposition = db.Column(db.Integer, unique=True, nullable=False)
+    #playlistdescription = db.Column(db.String(120), unique=True, nullable=False)
+    #playlistposition = db.Column(db.Integer, unique=True, nullable=False)
+    thumbnails = db.Column(db.String(120), unique=True, nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)    
 
     def __repr__(self):
@@ -37,8 +38,8 @@ class PlayListItems(db.Model):
             "id": self.id,
             "playlistid": self.playlistid,
             "playlisttitle": self.playlisttitle,
-            "playlistdescription": self.playlistdescription,
-            "playlistposition": self.playlistposition
+            #"playlistdescription": self.playlistdescription,
+            #"playlistposition": self.playlistposition
         }
           
 
@@ -46,8 +47,7 @@ class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     videoid = db.Column(db.String(120), unique=True, nullable=False)
     videotitle = db.Column(db.String(80), unique=True, nullable=False)
-    videodescription = db.Column(db.String(120), unique=True, nullable=False)
-    videoplayer = db.Column(db.String(120), unique=True, nullable=False)
+    videodescription = db.Column(db.Text, unique=False, nullable=False)
     playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'), nullable=False)
 
     def __repr__(self):
