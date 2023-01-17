@@ -11,24 +11,28 @@ api = Blueprint('api', __name__)
 
 
 
-@api.route('/prueba', methods=['POST'])
-def get_prueba():
+@api.route('/addinfo', methods=['POST'])
+def get_addinfo():
     
     API_KEY = os.getenv("YOUTUBE_API_KEY") # Recuperamos la apikey del fichero .env (importante que esté presente en el .env)
 
     id_list = request.json.get('id') # recuperamos el id de la playlist desde postman {"id": "xxxxxxxxxx"}
-
+    category_list = request.json.get('category') #Opcion uno creada por Jose :recuperamos la categoria de la playlist
     response = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id={id_list}&key={API_KEY}')
+    print(category_list)
 
     data = response.json()
-    # data['items'][0]['snippet']['channelId']
+    # data['items'][0]['snippet']['channelId'] (otra variante para el código de debajo)
     channel_id = data.get('items')[0].get('snippet').get('channelId')
     
     # Buscamos toda la informacion del channel en youtube
     channel_response = requests.get(f'https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id={channel_id}&key={API_KEY}')
     channel_data = channel_response.json()
-    channel_title = channel_data.get('items')[0].get('brandingSettings').get('channel').get('title')
+    channel_title = channel_data.get('items')[0].get('brandingSettings').get('channel').get('title')    
     channel_image = channel_data.get('items')[0].get('brandingSettings').get('image').get('bannerExternalUrl')
+    
+    
+   
 
     # Buscar en nuestra base de datos si exite un channel con ese id, si no existe ningun lo creamos de lo contrario no creamos nuevamente el channel
     channel = Channel.query.filter_by(channelid=channel_id).first()
@@ -77,7 +81,10 @@ def get_prueba():
 
 
 
-#TODOS LOS GETS
+#RESTO DE LOS GETS
+
+
+
 @api.route('/user', methods=['GET'])
 def get_users():
 

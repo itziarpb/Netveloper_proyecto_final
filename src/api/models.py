@@ -28,8 +28,9 @@ class PlayListItems(db.Model):
     #playlistdescription = db.Column(db.String(120), unique=True, nullable=False)
     #playlistposition = db.Column(db.Integer, unique=True, nullable=False)
     thumbnails = db.Column(db.String(120), unique=True, nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)    
-
+    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)
+    #category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    #category = db.relationship('Category', backref='playlistitems' lazy=True)
     def __repr__(self):
         return f'<PlayListItems {self.playlisttitle}>'
 
@@ -38,8 +39,6 @@ class PlayListItems(db.Model):
             "id": self.id,
             "playlistid": self.playlistid,
             "playlisttitle": self.playlisttitle,
-            #"playlistdescription": self.playlistdescription,
-            #"playlistposition": self.playlistposition
         }
           
 
@@ -86,8 +85,7 @@ class User(db.Model):
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(120), unique=True, nullable=False)
-    category_youtube_id = db.Column(db.String(120), unique=True, nullable=False)
+    category = db.Column(db.String(80), unique=True, nullable=False)
     
     def __repr__(self):
         return f'<Category {self.category}>'

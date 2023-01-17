@@ -9,7 +9,7 @@ export const SingleVideo = () => {
 
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=rbuYtrNUxg4&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
+      `https://3001-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu82.gitpod.io/api/video`
     )
       .then((response) => {
         console.log(response.ok); // will be true if the response is successfull

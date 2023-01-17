@@ -3,25 +3,17 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Jumbotron = () => {
+  
   const { actions } = useContext(Context);
-
-  const [id1, setId1] = useState();
-  const [id2, setId2] = useState();
-  const [id3, setId3] = useState();
-
-  const [img, setImg] = useState();
-  const [img2, setImg2] = useState();
-  const [img3, setImg3] = useState();
-
+ 
   /*---------------------------------------------------------------*/
-  /* Llamadas a la api para obtener los ID de cada canal de youtube*/
+  /* Llamada a la api desde backend para obtener "Channels"*/
   /*---------------------------------------------------------------*/
 
-  /*Canal de yacklyon5993*/
 
   useEffect(() => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=yacklyon5993&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
+      `https://3001-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu82.gitpod.io/api/channel`
     )
       .then((response) => {
         console.log(response.ok); // will be true if the response is successfull
@@ -30,113 +22,13 @@ export const Jumbotron = () => {
       })
 
       .then((response) => {
-        setId1(response.items[0].id.channelId);
+        console.log(response)
        
       })
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  /*Canal de fatztech*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=FaztTech&key=AIzaSyAEQjzh7hO7gU5VkQ0iahdTXNTIpLiaQ7Q`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setId2(response.items[0].id.channelId);
-        console.log(response.items[0].id.channelId);
-        
-        
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*Canal de holamundo*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=holamundo&key=AIzaSyAEQjzh7hO7gU5VkQ0iahdTXNTIpLiaQ7Q`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setId3(response.items[0].id.channelId);
-        
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*---------------------------------------------------------------*/
-  /*Llamadas a la api para obtener el channelbanner de cada canal*/
-  /*---------------------------------------------------------------*/
-
-  /*ChannelBaner de yacklyon5993*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=${id1}&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setImg(response.items[0].brandingSettings.image.bannerExternalUrl);
-        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, [id1]);
-
-  /*ChannelBaner de Fazt*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UCRWjpn9LNoQqhJ59AT_yxPw&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setImg2(response.items[0].brandingSettings.image.bannerExternalUrl);
-        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*ChannelBaner de midudev*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UC8LeXCWOalN8SxlrPcG-PaQ&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setImg3(response.items[0].brandingSettings.image.bannerExternalUrl);
-        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
+  
   /*Mejora de la resolución previa al className*/
   let extension1 = img + `=w1920`;
   let extension2 = img2 + `=w1920`;
@@ -175,21 +67,21 @@ export const Jumbotron = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={extension1}
+              src="https://i.blogs.es/5ff5c1/hello_world/1366_2000.jpg"
               className="d-block w-100 clasejumbotron"
             ></img>
           </div>
 
           <div className="carousel-item">
             <img
-              src={extension2}
+              src="https://i.blogs.es/5ff5c1/hello_world/1366_2000.jpg"
               className="d-block w-100 clasejumbotron"
             ></img>
           </div>
 
           <div className="carousel-item">
             <img
-              src={extension3}
+              src="https://i.blogs.es/5ff5c1/hello_world/1366_2000.jpg"
               className="d-block w-100 clasejumbotron"
               alt="..."
             ></img>
