@@ -83,6 +83,15 @@ def get_addinfo():
 
 #RESTO DE LOS GETS
 
+@api.route('/channel', methods=['GET'])
+def get_channels():
+
+    channels = Channel.query.all()
+    data = [channel.serialize() for channel in channels]
+    
+    return jsonify(data), 200
+
+
 
 
 @api.route('/user', methods=['GET'])

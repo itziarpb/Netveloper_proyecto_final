@@ -3,13 +3,17 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Jumbotron = () => {
-  
   const { actions } = useContext(Context);
- 
+
+  const [id1, setId1] = useState();
+  const [id2, setId2] = useState();
+  const [id3, setId3] = useState();
+
   /*---------------------------------------------------------------*/
-  /* Llamada a la api desde backend para obtener "Channels"*/
+  /* Llamadas a la api para obtener los ID de cada canal de youtube*/
   /*---------------------------------------------------------------*/
 
+  /*Canal de yacklyon5993*/
 
   useEffect(() => {
     fetch(
@@ -22,17 +26,20 @@ export const Jumbotron = () => {
       })
 
       .then((response) => {
-        console.log(response)
+        setId1(response[0].channelbanner)
+        setId2(response[1].channelbanner)
+        setId3(response[2].channelbanner)
+        
        
       })
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  
+ 
   /*Mejora de la resolución previa al className*/
-  let extension1 = img + `=w1920`;
-  let extension2 = img2 + `=w1920`;
-  let extension3 = img3 + `=w1920`;
+  let extension1 = id1 + `=w1920`;
+  let extension2 = id2 + `=w1920`;
+  let extension3 = id3 + `=w1920`;
 
   return (
     <>
@@ -67,21 +74,21 @@ export const Jumbotron = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src="https://i.blogs.es/5ff5c1/hello_world/1366_2000.jpg"
+              src={extension1}
               className="d-block w-100 clasejumbotron"
             ></img>
           </div>
 
           <div className="carousel-item">
             <img
-              src="https://i.blogs.es/5ff5c1/hello_world/1366_2000.jpg"
+              src={extension2}
               className="d-block w-100 clasejumbotron"
             ></img>
           </div>
 
           <div className="carousel-item">
             <img
-              src="https://i.blogs.es/5ff5c1/hello_world/1366_2000.jpg"
+              src={extension3}
               className="d-block w-100 clasejumbotron"
               alt="..."
             ></img>
