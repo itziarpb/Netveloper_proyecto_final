@@ -16,9 +16,7 @@ export const Jumbotron = () => {
   /*Canal de yacklyon5993*/
 
   useEffect(() => {
-    fetch(
-      `https://3001-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu82.gitpod.io/api/channel`
-    )
+    fetch(process.env.BACKEND_URL + "/api/channel")
       .then((response) => {
         console.log(response.ok); // will be true if the response is successfull
         console.log(response.status); // the status code = 200 or code = 400 etc.
