@@ -1,23 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Card } from "./card";
 import { Context } from "../store/appContext";
 
 export const CarouselJs = () => {
   const { store, actions } = useContext(Context);
-  const JsplayList = store.dataPlayList.filter(
-    (playlist) => playlist.playlistCategory == 3
-  );
+  const [id, setId] = useState();
 
+  useEffect(() => {
+    fetch(process.env.BACKEND_URL + "/api/category")
+      .then((response) => {
+        console.log(response.ok); // will be true if the response is successfull
+        console.log(response.status); // the status code = 200 or code = 400 etc.
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        const category = response.find(
+          (element) => element.category == "javascript"
+        );
+        setId(category.id);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
+  const carrusel = store.dataPlayList.filter(
+    (playlist) => playlist.category == id
+  );
   return (
     <div className="container">
       <h3 className="titleCarousel">JAVASCRIPT</h3>
       <div className="scroll row ">
         <div className="d-flex">
-          {JsplayList.map((jsImage, index) => (
+          {carrusel.map((carrusel, index) => (
             <Card
-              title={jsImage.playlisttitle}
-              url={jsImage.playlistimg}
-              id={jsImage.id}
+              title={carrusel.playlisttitle}
+              url={carrusel.thumbnails}
+              id={carrusel.id}
             />
           ))}
         </div>
