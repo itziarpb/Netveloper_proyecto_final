@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/singlevideo.css"
 
 export const SingleVideo = () => {
+
  
   const [id1, setId1] = useState();
   const [id2, setId2] = useState();
@@ -30,7 +31,20 @@ export const SingleVideo = () => {
       }, []);
 
 
+  // useEffect(() => {
+  //   fetch(
+  //     "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&part=id&playlistId=PLhSj3UTs2_yVHt2DgHky_MzzRC58UHE4z&key=AIzaSyAA-IZ2KCTRqgGn8Emt2_nC0vQ7OayQqfA"
+  //   ).then((response) => {
+  //     console.log(response.ok);
+  //     return response.json().then((response) => {
+  //       setVideosPlayList(response);
+  //     });
+  //   });
+  // }, []);
+  // console.log("funciona?", videosPlayList.items);
+
   return (
+
   <>
 
   <div class="container">
@@ -50,6 +64,6 @@ export const SingleVideo = () => {
  
   
    </>
+
   );
 };
-

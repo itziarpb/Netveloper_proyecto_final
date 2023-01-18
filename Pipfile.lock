@@ -1,7 +1,8 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a886b17a58d16c0adc4710719079b25112534b5e14c4000ef28489e05a91470e"
+
+            "sha256": "a886b17a58d16c0adc4710719079b25112534b5e14c4000ef28489e05a91470e"     
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,6 +19,7 @@
     "default": {
         "alembic": {
             "hashes": [
+
                 "sha256:6880dec4f28dd7bd999d2ed13fbe7c9d4337700a44d11a524c0ce0c59aaf0dbd",
                 "sha256:e8a6ff9f3b1887e1fed68bfb8fb9a000d8f61c21bdcc85b67bb9f87fcbc4fce3"
             ],
@@ -31,6 +33,7 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==2022.12.7"
+
         },
         "charset-normalizer": {
             "hashes": [
@@ -124,6 +127,7 @@
                 "sha256:ff6f3db31555657f3163b15a6b7c6938d08df7adbfc9dd13d9d19edad678f1e8"
             ],
             "version": "==3.0.1"
+
         },
         "click": {
             "hashes": [
@@ -269,6 +273,7 @@
             "index": "pypi",
             "version": "==20.1.0"
         },
+
         "idna": {
             "hashes": [
                 "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4",
@@ -501,6 +506,7 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==66.0.0"
+           
         },
         "six": {
             "hashes": [

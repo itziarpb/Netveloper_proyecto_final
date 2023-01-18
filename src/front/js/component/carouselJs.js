@@ -1,25 +1,24 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { Card } from "./card";
+import { Context } from "../store/appContext";
 
 export const CarouselJs = () => {
-  const jsImagenes = [
-    {
-      title: "Curso Básico de Javascript desde 0",
-      url: "https://i.ytimg.com/vi/xnWtGNiG2lg/mqdefault.jpg",
-      channel: "FalconMaster",
-    },
-    { title: "", url: "" },
-    { title: "", url: "" },
-    { title: "", url: "" },
-  ];
+  const { store, actions } = useContext(Context);
+  const JsplayList = store.dataPlayList.filter(
+    (playlist) => playlist.playlistCategory == 3
+  );
 
   return (
     <div className="container">
       <h3 className="titleCarousel">JAVASCRIPT</h3>
       <div className="scroll row ">
         <div className="d-flex">
-          {jsImagenes.map((jsImagenes, index) => (
-            <Card title={jsImagenes.title} url={jsImagenes.url} />
+          {JsplayList.map((jsImage, index) => (
+            <Card
+              title={jsImage.playlisttitle}
+              url={jsImage.playlistimg}
+              id={jsImage.id}
+            />
           ))}
         </div>
       </div>

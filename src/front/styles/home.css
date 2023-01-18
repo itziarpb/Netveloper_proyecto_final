@@ -6,6 +6,7 @@
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 15px;
+  color: black;
 }
 /* style scrollbar */
 ::-webkit-scrollbar {
@@ -29,7 +30,6 @@
   width: 600px;
   height: 450px;
 }
-
 .cardCarousel {
   font-size: 14px;
 }
