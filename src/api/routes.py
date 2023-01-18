@@ -2,10 +2,11 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Category, Video, Like, PlayLater, Coment, Channel, PlayListItems
+from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category
 from api.utils import generate_sitemap, APIException
 import requests # libreria para realizar peticiones youtube
 import os  #libreria para trabajar con el sistema operativo
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity #añadido para hacer el login
 
 api = Blueprint('api', __name__)
 
@@ -17,9 +18,15 @@ def get_addinfo():
     API_KEY = os.getenv("YOUTUBE_API_KEY") # Recuperamos la apikey del fichero .env (importante que esté presente en el .env)
 
     id_list = request.json.get('id') # recuperamos el id de la playlist desde postman {"id": "xxxxxxxxxx"}
-    category_list = request.json.get('category') #Opcion uno creada por Jose :recuperamos la categoria de la playlist
+    category_tag = request.json.get('category') #Opcion uno creada por Jose :recuperamos la categoria de la playlist
+    category = Category.query.filter_by(category=category_tag).first()
+    if not category:
+        category = Category(category=category_tag)
+        db.session.add(category)
+        db.session.commit()
+
     response = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id={id_list}&key={API_KEY}')
-    print(category_list)
+
 
     data = response.json()
     # data['items'][0]['snippet']['channelId'] (otra variante para el código de debajo)
@@ -50,7 +57,7 @@ def get_addinfo():
         title = data.get('items')[0].get('snippet').get('title') # titulo de la playlist
         url = data.get('items')[0].get('snippet').get('thumbnails').get('medium').get('url') # url de la imagen de la playlist
 
-        lista = PlayListItems(playlistid=id_list, playlisttitle=title, thumbnails=url, channel_id=channel.id )
+        lista = PlayListItems(playlistid=id_list, playlisttitle=title, thumbnails=url, channel_id=channel.id, category_id=category.id )
         db.session.add(lista)
         db.session.commit()
 
@@ -69,16 +76,12 @@ def get_addinfo():
         video=Video.query.filter_by(videoid=video_id).first()
 
         if not video:
-            video = Video(videoid=video_id, videotitle=video_title, videodescription=video_description, playlistitems_id=lista.id)
+            video = Video(videoid=video_id, videotitle=video_title, videodescription=video_description, playlistitems_id=lista.id, category_id=category.id)
             db.session.add(video)
             db.session.commit()
       
       
     return jsonify({"message":"ok"}), 200
-
-
-
-
 
 
 #RESTO DE LOS GETS
@@ -92,15 +95,6 @@ def get_channels():
     return jsonify(data), 200
 
 
-
-@api.route('/user', methods=['GET'])
-
-#añadido para hacer el login
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity 
-
-
-api = Blueprint('api', __name__)
-
 #TODOS LOS GETS
 @api.route('/users', methods=['GET'])
 
@@ -111,21 +105,7 @@ def get_users():
     
     return jsonify(data), 200
 
-@api.route('/category', methods=['GET'])
-def get_categories():
 
-    categories = Category.query.all()
-    data = [category.serialize() for category in categories]
-    
-    return jsonify(data), 200
-
-@api.route('/channels', methods=['GET'])
-def get_channels():
-
-    channels = Channel.query.all()
-    data = [channel.serialize() for channel in channels]
-    
-    return jsonify(data), 200
 
 @api.route('/playlists', methods=['GET'])
 def get_playlists():
