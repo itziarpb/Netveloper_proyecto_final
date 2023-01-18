@@ -10,10 +10,8 @@ export const Jumbotron = () => {
   const [id3, setId3] = useState();
 
   /*---------------------------------------------------------------*/
-  /* Llamadas a la api para obtener los ID de cada canal de youtube*/
+  /* Llamada al backend para listar el array con los elementos de la tabla Channel*/
   /*---------------------------------------------------------------*/
-
-  /*Canal de yacklyon5993*/
 
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/channel")
@@ -23,6 +21,7 @@ export const Jumbotron = () => {
         return response.json();
       })
 
+/*Solo nos quedamos con los elementos del array necesarios*/
       .then((response) => {
         setId1(response[0].channelbanner)
         setId2(response[1].channelbanner)
@@ -33,8 +32,7 @@ export const Jumbotron = () => {
       .catch((error) => console.error("Error:", error));
   }, []);
 
- 
-  /*Mejora de la resolución previa al className*/
+ /*Mejora de la resolución previa al className*/
   let extension1 = id1 + `=w1920`;
   let extension2 = id2 + `=w1920`;
   let extension3 = id3 + `=w1920`;
