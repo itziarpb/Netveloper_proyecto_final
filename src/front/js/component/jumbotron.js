@@ -9,138 +9,33 @@ export const Jumbotron = () => {
   const [id2, setId2] = useState();
   const [id3, setId3] = useState();
 
-  const [img, setImg] = useState();
-  const [img2, setImg2] = useState();
-  const [img3, setImg3] = useState();
-
   /*---------------------------------------------------------------*/
-  /* Llamadas a la api para obtener los ID de cada canal de youtube*/
+  /* Llamada al backend para listar el array con los elementos de la tabla Channel*/
   /*---------------------------------------------------------------*/
-
-  /*Canal de yacklyon5993*/
 
   useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=yacklyon5993&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
+    fetch(process.env.BACKEND_URL + "/api/channel")
       .then((response) => {
         console.log(response.ok); // will be true if the response is successfull
         console.log(response.status); // the status code = 200 or code = 400 etc.
         return response.json();
       })
 
+/*Solo nos quedamos con los elementos del array necesarios*/
       .then((response) => {
-        setId1(response.items[0].id.channelId);
+        setId1(response[0].channelbanner)
+        setId2(response[1].channelbanner)
+        setId3(response[2].channelbanner)
+        
        
       })
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  /*Canal de fatztech*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=FaztTech&key=AIzaSyAEQjzh7hO7gU5VkQ0iahdTXNTIpLiaQ7Q`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setId2(response.items[0].id.channelId);
-        console.log(response.items[0].id.channelId);
-        
-        
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*Canal de holamundo*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=holamundo&key=AIzaSyAEQjzh7hO7gU5VkQ0iahdTXNTIpLiaQ7Q`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setId3(response.items[0].id.channelId);
-        
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*---------------------------------------------------------------*/
-  /*Llamadas a la api para obtener el channelbanner de cada canal*/
-  /*---------------------------------------------------------------*/
-
-  /*ChannelBaner de yacklyon5993*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=${id1}&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setImg(response.items[0].brandingSettings.image.bannerExternalUrl);
-        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, [id1]);
-
-  /*ChannelBaner de Fazt*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UCRWjpn9LNoQqhJ59AT_yxPw&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setImg2(response.items[0].brandingSettings.image.bannerExternalUrl);
-        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*ChannelBaner de midudev*/
-
-  useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id=UC8LeXCWOalN8SxlrPcG-PaQ&key=AIzaSyCLGNOAdPMC9vfdOzhZyOMMuO4OBOtvXZA`
-    )
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-
-      .then((response) => {
-        setImg3(response.items[0].brandingSettings.image.bannerExternalUrl);
-        console.log(response.items[0].brandingSettings.image.bannerExternalUrl);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  /*Mejora de la resolución previa al className*/
-  let extension1 = img + `=w1920`;
-  let extension2 = img2 + `=w1920`;
-  let extension3 = img3 + `=w1920`;
+ /*Mejora de la resolución previa al className*/
+  let extension1 = id1 + `=w1920`;
+  let extension2 = id2 + `=w1920`;
+  let extension3 = id3 + `=w1920`;
 
   return (
     <>

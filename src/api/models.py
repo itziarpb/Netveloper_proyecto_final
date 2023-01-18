@@ -56,11 +56,12 @@ class PlayListItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     playlistid = db.Column(db.String(120), unique=True, nullable=False)
     playlisttitle = db.Column(db.String(80), unique=True, nullable=False)
-    playlistimg = db.Column(db.String(80), unique=True, nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'))   
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-    channel = db.relationship(Channel)
-    category = db.relationship(Category)
+    #playlistdescription = db.Column(db.String(120), unique=True, nullable=False)
+    #playlistposition = db.Column(db.Integer, unique=True, nullable=False)
+    thumbnails = db.Column(db.String(120), unique=True, nullable=False)
+    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)
+    #category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    #category = db.relationship('Category', backref='playlistitems' lazy=True)
 
     def __repr__(self):
         return f'<PlayListItems {self.playlisttitle}>'
@@ -70,8 +71,6 @@ class PlayListItems(db.Model):
             "id": self.id,
             "playlistid": self.playlistid,
             "playlisttitle": self.playlisttitle,
-            "playlistimg": self.playlistimg,
-            "playlistCategory": self.category_id,
         }
           
 
@@ -79,14 +78,9 @@ class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     videoid = db.Column(db.String(120), unique=True, nullable=False)
     videotitle = db.Column(db.String(80), unique=True, nullable=False)
-    videodescription = db.Column(db.String(120), unique=True, nullable=True)
-    videoplayer = db.Column(db.String(120), unique=True, nullable=True)
-    playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'))
-    channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'))   
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-    playlistitems = db.relationship(PlayListItems)
-    channel = db.relationship(Channel)
-    category = db.relationship(Category)
+    videodescription = db.Column(db.Text, unique=False, nullable=False)
+    #playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'), nullable=False)
+
 
     def __repr__(self):
         return f'<Video {self.videotitle}>'
@@ -97,12 +91,27 @@ class Video(db.Model):
             "video_id": self.videoid,
             "videotitle": self.videotitle,
             "videodescription": self.videodescription,
-            "videoplayer": self.videoplayer
+            #"playlistitems": self.play_list_items
+           
         }
 
 
     
 
+
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String(80), unique=True, nullable=False)
+    
+    def __repr__(self):
+        return f'<Category {self.category}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "category": self.category,
+        }
 
 
 #class Video(db.Model): (Te la dejo comentada, no se si usaremos algún parámetro de esta que creaste)

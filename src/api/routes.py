@@ -4,6 +4,97 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Category, Video, Like, PlayLater, Coment, Channel, PlayListItems
 from api.utils import generate_sitemap, APIException
+import requests # libreria para realizar peticiones youtube
+import os  #libreria para trabajar con el sistema operativo
+
+api = Blueprint('api', __name__)
+
+
+
+@api.route('/addinfo', methods=['POST'])
+def get_addinfo():
+    
+    API_KEY = os.getenv("YOUTUBE_API_KEY") # Recuperamos la apikey del fichero .env (importante que esté presente en el .env)
+
+    id_list = request.json.get('id') # recuperamos el id de la playlist desde postman {"id": "xxxxxxxxxx"}
+    category_list = request.json.get('category') #Opcion uno creada por Jose :recuperamos la categoria de la playlist
+    response = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id={id_list}&key={API_KEY}')
+    print(category_list)
+
+    data = response.json()
+    # data['items'][0]['snippet']['channelId'] (otra variante para el código de debajo)
+    channel_id = data.get('items')[0].get('snippet').get('channelId')
+    
+    # Buscamos toda la informacion del channel en youtube
+    channel_response = requests.get(f'https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id={channel_id}&key={API_KEY}')
+    channel_data = channel_response.json()
+    channel_title = channel_data.get('items')[0].get('brandingSettings').get('channel').get('title')    
+    channel_image = channel_data.get('items')[0].get('brandingSettings').get('image').get('bannerExternalUrl')
+    
+    
+   
+
+    # Buscar en nuestra base de datos si exite un channel con ese id, si no existe ningun lo creamos de lo contrario no creamos nuevamente el channel
+    channel = Channel.query.filter_by(channelid=channel_id).first()
+    if not channel:
+        channel = Channel(channelid=channel_id, channelbanner=channel_image, channeltitle=channel_title)
+        db.session.add(channel)
+        db.session.commit()
+
+    
+
+    # Buscamos en nuestra base de datos si existe la playlist
+    lista = PlayListItems.query.filter_by(playlistid=id_list).first()
+
+    if not lista:
+        title = data.get('items')[0].get('snippet').get('title') # titulo de la playlist
+        url = data.get('items')[0].get('snippet').get('thumbnails').get('medium').get('url') # url de la imagen de la playlist
+
+        lista = PlayListItems(playlistid=id_list, playlisttitle=title, thumbnails=url, channel_id=channel.id )
+        db.session.add(lista)
+        db.session.commit()
+
+    # Buscamos en youtube todos los videos de una lista
+    response_videos = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&part=id&playlistId={id_list}&key={API_KEY}')
+    data_videos = response_videos.json()
+
+    list_of_videos = data_videos.get('items') # array de videos
+    
+    for element in list_of_videos:
+        video_id = element.get('snippet').get('resourceId').get('videoId')
+        video_title = element.get('snippet').get('title')
+        video_description = element.get('snippet').get('description')
+
+        # Buscamos en la base de datos si existe el video
+        video=Video.query.filter_by(videoid=video_id).first()
+
+        if not video:
+            video = Video(videoid=video_id, videotitle=video_title, videodescription=video_description, playlistitems_id=lista.id)
+            db.session.add(video)
+            db.session.commit()
+      
+      
+    return jsonify({"message":"ok"}), 200
+
+
+
+
+
+
+#RESTO DE LOS GETS
+
+@api.route('/channel', methods=['GET'])
+def get_channels():
+
+    channels = Channel.query.all()
+    data = [channel.serialize() for channel in channels]
+    
+    return jsonify(data), 200
+
+
+
+@api.route('/user', methods=['GET'])
+
 #añadido para hacer el login
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity 
 
@@ -12,6 +103,7 @@ api = Blueprint('api', __name__)
 
 #TODOS LOS GETS
 @api.route('/users', methods=['GET'])
+
 def get_users():
 
     users = User.query.all()
