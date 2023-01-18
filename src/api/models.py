@@ -47,7 +47,7 @@ class Video(db.Model):
     videoid = db.Column(db.String(120), unique=True, nullable=False)
     videotitle = db.Column(db.String(80), unique=True, nullable=False)
     videodescription = db.Column(db.Text, unique=False, nullable=False)
-    playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'), nullable=False)
+    #playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'), nullable=False)
 
     def __repr__(self):
         return f'<Video {self.videotitle}>'
@@ -58,7 +58,8 @@ class Video(db.Model):
             "video_id": self.videoid,
             "videotitle": self.videotitle,
             "videodescription": self.videodescription,
-            "videoplayer": self.videoplayer
+            #"playlistitems": self.play_list_items
+           
         }
 
 

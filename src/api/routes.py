@@ -93,7 +93,6 @@ def get_channels():
 
 
 
-
 @api.route('/user', methods=['GET'])
 def get_users():
 
