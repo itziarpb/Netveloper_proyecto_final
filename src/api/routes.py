@@ -105,7 +105,14 @@ def get_users():
     
     return jsonify(data), 200
 
+@api.route('/category', methods=['GET'])
 
+def get_category():
+
+    categories = Category.query.all()
+    data = [category.serialize() for category in categories]
+    
+    return jsonify(data), 200
 
 @api.route('/playlists', methods=['GET'])
 def get_playlists():

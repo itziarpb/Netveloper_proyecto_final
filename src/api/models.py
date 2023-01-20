@@ -70,7 +70,8 @@ class PlayListItems(db.Model):
             "id": self.id,
             "playlistid": self.playlistid,
             "playlisttitle": self.playlisttitle,
-            "category":self.category_id
+            "category":self.category_id,
+            "thumbnails":self.thumbnails,
         }
           
 
@@ -93,6 +94,7 @@ class Video(db.Model):
             "video_id": self.videoid,
             "videotitle": self.videotitle,
             "videodescription": self.videodescription,
+            "playlist": self.playlistitems_id
            
         }
 
