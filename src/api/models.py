@@ -42,7 +42,7 @@ class Channel(db.Model):
     channeltitle = db.Column(db.String(80), unique=True, nullable=False)    
 
     def __repr__(self):
-        return f'<Channel {self.channeltitle}>'
+        return self.channeltitle
 
     def serialize(self):
         return {
@@ -70,7 +70,7 @@ class PlayListItems(db.Model):
             "id": self.id,
             "playlistid": self.playlistid,
             "playlisttitle": self.playlisttitle,
-            "category":self.category
+            "category":self.category_id
         }
           
 
@@ -93,7 +93,6 @@ class Video(db.Model):
             "video_id": self.videoid,
             "videotitle": self.videotitle,
             "videodescription": self.videodescription,
-            #"playlistitems": self.play_list_items
            
         }
 
