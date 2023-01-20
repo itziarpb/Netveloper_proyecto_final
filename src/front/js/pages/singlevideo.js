@@ -56,9 +56,9 @@ export const SingleVideo = () => {
           let returnObjeto = {videoid:elem.video_id}
           return returnObjeto
         })
-        console.log(arrayPrueba)
+        console.log(arrayPrueba)    
         
-          
+        
         
       })
       .catch((error) => console.error("Error:", error));
