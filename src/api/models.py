@@ -42,7 +42,7 @@ class Channel(db.Model):
     channeltitle = db.Column(db.String(80), unique=True, nullable=False)    
 
     def __repr__(self):
-        return f'<Channel {self.channeltitle}>'
+        return self.channeltitle
 
     def serialize(self):
         return {
