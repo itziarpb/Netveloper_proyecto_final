@@ -56,7 +56,7 @@ def get_addinfo():
     if not lista:
         title = data.get('items')[0].get('snippet').get('title') # titulo de la playlist
         url = data.get('items')[0].get('snippet').get('thumbnails').get('medium').get('url') # url de la imagen de la playlist
-
+        
         lista = PlayListItems(playlistid=id_list, playlisttitle=title, thumbnails=url, channel_id=channel.id, category_id=category.id )
         db.session.add(lista)
         db.session.commit()

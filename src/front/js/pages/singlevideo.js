@@ -9,7 +9,8 @@ export const SingleVideo = () => {
   const [id, setId] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
-  const [thumbnail, setThumbnail] = useState();
+  /*const [thumbnail, setThumbnail] = useState();*/
+
 
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/video")
@@ -24,7 +25,7 @@ export const SingleVideo = () => {
         setId(response[3].video_id)
         setTitle(response[3].videotitle)
         setDescription(response[3].videodescription)
-        console.log(response[3]);
+        
         
         
       })
@@ -36,7 +37,7 @@ export const SingleVideo = () => {
   /*Llamada a playlist*/
 
   useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/playlists")
+    fetch(process.env.BACKEND_URL + "/api/video")
     
     .then((response) => {
         console.log(response.ok); // will be true if the response is successfull
@@ -45,8 +46,19 @@ export const SingleVideo = () => {
       })
 
       .then((response) => {
-        setThumbnail(response)
+        /*setThumbnail(response)*/
+        console.log(response)
         
+        const listOfVideos = response
+        
+        let arrayPrueba = []
+        arrayPrueba = listOfVideos.map(function(elem){
+          let returnObjeto = {videoid:elem.video_id}
+          return returnObjeto
+        })
+        console.log(arrayPrueba)
+        
+          
         
       })
       .catch((error) => console.error("Error:", error));
