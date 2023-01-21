@@ -1,3 +1,9 @@
+.clasejumbotron {
+  object-fit: cover;
+  width: 600px;
+  height: 450px;
+}
+
 .scroll {
   overflow-x: auto;
   display: flex;
@@ -7,28 +13,6 @@
   margin-top: 10px;
   margin-bottom: 15px;
   color: black;
-}
-/* style scrollbar */
-::-webkit-scrollbar {
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: #42c920;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #0a740c;
-}
-/* style scrollbar */
-
-.clasejumbotron {
-  object-fit: cover;
-  width: 600px;
-  height: 450px;
 }
 .cardCarousel {
   font-size: 14px;

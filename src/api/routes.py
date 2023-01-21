@@ -1,12 +1,14 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+from datetime import timedelta
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category
 from api.utils import generate_sitemap, APIException
 import requests # libreria para realizar peticiones youtube
 import os  #libreria para trabajar con el sistema operativo
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity #añadido para hacer el login
+
 
 api = Blueprint('api', __name__)
 
@@ -95,7 +97,6 @@ def get_channels():
     return jsonify(data), 200
 
 
-#TODOS LOS GETS
 @api.route('/users', methods=['GET'])
 
 def get_users():
@@ -166,7 +167,8 @@ def login():
     
     user = User.query.filter_by(email=data['email'], password=data['password']).first()
     if user:
-        token = create_access_token(identity=user.id)
+        #expires = datetime.timedelta(minutes=600)
+        token = create_access_token(identity=user.id ) #fresh= False expires_delta=datetime.timedelta(minutes=5)
         #return jsonify(data), 200 #devuelve el dato
         return jsonify({"access_token": token}), 200
     

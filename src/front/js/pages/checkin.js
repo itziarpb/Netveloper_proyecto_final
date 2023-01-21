@@ -10,7 +10,6 @@ export const Checkin = () => {
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
