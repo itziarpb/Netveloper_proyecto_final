@@ -51,9 +51,7 @@ export const SingleVideo = () => {
       })
 
       .then((response) => {
-        /*setThumbnail(response)*/
-        console.log(response)
-        
+        console.log(response)        
         const listOfVideos = response
         
         
@@ -71,7 +69,7 @@ export const SingleVideo = () => {
       }, []);
 
       const arrayPrueba3 = prueba;
-  
+     
       
 
       const change = (event) =>{
@@ -83,25 +81,25 @@ export const SingleVideo = () => {
   <>
   
   <div class="container">
-        <h1 class="text pb-4 pt-4">{title}</h1>
-        <div class="row">
-        <div class="col-sm-7"><iframe width="720" height="576" src={`https://www.youtube.com/embed/${idc}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-        <div class="col-sm-5"><p className="text">{description}</p></div>
+        <h1 className="text pb-4 pt-4">{title}</h1>
+        <div className="row">
+        <div className="col-sm-7"><iframe width="720" height="576" src={`https://www.youtube.com/embed/${idc}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div className="col-sm-5"><p className="text">{description}</p></div>
         </div>
         <div><h2 className="text pt-4">Resto del Curso</h2></div>
 
-        <div className="row col-sm-5 pb-4 pt-4">
-
+        <div className="row">
+          
           {
             arrayPrueba3.map((value, index)=>{
-                return <button key={index} id={value.videoid} type="button" className="btn btn-success" onClick={change}>{value.videoid}</button>
+                return <div className="col-12 col-md-4 pb-4 pt-4"><img key={index} id={value.videoid} src={`https://i.ytimg.com/vi/${value.videoid}/mqdefault.jpg`} height="100%" classname="hover" onClick={change}></img></div>
 
             })
 
             
           }
 
-
+          
 
 
         </div>
