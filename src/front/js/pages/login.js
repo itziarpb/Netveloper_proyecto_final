@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/checkin.css";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -25,10 +26,10 @@ export const Login = () => {
       {store.token && store.token != "" && store.token != undefined ? (
         "Ya estas registrado"
       ) : (
-        <div>
+        <div className="mx-5">
           <h1 className="checkinTitle">Bienvenido a la página de login</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="col-sm-9 mb-3">
+          <form onSubmit={handleSubmit} className="formulario">
+            <div className="mb-3">
               <input
                 type="text"
                 className="form-control"
@@ -38,7 +39,7 @@ export const Login = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-sm-9 mb-3">
+            <div className="mb-3">
               <input
                 type="password"
                 className="form-control"
