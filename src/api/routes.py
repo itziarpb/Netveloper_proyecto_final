@@ -130,6 +130,17 @@ def get_videos():
     
     return jsonify(data), 200
 
+@api.route('/playlist/<int:id>', methods=['GET'])
+def get_videosbyplaylist(id):
+
+    videos = Video.query.filter_by(playlistitems_id=id)
+    data = [video.serialize() for video in videos]
+    
+    return jsonify(data), 200
+
+
+
+
 @api.route('/like', methods=['GET'])
 def get_likes():
 
