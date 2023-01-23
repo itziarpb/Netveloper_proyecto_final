@@ -8,3 +8,14 @@
   margin-bottom: 15px;
   color: black;
 }
+
+.title {
+  color: #42c920;
+}
+.username {
+  color: #0a740c;
+}
+.imgPlayLater {
+  height: 100px;
+  width: 80x;
+}

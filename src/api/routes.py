@@ -13,7 +13,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 api = Blueprint('api', __name__)
 
 
-
+#POST PARA INTRODUCIR LOS DATOS A LA BASE DE DATOS A TRAVES DE POSTMAN O SIMILAR
 @api.route('/addinfo', methods=['POST'])
 def get_addinfo():
     
@@ -85,68 +85,6 @@ def get_addinfo():
       
     return jsonify({"message":"ok"}), 200
 
-
-#RESTO DE LOS GETS
-
-@api.route('/channel', methods=['GET'])
-def get_channels():
-
-    channels = Channel.query.all()
-    data = [channel.serialize() for channel in channels]
-    
-    return jsonify(data), 200
-
-
-@api.route('/users', methods=['GET'])
-
-def get_users():
-
-    users = User.query.all()
-    data = [user.serialize() for user in users]
-    
-    return jsonify(data), 200
-
-@api.route('/category', methods=['GET'])
-
-def get_category():
-
-    categories = Category.query.all()
-    data = [category.serialize() for category in categories]
-    
-    return jsonify(data), 200
-
-@api.route('/playlists', methods=['GET'])
-def get_playlists():
-
-    playlists = PlayListItems.query.all()
-    data = [playlist.serialize() for playlist in playlists]
-    
-    return jsonify(data), 200
-
-@api.route('/video', methods=['GET'])
-def get_videos():
-
-    videos = Video.query.all()
-    data = [video.serialize() for video in videos]
-    
-    return jsonify(data), 200
-
-@api.route('/like', methods=['GET'])
-def get_likes():
-
-    likes = Like.query.all()
-    data = [like.serialize() for like in likes]
-    
-    return jsonify(data), 200
-
-@api.route('/playLater', methods=['GET'])
-def get_playLaters():
-
-    playLaters = PlayLater.query.all()
-    data = [playLater.serialize() for playLater in playLaters]
-    
-    return jsonify(data), 200
-
 #POST PARA REGISTRARSE
 @api.route('/user', methods=['POST'])
 def register_user():  
@@ -174,9 +112,68 @@ def login():
     
     return jsonify({"message": "Email/contraseña incorrecta"}), 400
 
+#GET RESTRINGIDO DEL USUARIO
 @api.route('/user', methods=['GET'])
 @jwt_required()
 def get_user():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
     return jsonify(user.serialize()), 200
+
+#GET DE LOS CANALES PARA EL JUMBOTRON
+@api.route('/channel', methods=['GET'])
+def get_channels():
+
+    channels = Channel.query.all()
+    data = [channel.serialize() for channel in channels]
+    
+    return jsonify(data), 200
+
+#GET DE LAS CATEGORIAS PARA LOS CARRUSELES
+@api.route('/category', methods=['GET'])
+
+def get_category():
+
+    categories = Category.query.all()
+    data = [category.serialize() for category in categories]
+    
+    return jsonify(data), 200
+
+#GET DE LAS PLAYLIST
+@api.route('/playlists', methods=['GET'])
+def get_playlists():
+
+    playlists = PlayListItems.query.all()
+    data = [playlist.serialize() for playlist in playlists]
+    
+    return jsonify(data), 200
+
+#GET DE LOS VIDEOS
+@api.route('/video', methods=['GET'])
+def get_videos():
+
+    videos = Video.query.all()
+    data = [video.serialize() for video in videos]
+    
+    return jsonify(data), 200
+
+#GET RESTRINGIDO DE LOS LIKES
+@api.route('/like', methods=['GET'])
+@jwt_required()
+def get_likes():
+    userid = get_jwt_identity()
+    likes = Like.query.filter_by(user_id=userid)
+    data = [like.serialize() for like in likes]
+    
+    return jsonify(data), 200
+
+#GET RESTRINGIDO DE LOS VIDEOS PARA VER MAS TARDE
+@api.route('/playLater', methods=['GET'])
+@jwt_required()
+def get_playLaters():
+    userid = get_jwt_identity()
+    playLaters = PlayLater.query.filter_by(user_id=userid)
+    data = [playLater.serialize() for playLater in playLaters]
+    
+    return jsonify(data), 200
+

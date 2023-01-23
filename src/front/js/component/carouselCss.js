@@ -20,6 +20,7 @@ export const CarouselCss = () => {
       })
       .catch((error) => console.error("Error:", error));
   }, []);
+
   const carrusel = store.dataPlayList.filter(
     (playlist) => playlist.category == id
   );

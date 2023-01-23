@@ -4,8 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       dataUser: [],
       dataPlayList: [],
-      likes: [],
-      playLater: [],
+      videosYoutube: [],
     },
     actions: {
       //
@@ -43,7 +42,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         localStorage.removeItem("token");
-        console.log("login out");
         setStore({ token: null });
       },
 
@@ -81,34 +79,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Ha ocurrido un error", error);
         }
       },
-      getlikes: async () => {
+
+      getvideos: async () => {
         try {
           const store = getStore();
-          const resp = await fetch(process.env.BACKEND_URL + "/api/like", {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/video", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
           });
           const data = await resp.json();
-          setStore({ likes: data });
-          return store.likes;
-        } catch (error) {
-          console.error("Ha ocurrido un error", error);
-        }
-      },
-      getPlayLater: async () => {
-        try {
-          const store = getStore();
-          const resp = await fetch(process.env.BACKEND_URL + "/api/playLater", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          const data = await resp.json();
-          setStore({ playLater: data });
-          return store.likes;
+          setStore({ videosYoutube: data });
+          return store.videosYoutube;
         } catch (error) {
           console.error("Ha ocurrido un error", error);
         }

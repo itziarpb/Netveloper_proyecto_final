@@ -16,13 +16,13 @@ export const Login = () => {
     actions.login(loginData.email, loginData.password);
   };
 
-  if (store.token && store.token != "" && store.token != undefined)
-    navigate("/home");
+  //if ((store.dataUser.msg = "Token has expired")) actions.logout();
 
   return (
     <div className="col-7 mx-auto ">
       {store.token && store.token != "" && store.token != undefined ? (
-        "Ya estas registrado"
+        //"Ya estas registrado"
+        navigate("/home")
       ) : (
         <div>
           <h1 className="checkinTitle">Bienvenido a la página de login</h1>
