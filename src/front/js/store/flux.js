@@ -79,23 +79,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error("Ha ocurrido un error", error);
         }
       },
-
-      getvideos: async () => {
-        try {
-          const store = getStore();
-          const resp = await fetch(process.env.BACKEND_URL + "/api/video", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          const data = await resp.json();
-          setStore({ videosYoutube: data });
-          return store.videosYoutube;
-        } catch (error) {
-          console.error("Ha ocurrido un error", error);
-        }
-      },
     },
   };
 };

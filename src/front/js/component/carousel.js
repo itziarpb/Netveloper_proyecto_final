@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 export const Carousel = (prop) => {
   const { store, actions } = useContext(Context);
   const [id, setId] = useState();
+  const [lista, setlista] = useState();
 
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/category")
