@@ -157,7 +157,15 @@ def get_videos():
     
     return jsonify(data), 200
 
-#GET RESTRINGIDO DE LOS LIKES
+
+@api.route('/playlist/<int:id>', methods=['GET'])
+def get_videosbyplaylist(id):
+
+    videos = Video.query.filter_by(playlistitems_id=id)
+    data = [video.serialize() for video in videos]
+    
+    return jsonify(data), 200
+
 @api.route('/like', methods=['GET'])
 @jwt_required()
 def get_likes():

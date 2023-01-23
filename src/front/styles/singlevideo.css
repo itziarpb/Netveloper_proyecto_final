@@ -2,3 +2,7 @@
     color: green;
     line-height: 35px;
   }
+
+.hover {
+  border-color: azure;
+}
