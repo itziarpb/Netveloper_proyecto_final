@@ -33,7 +33,7 @@ export const Checkin = () => {
       {store.token && store.token != "" && store.token != undefined ? (
         "Ya estas registrado"
       ) : (
-        <div>
+        <div className="container-fluid">
           <h1 className="checkinTitle">Bienvenido a la página de registro</h1>
           <form onSubmit={handleSubmit} className="formulario">
             <div className="mb-3 row ">
