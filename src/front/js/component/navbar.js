@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/netveloper_nombre.png";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+
+  const handleClick = () => {
+    actions.logout();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid">
@@ -31,11 +36,6 @@ export const Navbar = () => {
                 </Link>
               </li>
             )}
-            <li className="nav-item">
-              <Link to="/setting" className="nav-link">
-                Ajustes
-              </Link>
-            </li>
             {store.token == null && (
               <li className="nav-item">
                 <Link to="/login" className="nav-link">
@@ -43,6 +43,17 @@ export const Navbar = () => {
                 </Link>
               </li>
             )}
+
+            <li className="nav-item">
+              <Link to="/home" onClick={handleClick} className="nav-link">
+                Cerrar sesion
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/setting" className="nav-link">
+                Ajustes
+              </Link>
+            </li>
           </ul>
           <form className="d-flex">
             <input

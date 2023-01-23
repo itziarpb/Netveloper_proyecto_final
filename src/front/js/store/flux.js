@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       dataUser: [],
       dataPlayList: [],
+      videosYoutube: [],
     },
     actions: {
       //
@@ -41,7 +42,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         localStorage.removeItem("token");
-        console.log("login out");
         setStore({ token: null });
       },
 
@@ -75,6 +75,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await resp.json();
           setStore({ dataPlayList: data });
           return store.dataPlayList;
+        } catch (error) {
+          console.error("Ha ocurrido un error", error);
+        }
+      },
+
+      getvideos: async () => {
+        try {
+          const store = getStore();
+          const resp = await fetch(process.env.BACKEND_URL + "/api/video", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await resp.json();
+          setStore({ videosYoutube: data });
+          return store.videosYoutube;
         } catch (error) {
           console.error("Ha ocurrido un error", error);
         }

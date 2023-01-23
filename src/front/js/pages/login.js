@@ -9,22 +9,21 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setLoginData({ ...loginData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     actions.login(loginData.email, loginData.password);
   };
 
-  if (store.token && store.token != "" && store.token != undefined)
-    navigate("/profile");
+  //if ((store.dataUser.msg = "Token has expired")) actions.logout();
 
   return (
     <div className="col-7 mx-auto ">
       {store.token && store.token != "" && store.token != undefined ? (
-        "Ya estas registrado"
+        //"Ya estas registrado"
+        navigate("/home")
       ) : (
         <div className="mx-5">
           <h1 className="checkinTitle">Bienvenido a la página de login</h1>
