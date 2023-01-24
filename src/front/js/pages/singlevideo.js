@@ -6,7 +6,8 @@ export const SingleVideo = () => {
 
   const params = useParams();
   const [video, setVideo] = useState();
-  const [playlist, setPlayList] = useState([]); 
+  const [playlist, setPlayList] = useState([]);
+  const [state, setState] = useState("btn btn-danger btn-lg");
 
   /*Llamada a playlist*/
 
@@ -25,17 +26,32 @@ export const SingleVideo = () => {
 
   }, []);
 
-  return (
+  const like = ()=>{
+    console.log(video.video_id)
+    setState("btn btn-danger btn-lg disabled")
+  }
+   return (
   <>
     <div class="container">
       {
         video ? (
           <>
             <h1 className="text pb-4 pt-4">{video.videotitle}</h1>
-            <div className="row">
-            <div className="col-sm-7"><iframe width="720" height="576" src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-            <div className="col-sm-5"><p className="text">{video.videodescription}</p></div>
-            </div>
+              <div className="row">
+                  <div className="col-sm-7">
+                    <iframe width="720" height="576" src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div className="col-sm-5 ">
+                    <p className="overflow-auto text div">{video.videodescription}</p>
+                    <div className="pb-4">
+                      <button type="button" className={state} onClick={like}>Me gusta</button>
+                    </div>
+                    <div>
+                    <button type="button" class="btn btn-success btn-lg">Ver más tarde</button>
+                    </div> 
+                  </div>
+              </div>
+            
             <div><h2 className="text pt-4">Curso completo</h2></div>
 
             <div className="row">
