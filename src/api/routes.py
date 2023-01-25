@@ -85,18 +85,6 @@ def get_addinfo():
       
     return jsonify({"message":"ok"}), 200
 
-#POST PARA REGISTRARSE
-@api.route('/user', methods=['POST'])
-def register_user():  
-    try:
-        data = request.json
-        user = User(username=data["username"], email=data["email"], password=data["password"])
-        db.session.add(user)
-        db.session.commit()
-    except Exception as e:
-        print(e)
-        return jsonify({"message": "No se pudo registrar"}), 400
-    return jsonify({"message": "Usuario registrado"}), 200
 
 #POST PARA LOGIN
 @api.route('/login', methods=['POST'])
@@ -186,10 +174,11 @@ def get_playLaters():
     return jsonify(data), 200
 
 @api.route('/playLater', methods=['POST'])
+@jwt_required()
 def save_playLater():
     data = request.json
-
-    playLater = PlayLater(video_id=data["video_id"])
+    userid = get_jwt_identity()
+    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
     db.session.add(playLater)
     db.session.commit()
 
@@ -208,22 +197,5 @@ def register_user():
         return jsonify({"message": "No se pudo registrar"}), 400
     return jsonify({"message": "Usuario registrado"}), 200
 
-#POST PARA LOGIN
-@api.route('/login', methods=['POST'])
-def login():
-    data = request.json
-    
-    user = User.query.filter_by(email=data['email'], password=data['password']).first()
-    if user:
-        token = create_access_token(identity=user.id)
-        #return jsonify(data), 200 #devuelve el dato
-        return jsonify({"access_token": token}), 200
-    
-    return jsonify({"message": "Email/contraseña incorrecta"}), 400
 
-@api.route('/user', methods=['GET'])
-@jwt_required()
-def get_user():
-    user_id = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
-    return jsonify(user.serialize()), 200
+
