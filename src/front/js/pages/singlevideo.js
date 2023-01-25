@@ -8,8 +8,9 @@ export const SingleVideo = () => {
   const [video, setVideo] = useState();
   const [playlist, setPlayList] = useState([]);
   const [state, setState] = useState("btn btn-danger btn-lg");
+  const [playlater, setPlayLater] = useState([]);
 
-  /*Llamada a playlist*/
+  /*Llamada a playlist para recuperar videos*/
 
   useEffect(() => {
 
@@ -26,8 +27,28 @@ export const SingleVideo = () => {
 
   }, []);
 
-  const like = ()=>{
-    console.log(video.video_id)
+  
+
+  useEffect(() => {
+
+    fetch(process.env.BACKEND_URL + "/api/playLater", {
+
+      method: "POST",
+      body: JSON.stringify(playlater),
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+      
+  }, [playlater]);
+
+  const seeLater = ()=>{
+    console.log(video.id)
+    setPlayLater(video.id)
+
+    
+
+    
     setState("btn btn-danger btn-lg disabled")
   }
    return (
@@ -42,12 +63,13 @@ export const SingleVideo = () => {
                     <iframe width="720" height="576" src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                   </div>
                   <div className="col-sm-5 ">
+                    <h2 className="text">Información del autor</h2>
                     <p className="overflow-auto text div">{video.videodescription}</p>
                     <div className="pb-4">
-                      <button type="button" className={state} onClick={like}>Me gusta</button>
+                      <button type="button" className={state} onClick={seeLater}>Ver más tarde</button>
                     </div>
                     <div>
-                    <button type="button" class="btn btn-success btn-lg">Ver más tarde</button>
+                    <button type="button" class="btn btn-success btn-lg">Me gusta</button>
                     </div> 
                   </div>
               </div>

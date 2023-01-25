@@ -157,6 +157,16 @@ def get_playLaters():
     
     return jsonify(data), 200
 
+@api.route('/playLater', methods=['POST'])
+def save_playLater():
+    data = request.json
+
+    playLater = PlayLater(video_id=data["video_id"])
+    db.session.add(playLater)
+    db.session.commit()
+
+    return jsonify({"mensaje": "guardado para más tarde correctamente"})
+
 #POST PARA REGISTRARSE
 @api.route('/user', methods=['POST'])
 def register_user():  

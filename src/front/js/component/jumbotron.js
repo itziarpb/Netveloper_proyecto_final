@@ -49,7 +49,7 @@ export const Jumbotron = () => {
           ></button>
                      
                  { 
-                  channel.map((value,index)=>{
+                  channel.slice(1).map((value,index)=>{
                   return(<button
                     type="button"
                     data-bs-target="#carouselExampleIndicators"
@@ -69,7 +69,7 @@ export const Jumbotron = () => {
           </div>
 
           {
-            channel.map((value,index)=>{
+            channel.slice(1).map((value,index)=>{
               return(
             
             <div className="carousel-item">
