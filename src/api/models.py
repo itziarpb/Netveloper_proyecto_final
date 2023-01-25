@@ -102,7 +102,7 @@ class Video(db.Model):
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
+    video_id = db.Column(db.String(120), db.ForeignKey('video.id'))
     user = db.relationship(User)
     video = db.relationship(Video)
 
