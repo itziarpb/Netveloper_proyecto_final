@@ -25,31 +25,36 @@ export const SingleVideo = () => {
         setPlayList(response)
     }).catch((error) => console.error("Error:", error));
 
-  }, []);
-
-  
-
-  useEffect(() => {
-
     fetch(process.env.BACKEND_URL + "/api/playLater", {
 
-      method: "POST",
-      body: JSON.stringify(playlater),
+      method: "GET",      
       headers:{
         "Content-Type": "application/json"
       }
     })
-      
-  }, [playlater]);
 
+  }, []);
+
+  
+
+  
   const seeLater = ()=>{
+
+    fetch(process.env.BACKEND_URL + "/api/playLater", {
+
+      method: "POST",
+      body: JSON.stringify({"video_id":`${video.id}`}),
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
     console.log(video.id)
-    setPlayLater(video.id)
-
-    
-
-    
     setState("btn btn-danger btn-lg disabled")
+
+    
+
+    
+    
   }
    return (
   <>
@@ -83,6 +88,7 @@ export const SingleVideo = () => {
                     <div className="col-12 col-md-4 pb-4 pt-4">
                       <img key={index} id={value.video_id} src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`} height="100%" classname="hover" onClick={()=>{
                         setVideo(value)
+                        setState("btn btn-danger btn-lg")
                       }} />
                     </div>
                     )
