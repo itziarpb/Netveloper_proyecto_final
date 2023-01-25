@@ -1,12 +1,18 @@
 .checkinTitle {
-  color: white;
-  width: 80%;
+  color: #fed049;
+  width: 100%;
   margin: auto;
   margin-top: 5%;
   margin-bottom: 5%;
 }
 .formulario {
   color: white;
+  margin-bottom: 15%;
+}
+
+.formulario button {
+  margin-left: 35%;
+  width: 30%;
 }
 .modal-dialog {
   color: black;

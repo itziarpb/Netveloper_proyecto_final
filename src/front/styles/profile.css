@@ -1,0 +1,21 @@
+.scroll {
+  overflow-x: auto;
+  display: flex;
+  height: 280px;
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: black;
+}
+
+.title {
+  color: #42c920;
+}
+.username {
+  color: #0a740c;
+}
+.imgPlayLater {
+  height: 100px;
+  width: 80x;
+}

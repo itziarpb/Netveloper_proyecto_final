@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       dataUser: [],
       dataPlayList: [],
+      videosYoutube: [],
     },
     actions: {
       //
@@ -41,7 +42,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         localStorage.removeItem("token");
-        console.log("login out");
         setStore({ token: null });
       },
 

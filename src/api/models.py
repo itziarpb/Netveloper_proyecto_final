@@ -109,7 +109,8 @@ class Like(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            # serialize algo mas?
+            "user_id": self.user_id,
+            "video": self.video.serialize(),            
         }
 
 class PlayLater(db.Model):
@@ -123,6 +124,8 @@ class PlayLater(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "user_id": self.user_id,
+            "video": self.video.serialize(),
             # serialize algo mas?
         }
 
