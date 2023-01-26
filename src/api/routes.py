@@ -158,10 +158,11 @@ def get_playLaters():
     return jsonify(data), 200
 
 @api.route('/playLater', methods=['POST'])
+@jwt_required()
 def save_playLater():
     data = request.json
-
-    playLater = PlayLater(video_id=data["video_id"])
+    userid = get_jwt_identity()
+    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
     db.session.add(playLater)
     db.session.commit()
 
