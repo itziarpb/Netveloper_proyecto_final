@@ -139,7 +139,14 @@ def get_videosbyplaylist(id):
     
     return jsonify(data), 200
 
-
+@api.route('/like', methods=['POST'])
+@jwt_required()
+def like_video():
+    data = request.json
+    userid = get_jwt_identity()
+    like = Like(video_id=data["video_id"], user_id=userid)
+    db.session.add(Like)
+    db.session.commit()
 
 
 @api.route('/like', methods=['GET'])

@@ -9,6 +9,7 @@ export const SingleVideo = () => {
   const [playlist, setPlayList] = useState([]);
   const [state, setState] = useState();
   const [playlater, setPlayLater] = useState();
+  const [statelike, setStateLike] = useState();
 
 
 
@@ -49,7 +50,7 @@ export const SingleVideo = () => {
       setPlayLater(response)
       console.log(playlater)
 
-      response === null ? setState("btn btn-success btn-lg"): setState("btn btn-danger btn-lg")
+      response === null ? setState("btn btn-success btn-lg"): setState("btn btn-danger btn-lg disabled")
     })
   }
 
@@ -67,12 +68,28 @@ export const SingleVideo = () => {
     })
     console.log(video.id)
     setState("btn btn-danger btn-lg disabled")
-
-    
-
-    
-    
   }
+
+  /*----------------Function me gusta un video-----------------*/  
+  const likeVideo= ()=>{
+    const token = localStorage.getItem("token");
+    fetch(process.env.BACKEND_URL + "/api/like", {
+
+      method: "POST",
+      body: JSON.stringify({"video_id":`${video.id}`}),
+      headers:{
+        "Content-Type": "application/json",
+        Authorization: 'Bearer ' +token,
+      }
+    })
+    console.log(video.id)
+    setStateLike("btn btn-danger btn-lg disabled")
+  }
+    
+
+    
+    
+  
    return (
   <>
     <div class="container">
@@ -89,7 +106,7 @@ export const SingleVideo = () => {
                     <p className="overflow-auto text div">{video.videodescription}</p>
                     <div className="d-grid gap-2 pb-4">
                       <button type="button" className={state} onClick={seeLater}>Ver más tarde</button>                    
-                      <button type="button" className="btn btn-success btn-lg">Me gusta</button>
+                      <button type="button" className={statelike} onClick={likeVideo}>Me gusta</button>
                     
                     </div>
                   </div>
