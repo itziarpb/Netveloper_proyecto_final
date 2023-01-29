@@ -185,3 +185,16 @@ def get_playLaters():
     
     return jsonify(data), 200
 
+@api.route('/playLater/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_character(id):
+    try:
+        user_id = get_jwt_identity()
+        me = PlayLater.query.filter_by(id=id).first()
+        db.session.delete(me)
+        db.session.commit()
+        message = {"message": "Video eliminado de play later"}
+    except Exception as e:
+        message = {"message": "El video no se encuentra en favoritos"}
+
+    return jsonify(message)
