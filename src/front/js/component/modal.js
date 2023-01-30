@@ -17,7 +17,10 @@ export const ModalLater = (props) => {
       .then((response) => {
         if (!response.ok) {
           throw new Error("Hubo un error");
+        }else{
+          props.setPlayLater((prev)=> prev.filter(video => video.id!= props.id))
         }
+
       })
       .catch((e) => {
         console.log(e);

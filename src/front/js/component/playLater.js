@@ -46,6 +46,7 @@ export const PlayLater = () => {
               videotitle={video.video.videotitle}
               playlist={video.video.playlist}
               id={video.id}
+              setPlayLater={setPlayLater}
             />
           </div>
         ))}
