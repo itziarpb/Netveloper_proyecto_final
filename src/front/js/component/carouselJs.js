@@ -1,44 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Card } from "./card";
-import { Context } from "../store/appContext";
+import { Carousel } from "./carousel";
 
 export const CarouselJs = () => {
-  const { store, actions } = useContext(Context);
-  const [id, setId] = useState();
-
-  useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/category")
-      .then((response) => {
-        console.log(response.ok); // will be true if the response is successfull
-        console.log(response.status); // the status code = 200 or code = 400 etc.
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response);
-        const category = response.find(
-          (element) => element.category == "javascript"
-        );
-        setId(category.id);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-  const carrusel = store.dataPlayList.filter(
-    (playlist) => playlist.category == id
-  );
   return (
     <div className="container">
-      <h3 className="titleCarousel">JAVASCRIPT</h3>
-      <div className="scroll row ">
-        <div className="d-flex">
-          {carrusel.map((carrusel, index) => (
-            <Card
-              title={carrusel.playlisttitle}
-              url={carrusel.thumbnails}
-              id={carrusel.id}
-            />
-          ))}
-        </div>
-      </div>
+      <Carousel type="JAVASCRIPT" />
     </div>
   );
 };
+
+// Type= tipo de lenguaje en como apareceré en el titulo.
+//En el componente carousel se convierte en minuscula para buscarlo en las categorias

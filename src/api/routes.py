@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+from datetime import timedelta
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category
 from api.utils import generate_sitemap, APIException
@@ -9,10 +10,13 @@ import os  #libreria para trabajar con el sistema operativo
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity #añadido para hacer el login
 
 
+
 api = Blueprint('api', __name__)
 
 
 
+
+#POST PARA INTRODUCIR LOS DATOS A LA BASE DE DATOS A TRAVES DE POSTMAN O SIMILAR
 @api.route('/addinfo', methods=['POST'])
 def get_addinfo():
     
@@ -85,8 +89,29 @@ def get_addinfo():
     return jsonify({"message":"ok"}), 200
 
 
-#RESTO DE LOS GETS
+#POST PARA LOGIN
+@api.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    
+    user = User.query.filter_by(email=data['email'], password=data['password']).first()
+    if user:
+        #expires = datetime.timedelta(minutes=600)
+        token = create_access_token(identity=user.id ) #fresh= False expires_delta=datetime.timedelta(minutes=5)
+        #return jsonify(data), 200 #devuelve el dato
+        return jsonify({"access_token": token}), 200
+    
+    return jsonify({"message": "Email/contraseña incorrecta"}), 400
 
+#GET RESTRINGIDO DEL USUARIO
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify(user.serialize()), 200
+
+#GET DE LOS CANALES PARA EL JUMBOTRON
 @api.route('/channel', methods=['GET'])
 def get_channels():
 
@@ -95,17 +120,7 @@ def get_channels():
     
     return jsonify(data), 200
 
-
-#TODOS LOS GETS
-@api.route('/users', methods=['GET'])
-
-def get_users():
-
-    users = User.query.all()
-    data = [user.serialize() for user in users]
-    
-    return jsonify(data), 200
-
+#GET DE LAS CATEGORIAS PARA LOS CARRUSELES
 @api.route('/category', methods=['GET'])
 
 def get_category():
@@ -115,6 +130,7 @@ def get_category():
     
     return jsonify(data), 200
 
+#GET DE LAS PLAYLIST
 @api.route('/playlists', methods=['GET'])
 def get_playlists():
 
@@ -123,6 +139,7 @@ def get_playlists():
     
     return jsonify(data), 200
 
+#GET DE LOS VIDEOS
 @api.route('/video', methods=['GET'])
 def get_videos():
 
@@ -131,6 +148,7 @@ def get_videos():
     
     return jsonify(data), 200
 
+
 @api.route('/playlist/<int:id>', methods=['GET'])
 def get_videosbyplaylist(id):
 
@@ -138,6 +156,7 @@ def get_videosbyplaylist(id):
     data = [video.serialize() for video in videos]
     
     return jsonify(data), 200
+
 
 @api.route('/like', methods=['POST'])
 @jwt_required()
@@ -162,6 +181,23 @@ def get_likes(id):
 def get_playLaters(id):
     userid = get_jwt_identity()
     playLater = PlayLater.query.filter_by(user_id=userid, video_id=id).first()    
+
+@api.route('/like', methods=['GET'])
+@jwt_required()
+def get_likes():
+    userid = get_jwt_identity()
+    likes = Like.query.filter_by(user_id=userid)
+    data = [like.serialize() for like in likes]
+    
+    return jsonify(data), 200
+
+#GET RESTRINGIDO DE LOS VIDEOS PARA VER MAS TARDE
+@api.route('/playLater', methods=['GET'])
+@jwt_required()
+def get_playLaters():
+    userid = get_jwt_identity()
+    playLaters = PlayLater.query.filter_by(user_id=userid)
+    data = [playLater.serialize() for playLater in playLaters]
     
     return jsonify(playLater.serialize() if playLater else None), 200
 
@@ -200,22 +236,5 @@ def register_user():
         return jsonify({"message": "No se pudo registrar"}), 400
     return jsonify({"message": "Usuario registrado"}), 200
 
-#POST PARA LOGIN
-@api.route('/login', methods=['POST'])
-def login():
-    data = request.json
-    
-    user = User.query.filter_by(email=data['email'], password=data['password']).first()
-    if user:
-        token = create_access_token(identity=user.id)
-        #return jsonify(data), 200 #devuelve el dato
-        return jsonify({"access_token": token}), 200
-    
-    return jsonify({"message": "Email/contraseña incorrecta"}), 400
 
-@api.route('/user', methods=['GET'])
-@jwt_required()
-def get_user():
-    user_id = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
-    return jsonify(user.serialize()), 200
+
