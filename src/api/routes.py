@@ -10,7 +10,10 @@ import os  #libreria para trabajar con el sistema operativo
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity #añadido para hacer el login
 
 
+
 api = Blueprint('api', __name__)
+
+
 
 
 #POST PARA INTRODUCIR LOS DATOS A LA BASE DE DATOS A TRAVES DE POSTMAN O SIMILAR
@@ -154,6 +157,31 @@ def get_videosbyplaylist(id):
     
     return jsonify(data), 200
 
+
+@api.route('/like', methods=['POST'])
+@jwt_required()
+def like_video():
+    data = request.json
+    userid = get_jwt_identity()
+    like = Like(video_id=data["video_id"], user_id=userid)
+    db.session.add(like)
+    db.session.commit()
+
+
+@api.route('/like/<id>', methods=['GET'])
+@jwt_required()
+def get_likes(id):
+    userid = get_jwt_identity()
+    like = Like.query.filter_by(user_id=userid, video_id=id).first()
+    
+    return jsonify(like.serialize() if like else None), 200
+
+@api.route('/playLater/<id>', methods=['GET'])
+@jwt_required()
+def get_playLaters(id):
+    userid = get_jwt_identity()
+    playLater = PlayLater.query.filter_by(user_id=userid, video_id=id).first()    
+
 @api.route('/like', methods=['GET'])
 @jwt_required()
 def get_likes():
@@ -173,7 +201,7 @@ def get_playLaters():
     playLaters = PlayLater.query.filter_by(user_id=userid)
     data = [playLater.serialize() for playLater in playLaters]
     
-    return jsonify(data), 200
+    return jsonify(playLater.serialize() if playLater else None), 200
 
 
 @api.route('/playLater/<int:id>', methods=['DELETE'])
@@ -200,6 +228,17 @@ def save_playLater():
     db.session.commit()
 
     return jsonify({"mensaje": "guardado para más tarde correctamente"})
+
+@api.route('/playLater', methods=['DELETE'])
+@jwt_required()
+def delete_playLater():
+    data = request.json
+    userid = get_jwt_identity()
+    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
+    db.session.delete(playLater)
+    db.session.commit()
+
+    return jsonify({"mensaje": "borrado de ver más tarde correctamente"})
 
 #POST PARA REGISTRARSE
 @api.route('/user', methods=['POST'])
