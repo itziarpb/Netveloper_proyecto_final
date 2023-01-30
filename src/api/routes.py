@@ -145,17 +145,17 @@ def like_video():
     data = request.json
     userid = get_jwt_identity()
     like = Like(video_id=data["video_id"], user_id=userid)
-    db.session.add(Like)
+    db.session.add(like)
     db.session.commit()
 
 
-@api.route('/like', methods=['GET'])
-def get_likes():
-
-    likes = Like.query.all()
-    data = [like.serialize() for like in likes]
+@api.route('/like/<id>', methods=['GET'])
+@jwt_required()
+def get_likes(id):
+    userid = get_jwt_identity()
+    like = Like.query.filter_by(user_id=userid, video_id=id).first()
     
-    return jsonify(data), 200
+    return jsonify(like.serialize() if like else None), 200
 
 @api.route('/playLater/<id>', methods=['GET'])
 @jwt_required()

@@ -27,6 +27,7 @@ export const SingleVideo = () => {
         setVideo(response[0])
         setPlayList(response)
        listar(response[0].id)
+       listarLikes(response[0].id)
     }).catch((error) => console.error("Error:", error));
 
   }, []);
@@ -51,6 +52,25 @@ export const SingleVideo = () => {
       console.log(playlater)
 
       response === null ? setState("btn btn-success btn-lg"): setState("btn btn-danger btn-lg disabled")
+    })
+  }
+  /*----------------Llamada para listar los Likes guardados por cada user-----------------*/
+  const listarLikes =(id)=>{
+    const token = localStorage.getItem("token");
+    fetch(process.env.BACKEND_URL + `/api/like/${id}`, {
+
+      method: "GET",      
+      headers:{
+        "Content-Type": "application/json",
+        Authorization: 'Bearer ' +token,
+      }
+      
+    }).then((response)=>{
+      console.log(response.status)
+      return response.json();
+
+    }).then((response)=>{
+       response === null ? setStateLike("btn btn-success btn-lg"): setStateLike ("btn btn-danger btn-lg disabled")
     })
   }
 
@@ -121,6 +141,7 @@ export const SingleVideo = () => {
                       <img key={index} id={value.video_id} src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`} height="100%" classname="hover" onClick={()=>{
                         setVideo(value)
                         listar(value.id)
+                        listarLikes(value.id)
                       }} />
                     </div>
                     )
