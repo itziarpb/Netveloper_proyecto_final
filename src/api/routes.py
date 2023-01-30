@@ -163,6 +163,8 @@ def get_likes():
     
     return jsonify(data), 200
 
+    
+
 #GET RESTRINGIDO DE LOS VIDEOS PARA VER MAS TARDE
 @api.route('/playLater', methods=['GET'])
 @jwt_required()
@@ -172,6 +174,21 @@ def get_playLaters():
     data = [playLater.serialize() for playLater in playLaters]
     
     return jsonify(data), 200
+
+
+@api.route('/playLater/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_character(id):
+    try:
+        user_id = get_jwt_identity()
+        me = PlayLater.query.filter_by(id=id).first()
+        db.session.delete(me)
+        db.session.commit()
+        message = {"message": "Video eliminado de play later"}
+    except Exception as e:
+        message = {"message": "El video no se encuentra en favoritos"}
+
+    return jsonify(message)
 
 @api.route('/playLater', methods=['POST'])
 @jwt_required()
@@ -196,6 +213,7 @@ def register_user():
         print(e)
         return jsonify({"message": "No se pudo registrar"}), 400
     return jsonify({"message": "Usuario registrado"}), 200
+
 
 
 

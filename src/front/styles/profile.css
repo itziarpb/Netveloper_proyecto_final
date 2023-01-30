@@ -19,3 +19,10 @@
   height: 100px;
   width: 80x;
 }
+
+.modal-title {
+  color: #42c920;
+}
+.modal-content {
+  background: rgb(27, 26, 26);
+}
