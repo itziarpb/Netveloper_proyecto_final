@@ -6,9 +6,11 @@ export const SingleVideo = () => {
 
   const params = useParams();
   const [video, setVideo] = useState();
-  const [playlist, setPlayList] = useState([]); 
+  const [playlist, setPlayList] = useState([]);
+  const [state, setState] = useState("btn btn-danger btn-lg");
+  const [playlater, setPlayLater] = useState([]);
 
-  /*Llamada a playlist*/
+  /*Llamada a playlist para recuperar videos*/
 
   useEffect(() => {
 
@@ -23,20 +25,61 @@ export const SingleVideo = () => {
         setPlayList(response)
     }).catch((error) => console.error("Error:", error));
 
+    fetch(process.env.BACKEND_URL + "/api/playLater", {
+
+      method: "GET",      
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+
   }, []);
 
-  return (
+  
+
+  
+  const seeLater = ()=>{
+
+    fetch(process.env.BACKEND_URL + "/api/playLater", {
+
+      method: "POST",
+      body: JSON.stringify({"video_id":`${video.id}`}),
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+    console.log(video.id)
+    setState("btn btn-danger btn-lg disabled")
+
+    
+
+    
+    
+  }
+   return (
   <>
     <div class="container">
       {
         video ? (
           <>
             <h1 className="text pb-4 pt-4">{video.videotitle}</h1>
-            <div className="row">
-            <div className="col-sm-7"><iframe width="720" height="576" src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-            <div className="col-sm-5"><p className="text">{video.videodescription}</p></div>
-            </div>
-            <div><h2 className="text pt-4">Resto del Curso</h2></div>
+              <div className="row">
+                  <div className="col-sm-7">
+                    <iframe width="720" height="576" src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div className="col-sm-5 ">
+                    <h2 className="text">Información del autor</h2>
+                    <p className="overflow-auto text div">{video.videodescription}</p>
+                    <div className="pb-4">
+                      <button type="button" className={state} onClick={seeLater}>Ver más tarde</button>
+                    </div>
+                    <div>
+                    <button type="button" class="btn btn-success btn-lg">Me gusta</button>
+                    </div> 
+                  </div>
+              </div>
+            
+            <div><h2 className="text pt-4">Curso completo</h2></div>
 
             <div className="row">
               {
@@ -45,6 +88,7 @@ export const SingleVideo = () => {
                     <div className="col-12 col-md-4 pb-4 pt-4">
                       <img key={index} id={value.video_id} src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`} height="100%" classname="hover" onClick={()=>{
                         setVideo(value)
+                        setState("btn btn-danger btn-lg")
                       }} />
                     </div>
                     )

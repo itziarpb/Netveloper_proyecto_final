@@ -85,18 +85,6 @@ def get_addinfo():
       
     return jsonify({"message":"ok"}), 200
 
-#POST PARA REGISTRARSE
-@api.route('/user', methods=['POST'])
-def register_user():  
-    try:
-        data = request.json
-        user = User(username=data["username"], email=data["email"], password=data["password"])
-        db.session.add(user)
-        db.session.commit()
-    except Exception as e:
-        print(e)
-        return jsonify({"message": "No se pudo registrar"}), 400
-    return jsonify({"message": "Usuario registrado"}), 200
 
 #POST PARA LOGIN
 @api.route('/login', methods=['POST'])
@@ -187,6 +175,7 @@ def get_playLaters():
     
     return jsonify(data), 200
 
+
 @api.route('/playLater/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_character(id):
@@ -200,3 +189,31 @@ def delete_character(id):
         message = {"message": "El video no se encuentra en favoritos"}
 
     return jsonify(message)
+
+@api.route('/playLater', methods=['POST'])
+@jwt_required()
+def save_playLater():
+    data = request.json
+    userid = get_jwt_identity()
+    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
+    db.session.add(playLater)
+    db.session.commit()
+
+    return jsonify({"mensaje": "guardado para más tarde correctamente"})
+
+#POST PARA REGISTRARSE
+@api.route('/user', methods=['POST'])
+def register_user():  
+    try:
+        data = request.json
+        user = User(username=data["username"], email=data["email"], password=data["password"])
+        db.session.add(user)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        return jsonify({"message": "No se pudo registrar"}), 400
+    return jsonify({"message": "Usuario registrado"}), 200
+
+
+
+
