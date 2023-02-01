@@ -13,6 +13,7 @@ export const SingleVideo = () => {
 
 
 
+
   useEffect(() => {
 
 /*-------------------Llamada a playlist para recuperar videos-----------------*/
@@ -23,7 +24,7 @@ export const SingleVideo = () => {
         console.log(response.status); // the status code = 200 or code = 400 etc.
         return response.json();
     }).then((response) => {
-        /*console.log(response)*/  
+        console.log(response)  
         setVideo(response[0])
         setPlayList(response)
        listar(response[0].id)
@@ -116,32 +117,35 @@ export const SingleVideo = () => {
       {
         video ? (
           <>
-            <h1 className="text pb-4 pt-4">{video.videotitle}</h1>
+            <h1 className="colortitles pb-4 pt-4">{video.videotitle}</h1>
               <div className="row">
-                  <div className="col-sm-7">
-                    <iframe width="720" height="576" src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  
+                  <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 ratio ratio-16x9 maxwidth">
+                    <iframe src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                   </div>
-                  <div className="col-sm-5 ">
-                    <h2 className="text">Información del autor</h2>
+                  
+                  <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                    <h2 className="colortitles mt-5">Información del autor</h2>
                     <p className="overflow-auto text div">{video.videodescription}</p>
-                    <div className="d-grid gap-2 pb-4">
+                    <div className="d-grid gap-2 pb-4 mt-3 pt-3">
                       <button type="button" className={state} onClick={seeLater}>Ver más tarde</button>                    
                       <button type="button" className={statelike} onClick={likeVideo}>Me gusta</button>
-                    
                     </div>
                   </div>
               </div>
-            <div><h2 className="text pt-4">Curso completo</h2></div>
+            <div><h2 className="colortitles pt-4">Curso completo</h2></div>
 
             <div className="row">
               {
                 playlist.map((value, index)=>{
                     return (
-                    <div className="col-12 col-md-4 pb-4 pt-4">
-                      <img key={index} id={value.video_id} src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`} height="100%" classname="hover" onClick={()=>{
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 pb-4 pt-4">
+                      <img className="cursorpointer" key={index} id={value.video_id} src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`} height="100%" classname="hover" onClick={()=>{
                         setVideo(value)
                         listar(value.id)
                         listarLikes(value.id)
+                        
+                        
                       }} />
                     </div>
                     )

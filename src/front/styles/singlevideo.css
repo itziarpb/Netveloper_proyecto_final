@@ -1,6 +1,8 @@
+.colortitles{
+  color:#FED049
+}
 .text {
-    color: green;
-    line-height: 35px;
+    color: white;
   }
 
 .hover {
@@ -10,3 +12,19 @@
 .div {
   height: 150px;
 }
+
+
+.maxwidth{
+  max-width:750px;
+}
+
+
+
+.cursorpointer{
+  
+  cursor: pointer;
+  
+}
+
+
+
