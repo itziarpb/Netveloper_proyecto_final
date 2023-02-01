@@ -120,18 +120,18 @@ export const SingleVideo = () => {
             <h1 className="colortitles pb-4 pt-4">{video.videotitle}</h1>
               <div className="row">
                   
-                  <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 ratio ratio-16x9 maxwidth">
+                  <div className="ratio ratio-16x9">
                     <iframe src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                   </div>
                   
-                  <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12">
-                    <h2 className="colortitles mt-5">Información del autor</h2>
-                    <p className="overflow-auto text div">{video.videodescription}</p>
-                    <div className="d-grid gap-2 pb-4 mt-3 pt-3">
-                      <button type="button" className={state} onClick={seeLater}>Ver más tarde</button>                    
+                  
+                    <div className="row">
+                    <i className="far fa-4x fa-heart" onClick={seeLater}></i> 
+                    <i className="fas fa-4x fa-list" onClick={seeLater}></i>
+                    <i class="fab fa-4x fa-whatsapp"></i>   
+                    <i class="fab fa-4x fa-telegram-plane"></i>              
                       <button type="button" className={statelike} onClick={likeVideo}>Me gusta</button>
                     </div>
-                  </div>
               </div>
             <div><h2 className="colortitles pt-4">Curso completo</h2></div>
 
