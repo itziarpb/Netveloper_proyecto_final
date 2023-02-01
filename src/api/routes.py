@@ -170,7 +170,7 @@ def like_video():
 
 @api.route('/like/<id>', methods=['GET'])
 @jwt_required()
-def get_likes(id):
+def get_likes_id(id):
     userid = get_jwt_identity()
     like = Like.query.filter_by(user_id=userid, video_id=id).first()
     
@@ -178,7 +178,7 @@ def get_likes(id):
 
 @api.route('/playLater/<id>', methods=['GET'])
 @jwt_required()
-def get_playLaters(id):
+def get_playLaters_id(id):
     userid = get_jwt_identity()
     playLater = PlayLater.query.filter_by(user_id=userid, video_id=id).first()    
 
@@ -201,12 +201,12 @@ def get_playLaters():
     playLaters = PlayLater.query.filter_by(user_id=userid)
     data = [playLater.serialize() for playLater in playLaters]
     
-    return jsonify(playLater.serialize() if playLater else None), 200
+    return jsonify(data), 200
 
 
 @api.route('/playLater/<int:id>', methods=['DELETE'])
 @jwt_required()
-def delete_character(id):
+def delete_videplayLater(id):
     try:
         user_id = get_jwt_identity()
         me = PlayLater.query.filter_by(id=id).first()

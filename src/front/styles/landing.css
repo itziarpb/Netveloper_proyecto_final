@@ -1,0 +1,126 @@
+.landing {
+  justify-content: center;
+}
+
+.block {
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 1em;
+}
+.slogan {
+  margin-top: 0.2 em;
+  margin-right: auto;
+  font-family: "Oswald", sans-serif;
+  text-decoration: bold;
+  font-size: 5vw;
+  color: #42c920;
+}
+@media only screen and (max-width: 768pxpx) {
+  .slogan {
+    font-size: 6vw;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .slogan {
+    font-size: 6.5vw;
+  }
+}
+
+.sloganText {
+  margin-top: 0.2 em;
+  margin-right: auto;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3.5vw;
+}
+@media only screen and (max-width: 768pxpx) {
+  .sloganText {
+    font-size: 4vw;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .sloganText {
+    font-size: 4.5vw;
+  }
+}
+
+.allbutton {
+  background-color: rgba(0, 0, 0, 0.664);
+  font-family: "Montserrat", sans-serif;
+  /* margin-top: 0.6em;
+  margin-bottom: 0.6em; */
+  width: 8em;
+}
+
+/* .landing {
+
+    background-color: red;
+  background-size: cover;
+   
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  max-height: max-content;
+}
+.landing img {
+  width: 100%;
+  margin-top: 0;
+  height: auto;
+  position: absolute;
+  margin: 0;
+}
+.block {
+  border: 2px solid orange;
+  margin: auto;
+  position: absolute;
+  left:15%;
+  top: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.bloque img {
+  width: auto;
+  height: auto;
+  opacity: 0.5;
+}
+.slogan {
+  margin-top: 105px;
+  margin-right: auto;
+  font-family: "Oswald", sans-serif;
+  text-decoration: bold;
+  font-size: 50px;
+  color: #42c920;
+}
+.sloganText {
+  margin-top: 30px;
+  margin-right: auto;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+}
+.button {
+  background-color: black;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 30px;
+}
+.buthome {
+  margin-top: 30px;
+  margin-left: 40%;
+  width: 20%;
+}
+.butlogin {
+  margin-left: 25%;
+  width: 20%;
+  margin-bottom: 5%;
+}
+.butcheckin {
+  margin-left: 10%;
+  width: 20%;
+  margin-bottom: 5%;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  /* width: 200px;
+}
+.link:hover {
+  text-decoration: none;
+  color: #42c920;
+} */

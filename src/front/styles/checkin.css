@@ -4,16 +4,35 @@
   margin: auto;
   margin-top: 5%;
   margin-bottom: 5%;
+  text-align: center;
 }
 .formulario {
   color: white;
   margin-bottom: 15%;
 }
 
-.formulario button {
+.buttonLogin {
   margin-left: 35%;
   width: 30%;
 }
+.buttonCheckin{
+  margin-left: 25%;
+  width: 50%;
+}
 .modal-dialog {
   color: black;
+}
+.butLink {
+  margin-left: 40%;
+  margin-top: 20px;
+}
+.link {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  /* width: 200px; */
+}
+.link:hover {
+  text-decoration: none;
+  color: #42c920;
 }

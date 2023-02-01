@@ -20,7 +20,7 @@ export const Login = () => {
   //if ((store.dataUser.msg = "Token has expired")) actions.logout();
 
   return (
-    <div className="col-7 mx-auto ">
+    <div className="col-12 col-lg-7 mx-auto ">
       {store.token && store.token != "" && store.token != undefined ? (
         //"Ya estas registrado"
         navigate("/home")
@@ -48,11 +48,15 @@ export const Login = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="btn btn-success buttonLogin">
               Iniciar sesión
             </button>
+            <div className="butLink">
+              <Link to="/checkin" className="link">
+                ¿Aún no estás registrado?
+              </Link>
+            </div>
           </form>
-          <Link to="/checkin">¿Aún no estás registrado?</Link>
         </div>
       )}
     </div>

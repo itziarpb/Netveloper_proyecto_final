@@ -80,7 +80,7 @@ export const Checkin = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-success"
+              className="btn btn-success buttonCheckin"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
