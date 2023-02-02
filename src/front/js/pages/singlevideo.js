@@ -12,7 +12,7 @@ export const SingleVideo = () => {
   const [statelike, setStateLike] = useState();
 
 
-
+  const urlWhatsapp = process.env.BACKEND_URL + "/singlevideo/" + params.theid;
 
   useEffect(() => {
 
@@ -52,7 +52,7 @@ export const SingleVideo = () => {
       setPlayLater(response)
       console.log(playlater)
 
-      response === null ? setState("btn btn-success btn-lg"): setState("btn btn-danger btn-lg disabled")
+      response === null ? setState("far fa-list-alt icons-left cursorpointer"): setState("fas fa-list-alt icons-left cursornotallowed")
     })
   }
   /*----------------Llamada para listar los Likes guardados por cada user-----------------*/
@@ -71,7 +71,7 @@ export const SingleVideo = () => {
       return response.json();
 
     }).then((response)=>{
-       response === null ? setStateLike("btn btn-success btn-lg"): setStateLike ("btn btn-danger btn-lg disabled")
+       response === null ? setStateLike("far fa-heart icons-left cursorpointer"): setStateLike ("fas fa-heart icons-left cursornotallowed")
     })
   }
 
@@ -88,7 +88,7 @@ export const SingleVideo = () => {
       }
     })
     console.log(video.id)
-    setState("btn btn-danger btn-lg disabled")
+    setState("fas fa-list-alt icons-left cursornotallowed")
   }
 
   /*----------------Function me gusta un video-----------------*/  
@@ -104,7 +104,7 @@ export const SingleVideo = () => {
       }
     })
     console.log(video.id)
-    setStateLike("btn btn-danger btn-lg disabled")
+    setStateLike("fas fa-heart icons-left cursornotallowed")
   }
     
 
@@ -125,12 +125,14 @@ export const SingleVideo = () => {
                   </div>
                   
                   
-                    <div className="row">
-                    <i className="far fa-4x fa-heart" onClick={seeLater}></i> 
-                    <i className="fas fa-4x fa-list" onClick={seeLater}></i>
-                    <i class="fab fa-4x fa-whatsapp"></i>   
-                    <i class="fab fa-4x fa-telegram-plane"></i>              
-                      <button type="button" className={statelike} onClick={likeVideo}>Me gusta</button>
+                    <div className="icons">
+                    <i className={state} onClick={seeLater}></i>
+                    <i className={statelike} onClick={likeVideo}></i>
+                    <i class="fab fa-whatsapp icons-left cursorpointer" href="https://api.whatsapp.com/send?text=Aprendiendo a compartir desde https://parzibyte.me/blog"></i>   
+                    <i class="fab fa-telegram-plane cursorpointer"></i>
+                    <a class="fab fa-telegram-plane cursorpointer" href={`https://api.whatsapp.com/send?text=3000-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu85.gitpod.io/singlevideo/id/${video.video_id}/title/${video.videotitle}`}></a>
+                             
+          
                     </div>
               </div>
             <div><h2 className="colortitles pt-4">Curso completo</h2></div>

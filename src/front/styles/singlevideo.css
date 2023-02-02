@@ -14,8 +14,13 @@
 }
 
 
-
-
+.icons {
+  display: flex;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+  justify-content:space-around
+}
 
 
 .cursorpointer{
@@ -24,5 +29,9 @@
   
 }
 
+.cursornotallowed{
+  pointer-events: none;
+  color:red;
+}
 
 
