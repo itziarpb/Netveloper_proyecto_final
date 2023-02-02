@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/singlevideo.css"
+import { Coments } from "../component/coments";
 
 export const SingleVideo = () => {
 
@@ -123,17 +124,18 @@ export const SingleVideo = () => {
                   <div className="ratio ratio-16x9">
                     <iframe src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                   </div>
-                  
+                  <div>
+
+                  </div>
                   
                     <div className="icons">
                     <i className={state} onClick={seeLater}></i>
-                    <i className={statelike} onClick={likeVideo}></i>
-                    <i class="fab fa-whatsapp icons-left cursorpointer" href="https://api.whatsapp.com/send?text=Aprendiendo a compartir desde https://parzibyte.me/blog"></i>   
+                    <i className={statelike} onClick={likeVideo}></i>   
                     <i class="fab fa-telegram-plane cursorpointer"></i>
-                    <a class="fab fa-telegram-plane cursorpointer" href={`https://api.whatsapp.com/send?text=3000-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu85.gitpod.io/singlevideo/id/${video.video_id}/title/${video.videotitle}`}></a>
-                             
-          
+                    <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=3000-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu85.gitpod.io/singlevideo/id/${video.video_id}/title/${video.videotitle}`}></a>
                     </div>
+                    
+                    <Coments/>  
               </div>
             <div><h2 className="colortitles pt-4">Curso completo</h2></div>
 
