@@ -114,10 +114,11 @@ export const SingleVideo = () => {
   
    return (
   <>
-    <div class="container">
+    <div class="container-fluid">
       {
         video ? (
           <>
+          <div className="container">
             <h1 className="colortitles pb-4 pt-4">{video.videotitle}</h1>
               <div className="row">
                   
@@ -134,9 +135,15 @@ export const SingleVideo = () => {
                     <i class="fab fa-telegram-plane cursorpointer"></i>
                     <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=3000-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu85.gitpod.io/singlevideo/id/${video.video_id}/title/${video.videotitle}`}></a>
                     </div>
-                    
-                    <Coments/>  
+
+                   
               </div>
+            </div>
+
+            <div className="container-fluid fondo">
+            <p>¿Te gustaría subir tu contenido para ponerte a prueba?</p>
+            <button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button>
+            </div>
             <div><h2 className="colortitles pt-4">Curso completo</h2></div>
 
             <div className="row">

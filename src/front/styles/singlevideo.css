@@ -1,5 +1,8 @@
 .colortitles{
-  color:#FED049
+  color:#FED049;
+  border-left: solid #FED049;
+  padding-left: 10px;
+  margin-bottom: 20px;
 }
 .text {
     color: white;
@@ -19,7 +22,10 @@
   font-size: 30px;
   padding-left: 10px;
   padding-top: 10px;
-  justify-content:space-around
+  padding-bottom: 10px;
+  justify-content:space-around;
+  background:white;
+  margin-bottom: 30px;
 }
 
 
@@ -34,4 +40,6 @@
   color:red;
 }
 
-
+.fondo {
+  background: #FED049;
+}
