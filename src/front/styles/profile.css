@@ -8,21 +8,66 @@
   margin-bottom: 15px;
   color: black;
 }
-
-.title {
-  color: #42c920;
-}
 .username {
-  color: #0a740c;
+  width: 30%;
+  color: #42c920;
+  border: 1px solid #0a740c;
+  margin-left: 30%;
+  margin-right: 30%;
 }
+
 .imgPlayLater {
   height: 100px;
   width: 80x;
 }
+.imgPlayLater:hover {
+  cursor: pointer;
+}
+.title {
+  font-family: "Oswald", sans-serif;
 
-.modal-title {
-  color: #42c920;
+  font-size: 3vw;
+  color: #fed049;
+  margin-top: 15px;
+  padding-left: 5px;
+  border-left: 2px solid #fed049;
+}
+.textProfile {
+  font-size: 2vw;
+  margin-top: 10px;
+}
+
+/* PARA HACER RESPONSIVE LOS TEXTOS */
+@media only screen and (max-width: 960) {
+  .title {
+    font-size: 3.5vw;
+  }
+  .textProfile {
+    font-size: 3vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 4.5vw;
+  }
+  .textProfile {
+    font-size: 3vw;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .title {
+    font-size: 6vw;
+  }
+  .textProfile {
+    font-size: 5vw;
+  }
+}
+.btn-success:hover {
+  background-color: #42c920;
 }
 .modal-content {
   background: rgb(27, 26, 26);
+}
+.modal-footer{
+  border-top: 1px solid #fed049;
 }
