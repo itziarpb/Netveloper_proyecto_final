@@ -3,8 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/landing.css";
 import { Link } from "react-router-dom";
 import fondo from "../../img/desarrolladores.jpg";
-import smallLogo from "../../img/netveloper_nombre_reducido.png";
-
+import logo2 from "../../img/Logo2.png";
 export const Landing = () => {
   const { store, actions } = useContext(Context);
   const style = {
@@ -18,7 +17,7 @@ export const Landing = () => {
         <div className="block col-11 col-sm-9 col-md-9 col-lg-8 ">
           <div className="row d-flex justify-content-center">
             <div className="p-0">
-              <img src={smallLogo} className="w-100" />
+              <img src={logo2} className="w-100 logo2" />
             </div>
             <div>
               <h2 className="slogan text-center">
@@ -40,19 +39,19 @@ export const Landing = () => {
             </div>
             <div>
               <h5 className="sloganText text-center">
-                Inicia sesión si quieres (...completar)
+                Inicia sesión para interactuar con otros programadores
               </h5>
             </div>
             <div className="row m-2 d-flex justify-content-center col-11 col-sm-9">
               <div className="d-flex justify-content-center col-11 col-sm-5">
-                <button type="button" className="btn allbutton butlogin">
+                <button type="button" className="btn allbutton">
                   <Link to="/login" className="link">
                     Inicio Sesión
                   </Link>
                 </button>
               </div>
               <div className="d-flex justify-content-center col-11 col-sm-5">
-                <button type="button" className="btn allbutton butcheckin">
+                <button type="button" className="btn allbutton">
                   <Link to="/checkin" className="link">
                     Registrarse
                   </Link>
