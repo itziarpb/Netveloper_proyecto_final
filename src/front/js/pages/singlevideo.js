@@ -141,7 +141,7 @@ export const SingleVideo = () => {
             <div className="d-flex justify-content-center"><button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button></div>
             </div>
           
-          <div className="container pt-5">
+          <div className="container pt-5 pb-5">
             <div><h2 className="colortitles pb-4 pt-4">Curso completo</h2></div>
 
             <div className="row">

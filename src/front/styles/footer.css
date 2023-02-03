@@ -1,0 +1,20 @@
+.fondo2 {
+    background: #02012e;
+    
+   
+
+  }
+.maxwidth{
+    max-width: 400px;
+    
+}
+
+.icons2 {
+    display: flex;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content:space-around;
+    margin-bottom: 30px;
+  }
