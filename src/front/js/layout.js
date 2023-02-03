@@ -34,7 +34,7 @@ const Layout = () => {
             <Route element={<Setting />} path="/setting/:id" />
             <Route element={<Profile />} path="/profile" />
             <Route element={<SingleVideo />} path="/singlevideo/:theid" />
-            <Route element={<Share />} path="/singlevideo/id/:id/title/:title" />
+            <Route element={<Share />} path="/share/:theid/:videoId" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

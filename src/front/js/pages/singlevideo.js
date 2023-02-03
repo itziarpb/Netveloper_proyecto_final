@@ -130,13 +130,13 @@ export const SingleVideo = () => {
                     <i className={state} onClick={seeLater}></i>
                     <i className={statelike} onClick={likeVideo}></i>   
                     <i class="fab fa-telegram-plane cursorpointer"></i>
-                    <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=3000-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu85.gitpod.io/singlevideo/id/${video.video_id}/title/${video.videotitle}`}></a>
+                    <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}></a>
                 </div>
 
               </div>  
           </div>
               
-            <div className="container-fluid fondo pt-4">
+            <div className="container-fluid fondobanner pt-4 pb-4">
             <div className="d-flex justify-content-center"><p>¿Te gustaría subir tu contenido para ponerte a prueba?</p></div>
             <div className="d-flex justify-content-center"><button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button></div>
             </div>

@@ -40,9 +40,10 @@
   color:red;
 }
 
-.fondo {
+.fondobanner {
   background: #02012e;
-  font-size: 50px;
+  font-size: 30px;
+  text-align: center;
  
 
 }
