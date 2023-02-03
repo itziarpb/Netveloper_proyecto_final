@@ -122,29 +122,27 @@ export const SingleVideo = () => {
             <h1 className="colortitles pb-4 pt-4">{video.videotitle}</h1>
               <div className="row">
                   
-                  <div className="ratio ratio-16x9">
+                <div className="ratio ratio-16x9">
                     <iframe src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                  </div>
-                  <div>
-
-                  </div>
-                  
-                    <div className="icons">
+                </div>
+                             
+                <div className="icons">
                     <i className={state} onClick={seeLater}></i>
                     <i className={statelike} onClick={likeVideo}></i>   
                     <i class="fab fa-telegram-plane cursorpointer"></i>
                     <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=3000-itziarpb-netveloperproy-q4dtm8vhll4.ws-eu85.gitpod.io/singlevideo/id/${video.video_id}/title/${video.videotitle}`}></a>
-                    </div>
+                </div>
 
-                   
-              </div>
+              </div>  
+          </div>
+              
+            <div className="container-fluid fondo pt-4">
+            <div className="d-flex justify-content-center"><p>¿Te gustaría subir tu contenido para ponerte a prueba?</p></div>
+            <div className="d-flex justify-content-center"><button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button></div>
             </div>
-
-            <div className="container-fluid fondo">
-            <p>¿Te gustaría subir tu contenido para ponerte a prueba?</p>
-            <button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button>
-            </div>
-            <div><h2 className="colortitles pt-4">Curso completo</h2></div>
+          
+          <div className="container pt-5">
+            <div><h2 className="colortitles pb-4 pt-4">Curso completo</h2></div>
 
             <div className="row">
               {
@@ -162,7 +160,8 @@ export const SingleVideo = () => {
                     )
                 })
               }
-            </div>
+              </div>
+              </div>
           </>
         ) : ""
       } 
