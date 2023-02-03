@@ -1,15 +1,18 @@
-.fondo2 {
+.fondofooter1 {
     background: #02012e;
-    
-   
-
   }
+
+.fondofooter {
+    background: #01000e;
+    
+ }
+
 .maxwidth{
     max-width: 400px;
     
 }
 
-.icons2 {
+.iconosrrss {
     display: flex;
     font-size: 30px;
     padding-left: 10px;
@@ -18,3 +21,9 @@
     justify-content:space-around;
     margin-bottom: 30px;
   }
+
+
+
+
+
+
