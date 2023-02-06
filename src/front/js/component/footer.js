@@ -5,11 +5,12 @@ export const Footer = () => (
 <footer className=" footer container-fluid">
   <div className="row fondofooter1 pb-5 pt-5 mt-5 justify-content-center">
     
-    <div className="col-lg-3 ml-3  maxwidth">
+    <div className="col-lg-4 col-md-3 my-4  maxwidth">
         <h4>ABOUT US</h4>
         <p>La mayor comunidad de programadordes de habla hispana</p>
+        <p>soporte@netveloper.com</p>
+        <p>+34 678-05-09-32</p>
         <br></br>
-        <p>We Are Social On</p>
         <div className="iconosrrss">
           <i class="fab fa-twitter-square"></i>
           <i class="fab fa-facebook"></i>
@@ -18,7 +19,7 @@ export const Footer = () => (
           <i class="fab fa-google-plus-square"></i>
         </div>
     </div>
-    <div className="col-lg-3 maxwidth">
+    <div className="col-lg-4 col-md-3 my-4 maxwidth">
         <h4>¿CÓMO FUNCIONA?</h4>
         <p>Mejora tu nivel de programación enseñando a otros y lleva tu carrera al siguiente nivel:</p>
         <li>Accede a los mejores contenidos</li>
@@ -27,7 +28,7 @@ export const Footer = () => (
         <li>¡Dale a me gusta a los mejores videos!</li>
         
     </div>
-    <div className="col-lg-3 maxwidth">
+    <div className="col-lg-4  col-md-3 my-4 maxwidth">
         <h4>NOTICIAS RECIENTES</h4>
         <a href="https://www.xataka.com/aplicaciones/rust-lenguaje-programacion-amado-quieres-ganar-dinero-clojure-erlang-le-superan">Rust es el lenguaje de programación más amado. Pero si quieres ganar dinero, Clojure y Erlang le superan</a>
         <hr></hr>
@@ -35,11 +36,6 @@ export const Footer = () => (
         <hr></hr>
         <a href="https://www.xataka.com/robotica-e-ia/programadores-alucinaban-copilot-chatgpt-ahora-deepmind-va-alla-aplhacode">Los programadores ya alucinaban con CoPilot y ChatGPT, pero ahora DeepMind va más allá con AplhaCode</a>
         <hr></hr>
-    </div>
-    <div className="col-lg-3 maxwidth">
-        <h4>CONTACTO</h4>
-        <p>soporte@netveloper.com</p>
-        <p>+34 678-05-09-32</p>
     </div>
   </div>
   
