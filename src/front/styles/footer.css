@@ -1,0 +1,29 @@
+.fondofooter1 {
+    background: #02012e;
+  }
+
+.fondofooter {
+    background: #01000e;
+    
+ }
+
+.maxwidth{
+    max-width: 400px;
+    
+}
+
+.iconosrrss {
+    display: flex;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content:space-around;
+    margin-bottom: 30px;
+  }
+
+
+
+
+
+

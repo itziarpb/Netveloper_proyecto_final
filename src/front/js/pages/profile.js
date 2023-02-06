@@ -30,40 +30,28 @@ export const Profile = () => {
     getLikes();
   }, []);
 
-  const handleClick = () => {
-    actions.logout();
-    navigate("/");
-  };
   return (
     <div className="container">
       {!store.token ? (
-        <div>
-          <h1>No has iniciado sesion</h1>
-          <div>
-            <Link to="/login">Inicio Sesión</Link>
-          </div>
-        </div>
+        navigate("/login")
       ) : (
         <div className="container">
-          <h1 className="title text-center m-2">{store.dataUser.username}</h1>
-          <h3 className="username text-center m-1">(MI PERFIL)</h3>
-          <h5>Has dado likes a {likes} videos</h5>
+          <h1 className="username mx-auto text-center m-2">
+            {store.dataUser.username}
+          </h1>
+          <h5 className="title">Mis likes: </h5>
+          {likes === 0 ? (
+            <div className="textProfile">Aún no hay likes</div>
+          ) : (
+            <div className="textProfile">{likes} videos</div>
+          )}
 
           <div>
             <PlayLater />
           </div>
-          <div className="text-end">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleClick}
-            >
-              cerrar sesion
-            </button>
-          </div>
+          <div className="text-end"></div>
         </div>
       )}
     </div>
   );
 };
-

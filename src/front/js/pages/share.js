@@ -1,9 +1,10 @@
+import { element } from "prop-types";
 import React, { useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/singlevideo.css"
 import { Coments } from "../component/coments";
 
-export const SingleVideo = () => {
+export const Share = () => {
 
   const params = useParams();
   const [video, setVideo] = useState();
@@ -12,11 +13,13 @@ export const SingleVideo = () => {
   const [playlater, setPlayLater] = useState();
   const [statelike, setStateLike] = useState();
 
+  const videoId = params.videoId;
+  const urlWhatsapp = "https://" + window.location.hostname + "/share/" + params.theid + "/" + videoId
 
-  const urlWhatsapp = process.env.BACKEND_URL + "/singlevideo/" + params.theid;
+  
 
   useEffect(() => {
-
+    console.log(videoId)
 /*-------------------Llamada a playlist para recuperar videos-----------------*/
 
     fetch(process.env.BACKEND_URL + "/api/playlist/" + params.theid)
@@ -25,8 +28,13 @@ export const SingleVideo = () => {
         console.log(response.status); // the status code = 200 or code = 400 etc.
         return response.json();
     }).then((response) => {
-        console.log(response)  
-        setVideo(response[0])
+        console.log(response)
+        if (videoId){
+            console.log(response.find(element => element.video_id == videoId))
+            setVideo(response.find(element => element.video_id == videoId))
+        } else {
+            setVideo(response[0])
+        }  
         setPlayList(response)
        listar(response[0].id)
        listarLikes(response[0].id)
@@ -130,7 +138,7 @@ export const SingleVideo = () => {
                     <i className={state} onClick={seeLater}></i>
                     <i className={statelike} onClick={likeVideo}></i>   
                     <i class="fab fa-telegram-plane cursorpointer"></i>
-                    <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}></a>
+                    <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=${urlWhatsapp}`}></a>
                 </div>
 
               </div>  
