@@ -34,6 +34,7 @@ def get_addinfo():
 
 
     data = response.json()
+    print(data)
     # data['items'][0]['snippet']['channelId'] (otra variante para el código de debajo)
     channel_id = data.get('items')[0].get('snippet').get('channelId')
     

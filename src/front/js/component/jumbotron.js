@@ -24,8 +24,8 @@ export const Jumbotron = () => {
 
 /*Solo nos quedamos con los elementos del array necesarios*/
       .then((response) => {
-        setChannelActive(response[2])        
-        setChannel([response[5], response[7],response[8],response[13],response[14]])
+        setChannelActive(response[0])        
+        setChannel(response)
         console.log(response)
         
         
