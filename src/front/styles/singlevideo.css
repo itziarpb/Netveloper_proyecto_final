@@ -1,6 +1,11 @@
+.colortitles{
+  color:#FED049;
+  border-left: solid #FED049;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
 .text {
-    color: green;
-    line-height: 35px;
+    color: white;
   }
 
 .hover {
@@ -9,4 +14,36 @@
 
 .div {
   height: 150px;
+}
+
+
+.icons {
+  display: flex;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content:space-around;
+  background:#FED049;
+  margin-bottom: 30px;
+}
+
+
+.cursorpointer{
+  
+  cursor: pointer;
+  
+}
+
+.cursornotallowed{
+  pointer-events: none;
+  color:red;
+}
+
+.fondobanner {
+  background: #02012e;
+  font-size: 30px;
+  text-align: center;
+ 
+
 }

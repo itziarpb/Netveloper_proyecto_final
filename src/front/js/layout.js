@@ -6,6 +6,7 @@ import { Landing } from "./pages/landingpage";
 import { Home } from "./pages/home";
 import { Checkin } from "./pages/checkin";
 import { SingleVideo } from "./pages/singlevideo";
+import { Share } from "./pages/share";
 import { Setting } from "./pages/settings";
 import { Profile } from "./pages/profile";
 import { Login } from "./pages/login";
@@ -33,6 +34,7 @@ const Layout = () => {
             <Route element={<Setting />} path="/setting/:id" />
             <Route element={<Profile />} path="/profile" />
             <Route element={<SingleVideo />} path="/singlevideo/:theid" />
+            <Route element={<Share />} path="/share/:theid/:videoId" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
