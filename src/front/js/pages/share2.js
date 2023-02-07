@@ -1,6 +1,7 @@
 import React, { } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/singlevideo.css"
+import { ModalContact } from "../component/modalcontacto";
 
 export const Share2 = () => {
 
@@ -15,6 +16,7 @@ export const Share2 = () => {
                     <iframe src={`https://www.youtube.com/embed/${params.id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                   </div>
     </div>
+    <ModalContact/>
    </>
   );
 };
