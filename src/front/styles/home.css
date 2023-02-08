@@ -19,8 +19,12 @@
 }
 
 .titleCarousel {
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
   color: #fed049;
   margin-top: 15px;
+  border-left: 2px solid #fed049;
+  padding-left: 5px;
 }
 
 .cardCarousel img {

@@ -1,12 +1,14 @@
-.colortitles{
-  color:#FED049;
-  border-left: solid #FED049;
+.colortitles {
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  color: #fed049;
+  border-left: solid #fed049;
   padding-left: 10px;
   margin-bottom: 20px;
 }
 .text {
-    color: white;
-  }
+  color: white;
+}
 
 .hover {
   border-color: azure;
@@ -16,34 +18,42 @@
   height: 150px;
 }
 
-
 .icons {
   display: flex;
   font-size: 30px;
   padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  justify-content:space-around;
-  background:#FED049;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /* background:#FED049; */
   margin-bottom: 30px;
+  justify-content: center;
+}
+.iconsChild {
+  margin:auto;
+  font-size: 2.5vw;
+  height: auto;
 }
 
-
-.cursorpointer{
-  
+.cursorpointer {
   cursor: pointer;
-  
 }
 
-.cursornotallowed{
+.cursornotallowed {
   pointer-events: none;
-  color:red;
+  color: red;
 }
 
 .fondobanner {
   background: #02012e;
   font-size: 30px;
   text-align: center;
- 
+}
 
+a, i {
+  text-decoration: none;
+  color: white;
+}
+a:hover, i:hover {
+  text-decoration: none;
+  color: #42c920;
 }
