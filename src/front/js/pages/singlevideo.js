@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/singlevideo.css";
 import { Coments } from "../component/coments";
+import { ModalContact } from "../component/modalcontacto";
 
 export const SingleVideo = () => {
   const { store, actions } = useContext(Context);

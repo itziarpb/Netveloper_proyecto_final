@@ -37,9 +37,9 @@ class Category(db.Model):
 
 class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    channelid = db.Column(db.String(120), unique=True, nullable=False)
-    channelbanner = db.Column(db.String(120), unique=True, nullable=False)
-    channeltitle = db.Column(db.String(80), unique=True, nullable=False)    
+    channelid = db.Column(db.String(240), unique=True, nullable=False)
+    channelbanner = db.Column(db.String(240), unique=True, nullable=False)
+    channeltitle = db.Column(db.String(240), unique=True, nullable=False)    
 
     def __repr__(self):
         return self.channeltitle
@@ -54,9 +54,9 @@ class Channel(db.Model):
 
 class PlayListItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    playlistid = db.Column(db.String(120), unique=True, nullable=False)
-    playlisttitle = db.Column(db.String(80), unique=True, nullable=False)
-    thumbnails = db.Column(db.String(120), unique=True, nullable=False)
+    playlistid = db.Column(db.String(240), unique=True, nullable=False)
+    playlisttitle = db.Column(db.String(240), unique=True, nullable=False)
+    thumbnails = db.Column(db.String(240), unique=True, nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)
     category_id =db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     channel = db.relationship(Channel, backref="playlistitems") 
@@ -77,8 +77,8 @@ class PlayListItems(db.Model):
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    videoid = db.Column(db.String(120), unique=True, nullable=False)
-    videotitle = db.Column(db.String(80), unique=True, nullable=False)
+    videoid = db.Column(db.String(240), unique=True, nullable=False)
+    videotitle = db.Column(db.String(240), unique=True, nullable=False)
     videodescription = db.Column(db.Text, unique=False, nullable=False)
     playlistitems_id = db.Column(db.Integer, db.ForeignKey('play_list_items.id'))
     category_id =db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
@@ -102,7 +102,7 @@ class Video(db.Model):
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    video_id = db.Column(db.String(120), db.ForeignKey('video.id'))
+    video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     user = db.relationship(User)
     video = db.relationship(Video)
 
