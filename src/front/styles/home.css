@@ -19,9 +19,12 @@
 }
 
 .titleCarousel {
+
+  color: #379c32; 
+
   font-family: "Oswald", sans-serif;
   font-weight: bold;
-  color: #fed049;
+
   margin-top: 15px;
   border-left: 2px solid #fed049;
   padding-left: 5px;
@@ -32,3 +35,18 @@
   width: 100%;
 }
 
+.fondo{
+  background-color: white;
+}
+
+.fondovideos{
+  background-color: #e7e0ff;
+}
+.fondoboton{
+  background-color: #fffd82;
+}
+
+.banner1{
+  font-size: 30px;
+  text-align: center;
+}
