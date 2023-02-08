@@ -4,6 +4,7 @@ import "../../styles/landing.css";
 import { Link } from "react-router-dom";
 import fondo from "../../img/desarrolladores.jpg";
 import logo2 from "../../img/Logo2.png";
+
 export const Landing = () => {
   const { store, actions } = useContext(Context);
   const style = {
