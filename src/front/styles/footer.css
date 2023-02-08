@@ -1,11 +1,7 @@
-.fondofooter1 {
-    background: #02012e;
-  }
-
-.fondofooter {
-    background: #01000e;
-    
- }
+h4{
+  color: #FFFD82;
+}
+ 
 
 .maxwidth{
     max-width: 400px;
@@ -21,6 +17,7 @@
     justify-content:space-around;
     margin-bottom: 30px;
   }
+
 
 
 

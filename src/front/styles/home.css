@@ -19,7 +19,7 @@
 }
 
 .titleCarousel {
-  color: #fed049;
+  color: #379c32; 
   margin-top: 15px;
 }
 
@@ -28,3 +28,18 @@
   width: 100%;
 }
 
+.fondo{
+  background-color: white;
+}
+
+.fondovideos{
+  background-color: #e7e0ff;
+}
+.fondoboton{
+  background-color: #fffd82;
+}
+
+.banner1{
+  font-size: 30px;
+  text-align: center;
+}
