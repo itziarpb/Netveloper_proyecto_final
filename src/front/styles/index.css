@@ -6,10 +6,6 @@ body {
   color: black;
 }
 
-.navbar-brand {
-  color: #42c920;
-
-}
 .link:hover {
   text-decoration: none;
   color: white;

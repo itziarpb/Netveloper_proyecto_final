@@ -10,7 +10,7 @@ export const Footer = () => {
     }
   };
   return (
-    <footer className=" container-fluid bg-dark pt-5 mt-5">
+    <footer className=" container-fluid bg-dark pt-5">
       <div className="row justify-content-center">
         <div className="col-lg-4 col-md-3  maxwidth">
           <h4>ABOUT US</h4>

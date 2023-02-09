@@ -20,3 +20,6 @@ footer {
   justify-content: space-around;
   margin-bottom: 30px;
 }
+a:hover {
+  color: rgb(204, 194, 194);
+}

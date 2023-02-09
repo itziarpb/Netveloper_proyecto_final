@@ -31,25 +31,29 @@ export const Profile = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       {!store.token ? (
         navigate("/login")
       ) : (
-        <div className="container">
-          <h1 className="username mx-auto text-center m-2">
-            {store.dataUser.username}
-          </h1>
-          <h5 className="title">Mis likes: </h5>
-          {likes === 0 ? (
-            <div className="textProfile">Aún no hay likes</div>
-          ) : (
-            <div className="textProfile">{likes} videos</div>
-          )}
-
-          <div>
-            <PlayLater />
+        <div className="container row">
+          {/* <div className="col-12 text-center bannerProfile">
+            <h1 className="userTitle mx-auto">{store.dataUser.username}</h1>
+          </div> */}
+          <div className="col-12">
+            <h5 className="titleLikes">{likes} <i className="fas fa-heart heartLikes"></i></h5>
+            
+            {/* {likes === 0 ? (
+              <div className="textProfile">Aún no hay likes</div>
+            ) : (
+              <div className="textProfile">{likes} videos</div>
+            )} */}
           </div>
-          <div className="text-end"></div>
+
+          <div className="col-12">
+            <div>
+              <PlayLater />
+            </div>
+          </div>
         </div>
       )}
     </div>

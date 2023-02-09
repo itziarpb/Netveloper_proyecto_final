@@ -33,14 +33,14 @@ export const Landing = () => {
             <div className="row m-2 d-flex  col-11 col-sm-9">
               <div className="d-flex justify-content-center col-11 col-sm-5">
                 <button type="button" className="btn btn-lg allbutton">
-                  <Link to="/login" className="link">
+                  <Link to="/login" className="">
                     Inicio Sesión
                   </Link>
                 </button>
               </div>
               <div className="d-flex justify-content-center col-11 col-sm-5">
                 <button type="button" className="btn btn-lg allbutton">
-                  <Link to="/checkin" className="link">
+                  <Link to="/checkin" className="">
                     Registrarse
                   </Link>
                 </button>
