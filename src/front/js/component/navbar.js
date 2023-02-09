@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo2 from "../../img/Logo2.png";
 import { Context } from "../store/appContext";
-import logo2 from "../../img/Logo2.png";
+
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -12,7 +12,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="navbar">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
 
       <div className="container-fluid">
         <a className="navbar-brand" href="/home">

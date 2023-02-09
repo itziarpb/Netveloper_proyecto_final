@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/singlevideo.css";
 import { Coments } from "../component/coments";
 import { ModalContact } from "../component/modalcontacto";
+import chico from "../../img/chico.png";
 
 export const SingleVideo = () => {
   const { store, actions } = useContext(Context);
@@ -143,7 +144,7 @@ export const SingleVideo = () => {
         {video ? (
           <>
             <div className="container">
-              <h1 className="colortitles mb-2 pb-2 mt-2 pt-2" id="start">
+              <h1 className="colortitles mb-4 pb-2 mt-4 pt-2" id="start">
                 {video.videotitle}
               </h1>
               <div className="row">
@@ -177,30 +178,34 @@ export const SingleVideo = () => {
                       ></a>
                     </>
                   )}
-                  {store.token == null && (
-                    <div className="iconsChild text-center">
-                      <Link to="/login" className="link">
-                        Inicia sesión para poder interactuar
-                      </Link>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="container-fluid fondobanner pt-4 pb-4">
-              <div className="d-flex justify-content-center">
-                <p>¿Te gustaría subir tu contenido para ponerte a prueba?</p>
-              </div>
-              <div className="d-flex justify-content-center">
-                <button
-                  type="button"
-                  className="btn btn-primary d-flex justify-content-center"
-                >
-                  Contacta con nosotros
-                </button>
-              </div>
-            </div>
+                  {store.token == null && (
+          <div className="container-fluid fondobanner py-3 my-3">        
+            <div className="container fondobanner ">
+              <div className="row">
+                  <div className="col-lg-6 col-md-4 d-flex align-items-center">
+                      <div>
+                        <h3 className="texto1">¡No olvides iniciar sesión!</h3>
+                        <h4 className="texto2">Podrás crear tus propias listas de reproducción, votar a tus videos favoritos y acceder a muchas más funcionalidades</h4>
+                        <a className="btn btn-warning btn-lg" href="/login">Iniciar sesión</a>
+                      </div>
+                  </div>
+                    
+                  <div className="col-lg-6 col-md-4 chico">
+                    <img src={chico}></img>
+                  </div>              
+              </div>        
+            </div>     
+          </div>
+                    
+                  )}
+                
+              
+           
+          
+          
 
             <div className="container pt-5 pb-5">
               <div>

@@ -1,12 +1,3 @@
-.landing {
-  justify-content: center;
-
-}
-
-.imagen{
-  opacity: 100%;
-
-}
 .block {
   
   margin-top: 1em;
@@ -28,6 +19,7 @@
   margin-right: auto;
   margin-left: 50px;
   font-family: "Montserrat", sans-serif;
+  color: white;
  
   font-size: 2vw;
 }
@@ -44,20 +36,18 @@
 @media only screen and (max-width: 576px) {
   .slogan {
     font-size: 6vw;
+    
   }
   .sloganText {
     font-size: 5vw;
+    
   }
 }
 .allbutton {
   background-color: rgba(0, 0, 0, 0.664);
   font-family: "Montserrat", sans-serif;
   width: 8em;
+  
 }
 
-.link {
-  text-decoration: none;
-  color: white;
-  width: 200px;
-}
 

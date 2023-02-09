@@ -1,8 +1,8 @@
 .colortitles {
   font-family: "Oswald", sans-serif;
   font-weight: bold;
-  color: #fed049;
-  border-left: solid #fed049;
+  color: #474b4e;
+  border-left: solid #474b4e;;
   padding-left: 10px;
   margin-bottom: 20px;
 }
@@ -19,14 +19,14 @@
 }
 
 .icons {
-  display: flex;
+
   font-size: 30px;
-  padding-left: 10px;
+  
   padding-top: 15px;
   padding-bottom: 15px;
-  /* background:#FED049; */
-  margin-bottom: 30px;
-  justify-content: center;
+  /*background:#FED049;*/
+ 
+  
 }
 .iconsChild {
   margin:auto;
@@ -44,9 +44,12 @@
 }
 
 .fondobanner {
-  background: #02012e;
-  font-size: 30px;
-  text-align: center;
+  background:white;
+ 
+  text-align: left;
+  
+  display: flex;
+
 }
 
 a, i {
@@ -57,3 +60,14 @@ a:hover, i:hover {
   text-decoration: none;
   /* color: #42c920; */
 }
+
+.texto1{
+  font-size: 2vw;
+  color:black;
+}
+.texto2{
+  font-family: "Montserrat";
+  color: black;
+}
+
+
