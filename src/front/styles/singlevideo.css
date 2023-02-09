@@ -55,5 +55,5 @@ a, i {
 }
 a:hover, i:hover {
   text-decoration: none;
-  color: #42c920;
+  /* color: #42c920; */
 }

@@ -7,7 +7,10 @@ export const Card = (props) => {
       <Link to={`/singlevideo/${props.id}`}>
         <img src={props.url} className="card-img-top" />
       </Link>
-      <div className="card-body">{props.title}</div>
+      <div className="card-body justify-content-center">
+        <div className="fw-bold">{props.title}</div>
+        <div>|{props.channel}|</div>
+      </div>
     </div>
   );
 };
