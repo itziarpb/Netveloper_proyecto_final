@@ -11,4 +11,4 @@ export const CarouselCss = () => {
 };
 
 // Type= tipo de lenguaje en como apareceré en el titulo.
-//En el componente carousel se convierte en minuscula para buscarlo en las categorias
+//En el componente carousel, el type se convierte en minuscula para buscarlo en las categorias

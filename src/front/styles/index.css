@@ -2,13 +2,12 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 body {
-  background-color: black;
+  background-color: white;
   color: white;
 }
 
 .navbar-brand {
   color: #42c920;
-  background-color: black;
 }
 
 .footer {
