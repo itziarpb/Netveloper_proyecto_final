@@ -25,6 +25,7 @@ export const Footer = () => {
             <i class="fab fa-youtube"></i>
             <i class="fab fa-google-plus-square"></i>
           </div>
+
         </div>
         <div className="col-lg-4  maxwidth">
           <h4>¿CÓMO FUNCIONA?</h4>

@@ -13,7 +13,7 @@ export const Login = () => {
   };
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     actions.login(loginData.email, loginData.password);
   };
 
@@ -24,6 +24,7 @@ export const Login = () => {
       {store.token && store.token != "" && store.token != undefined ? (
         //"Ya estas registrado"
         navigate("/home")
+        
       ) : (
         <div className="mx-5">
           <h1 className="checkinTitle">Bienvenido a la página de login</h1>
