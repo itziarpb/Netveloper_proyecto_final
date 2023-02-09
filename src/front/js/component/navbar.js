@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo3 from "../../img/Logo3.png";
+import logo2 from "../../img/Logo2.png";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
@@ -14,7 +14,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="/home">
-          <img src={logo3}  widht="120" height="60" />
+          <img src={logo2}  widht="120" height="60" />
         </a>
         <button
           className="navbar-toggler"

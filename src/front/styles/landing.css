@@ -1,9 +1,14 @@
 .landing {
   justify-content: center;
+
 }
 
+.imagen{
+  opacity: 100%;
+
+}
 .block {
-  background-color: rgba(0, 0, 0, 0.7);
+  
   margin-top: 1em;
 }
 .lgo2 {
@@ -12,16 +17,19 @@
 .slogan {
   margin-top: 0.2 em;
   margin-right: auto;
-  font-family: "Oswald", sans-serif;
-  text-decoration: bold;
+  margin-left: 50px;
+  
+
   font-size: 4vw;
-  color:#FED049;
+  color:white;
 }
 .sloganText {
   margin-top: 0.2 em;
   margin-right: auto;
-  font-family: "Oswald", sans-serif;
-  font-size: 3vw;
+  margin-left: 50px;
+  font-family: "Montserrat", sans-serif;
+ 
+  font-size: 2vw;
 }
 
 /* PARA HACER RESPONSIVE LOS TEXTOS */
