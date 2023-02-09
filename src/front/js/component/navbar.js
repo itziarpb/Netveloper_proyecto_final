@@ -11,7 +11,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div className="container-fluid">
         <a className="navbar-brand" href="/home">
           <img src={logo2}  widht="120" height="60" />
