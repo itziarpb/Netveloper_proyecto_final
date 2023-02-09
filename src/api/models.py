@@ -72,6 +72,7 @@ class PlayListItems(db.Model):
             "playlisttitle": self.playlisttitle,
             "category":self.category_id,
             "thumbnails":self.thumbnails,
+            "channel": self.channel.serialize(),
         }
           
 

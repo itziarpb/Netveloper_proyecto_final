@@ -1,26 +1,22 @@
-h4{
-  color: #FFFD82;
+h4 {
+  color: #f7c815;
 }
- 
-
-.maxwidth{
-    max-width: 400px;
-    
+footer {
+  color: white;
 }
 
+.maxwidth {
+  max-width: 400px;
+}
+.cursorpointer {
+  cursor: pointer;
+}
 .iconosrrss {
-    display: flex;
-    font-size: 30px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    justify-content:space-around;
-    margin-bottom: 30px;
-  }
-
-
-
-
-
-
-
+  display: flex;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
