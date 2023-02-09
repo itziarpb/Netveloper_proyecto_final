@@ -188,7 +188,7 @@ export const SingleVideo = () => {
                   <div className="col-lg-6 col-md-4 d-flex align-items-center">
                       <div>
                         <h3 className="texto1">¡No olvides iniciar sesión!</h3>
-                        <h4 className="texto2">Podrás crear tus propias listas de reproducción, votar a tus videos favoritos y acceder a muchas más funcionalidades</h4>
+                        <h4 className="texto2">Podrás crear tus propias listas de reproducción, dar a me gusta a tus videos favoritos y acceder a muchas más funcionalidades</h4>
                         <a className="btn btn-warning btn-lg" href="/login">Iniciar sesión</a>
                       </div>
                   </div>
