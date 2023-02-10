@@ -140,7 +140,7 @@ export const SingleVideo = () => {
 
   return (
     <>
-      <div class="container-fluid">
+      <div className="container-fluid">
         {video ? (
           <>
             <div className="container">
@@ -157,25 +157,38 @@ export const SingleVideo = () => {
                     allowfullscreen
                   ></iframe>
                 </div>
-                <div className="icons mt-1 row">
+                <div className="icons mt-1 row justify-content-center">
                   {store.token != null && (
                     <>
-                      <p className="iconsChild col-12 col-md-3">
+                      <div className="rounded-pill col-lg-3  color d-flex">
+                      <p className="texto1">
                         {likes} likes
                       </p>
                       <i
-                        className={`iconsChild ${state} col-6 col-sm-3 col-md-2`}
-                        onClick={seeLater}
-                      ></i>
-                      <i
-                        className={`iconsChild ${statelike} col-6 col-sm-3 col-md-2`}
+                        className={`iconsChild ${statelike} border-start border-dark px-4`}
                         onClick={likeVideo}
                       ></i>
-                      <a className="fab fa-telegram-plane cursorpointer iconsChild col-6  col-sm-3 col-md-2"></a>
-                      <a
-                        className="fab fa-whatsapp -plane cursorpointer iconsChild col-6 col-sm-3 col-md-2"
-                        href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
-                      ></a>
+                      </div>
+                      <div className="rounded-pill col-lg-3  color d-flex mx-3">
+                      <i
+                        className={`iconsChild ${state} border-end border-dark px-4  `}
+                        onClick={seeLater}
+                      ></i>
+                      <p className="d-flex texto2">
+                        Ver más tarde
+                      </p>
+                      </div>
+                      <div className="dropdown col-lg-2 rounded-pill color">
+                        <a className="dropdown-toggle"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Compartir
+                        </a>
+                        <ul className="dropdown-menu mx-auto" aria-labelledby="dropdownMenuButton1">
+                          <li><a className="my-2 dropdown-item fab fa-telegram-plane cursorpointer" href="#">telegram</a></li>
+                          <li><a className="my-2 dropdown-item fab fa-whatsapp" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}>whatsapp</a></li>
+                        </ul>
+                      </div>
+
+
                     </>
                   )}
                   </div>
