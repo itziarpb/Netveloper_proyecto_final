@@ -21,6 +21,9 @@
   width: 30%;
   background-color: #42c920;
 }
+.buttonLogin:hover {
+  background-color: #42c920;
+}
 
 .modal-dialog {
   color: black;

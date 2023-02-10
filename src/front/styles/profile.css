@@ -8,9 +8,10 @@
 } */
 
 .userTitle {
-  color: #3aaa35;
+  color: #fed049;
   width: 60%;
-  background-color: #303336;
+  background-color: #444c4c;
+  border: 3px solid #474b4e
 }
 .heartLikes {
   color: #474b4e;
