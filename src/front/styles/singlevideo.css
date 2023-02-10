@@ -55,7 +55,7 @@
 
 a, i {
   text-decoration: none;
-  color: black;
+  /*color: black;*/
 }
 a:hover, i:hover {
   text-decoration: none;

@@ -110,7 +110,7 @@ export const SingleVideo = () => {
       },
     });
     console.log(video.id);
-    setState("fas fa-save cursornotallowed");
+    setState("fas fa-save");
   };
 
   /*----------------Function me gusta un video-----------------*/

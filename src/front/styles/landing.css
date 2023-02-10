@@ -47,7 +47,12 @@
   background-color: rgba(0, 0, 0, 0.664);
   font-family: "Montserrat", sans-serif;
   width: 8em;
+  color:white;
   
+}
+
+button{
+  color: white;
 }
 
 
