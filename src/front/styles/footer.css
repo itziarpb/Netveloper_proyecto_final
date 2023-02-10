@@ -21,3 +21,6 @@ h4 {
   margin-bottom: 30px;
   color: white;
 }
+a:hover {
+  color: rgb(204, 194, 194);
+}

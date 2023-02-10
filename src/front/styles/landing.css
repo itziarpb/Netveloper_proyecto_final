@@ -1,5 +1,12 @@
+
+.landing {
+  justify-content: center;
+}
+
+.imagen {
+  opacity: 100%;
+}
 .block {
-  
   margin-top: 1em;
 }
 .lgo2 {
@@ -9,10 +16,9 @@
   margin-top: 0.2 em;
   margin-right: auto;
   margin-left: 50px;
-  
 
   font-size: 4vw;
-  color:white;
+  color: white;
 }
 .sloganText {
   margin-top: 0.2 em;
@@ -21,6 +27,7 @@
   font-family: "Montserrat", sans-serif;
   color: white;
  
+
   font-size: 2vw;
 }
 
@@ -47,12 +54,15 @@
   background-color: rgba(0, 0, 0, 0.664);
   font-family: "Montserrat", sans-serif;
   width: 8em;
+  color: white;
+  text-decoration: none;
   color:white;
   
 }
 
 button{
   color: white;
+
 }
 
 

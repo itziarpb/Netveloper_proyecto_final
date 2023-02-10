@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/checkin.css";
-
+import ilustracion from "../../img/ilustracion.jpg";
+import programador from "../../img/programador.jpg";
 import { Context } from "../store/appContext";
 
 export const Checkin = () => {
@@ -29,12 +30,13 @@ export const Checkin = () => {
   };
 
   return (
-    <div className="col-7 mx-auto ">
+    <div className="container-fluid checkin">
       {store.token && store.token != "" && store.token != undefined ? (
         "Ya estas registrado"
       ) : (
-        <div className="container-fluid">
-          <h1 className="checkinTitle">Bienvenido a la página de registro</h1>
+        <div className="row">
+          <div className="col-12 col-md-6 px-5">
+          <h1 className="checkinTitle">Registro</h1>
           <form onSubmit={handleSubmit} className="formulario">
             <div className="mb-3 row ">
               <label for="inputName" className="col-sm-2 col-form-label ">
@@ -87,6 +89,10 @@ export const Checkin = () => {
               Registrarse
             </button>
           </form>
+          </div>
+          <div className="col-12 col-md-6 px-5">
+            <img src={programador}/>
+          </div>
         </div>
       )}
     </div>

@@ -1,21 +1,21 @@
-/* .scroll {
-  overflow-x: auto;
-  display: flex;
-  height: 280px;
-  width: 100%;
-  padding: 5px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  color: black;
-} */
+/* 
 .username {
   width: 30%;
   color: #42c920;
   border: 1px solid #0a740c;
   margin-left: 30%;
   margin-right: 30%;
-}
+} */
 
+.userTitle {
+  color: #fed049;
+  width: 60%;
+  background-color: #444c4c;
+  border: 3px solid #474b4e
+}
+.heartLikes {
+  color: #474b4e;
+}
 .imgPlayLater {
   height: 100px;
   width: 80x;
@@ -23,16 +23,25 @@
 .imgPlayLater:hover {
   cursor: pointer;
 }
-.title {
-  font-family: "Oswald", sans-serif;
-  font-size: 3vw;
-  color: #fed049;
+.titleLikes{
+  color: #474b4e;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 2.5vw;
   margin-top: 15px;
   padding-left: 5px;
-  border-left: 2px solid #fed049;
+}
+.titlePlayLater {
+  color: #474b4e;
+  border-bottom: 2px solid #474b4e;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 2.5vw;
+  margin-top: 15px;
+  padding-left: 5px;
 }
 .textProfile {
-  font-size: 2vw;
+  font-size: 1.7vw;
   margin-top: 10px;
 }
 
@@ -42,7 +51,7 @@
     font-size: 3.5vw;
   }
   .textProfile {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -50,23 +59,31 @@
     font-size: 4.5vw;
   }
   .textProfile {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 }
 @media only screen and (max-width: 576px) {
   .title {
-    font-size: 6vw;
-  }
-  .textProfile {
     font-size: 5vw;
   }
+  .textProfile {
+    font-size: 4vw;
+  }
 }
-.btn-success:hover {
-  background-color: #42c920;
+/* PARA HACER RESPONSIVE LOS TEXTOS */
+
+
+.buttonPlayList {
+  background-color: #fed049;
+  color:black;
+}
+.buttonPlayList:hover{
+  background-color: #e7bd3f;
+  color:black;
 }
 .modal-content {
   background: rgb(27, 26, 26);
 }
-.modal-footer{
+.modal-footer {
   border-top: 1px solid #fed049;
 }
