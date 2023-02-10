@@ -1,3 +1,4 @@
+
 .landing {
   justify-content: center;
 }
@@ -24,6 +25,8 @@
   margin-right: auto;
   margin-left: 50px;
   font-family: "Montserrat", sans-serif;
+  color: white;
+ 
 
   font-size: 2vw;
 }
@@ -40,9 +43,11 @@
 @media only screen and (max-width: 576px) {
   .slogan {
     font-size: 6vw;
+    
   }
   .sloganText {
     font-size: 5vw;
+    
   }
 }
 .allbutton {
@@ -51,5 +56,13 @@
   width: 8em;
   color: white;
   text-decoration: none;
+  color:white;
+  
 }
+
+button{
+  color: white;
+
+}
+
 
