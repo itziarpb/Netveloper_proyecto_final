@@ -1,10 +1,13 @@
 .checkinTitle {
-  color: #fed049;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  color:#FED049;
+  border-left: solid #FED049;
+  padding-left: 10px;
   width: 100%;
   margin: auto;
   margin-top: 5%;
   margin-bottom: 5%;
-  text-align: center;
 }
 .formulario {
   color: white;
@@ -29,10 +32,7 @@
 .link {
   text-align: center;
   text-decoration: none;
-  color: white;
+  color: black;
   /* width: 200px; */
 }
-.link:hover {
-  text-decoration: none;
-  color: #42c920;
-}
+

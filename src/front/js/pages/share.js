@@ -3,6 +3,7 @@ import React, { useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/singlevideo.css"
 import { Coments } from "../component/coments";
+import { ModalContact } from "../component/modalcontacto";
 
 export const Share = () => {
 
@@ -146,8 +147,10 @@ export const Share = () => {
               
             <div className="container-fluid fondobanner pt-4 pb-4">
             <div className="d-flex justify-content-center"><p>¿Te gustaría subir tu contenido para ponerte a prueba?</p></div>
-            <div className="d-flex justify-content-center"><button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button></div>
+            <div className="d-flex justify-content-center"><button type="button" className="btn btn-primary d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Contacta con nosotros</button></div>
             </div>
+
+          <ModalContact/>
           
           <div className="container pt-5 pb-5">
             <div><h2 className="colortitles pb-4 pt-4">Curso completo</h2></div>

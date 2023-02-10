@@ -2,17 +2,17 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 body {
-  background-color: black;
-  color: white;
+  background-color: #e7e0ff;
+  color: black;
 }
 
 .navbar-brand {
   color: #42c920;
-  background-color: black;
-}
 
-.footer {
-  color: #42c920;
+}
+.link:hover {
+  text-decoration: none;
+  color: white;
 }
 
 /* style scrollbar */
@@ -24,10 +24,10 @@ body {
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #42c920;
+  background: #f7c815;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0a740c;
+  background: #e7b717e0;
 }
 /* style scrollbar */

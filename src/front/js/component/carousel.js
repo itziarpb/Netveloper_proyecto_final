@@ -15,7 +15,6 @@ export const Carousel = (prop) => {
         return response.json();
       })
       .then((response) => {
-        console.log(response);
         const category = response.find(
           (element) => element.category == prop.type.toLowerCase()
         );
@@ -27,15 +26,16 @@ export const Carousel = (prop) => {
     (playlist) => playlist.category == id
   );
   return (
-    <div className="container">
+    <div className="container m-2">
       <h3 className="titleCarousel">{prop.type}</h3>
-      <div className="scroll row ">
+      <div className="scroll scrollcarousel row ">
         <div className="d-flex">
           {carrusel.map((carrusel, index) => (
             <Card
               title={carrusel.playlisttitle}
               url={carrusel.thumbnails}
               id={carrusel.id}
+              channel={carrusel.channel.channeltitle}
             />
           ))}
         </div>
