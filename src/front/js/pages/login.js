@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/checkin.css";
+import "../../styles/login.css";
+import portatil from "../../img/portatil 2.jpg";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -13,52 +14,59 @@ export const Login = () => {
   };
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     actions.login(loginData.email, loginData.password);
   };
 
   //if ((store.dataUser.msg = "Token has expired")) actions.logout();
 
   return (
-    <div className="col-12 col-lg-7 mx-auto ">
+    <div className="container-fluid login">
+    <div className="container py-2">
       {store.token && store.token != "" && store.token != undefined ? (
         //"Ya estas registrado"
         navigate("/home")
       ) : (
-        <div className="mx-5">
-          <h1 className="checkinTitle">Bienvenido a la página de login</h1>
-          <form onSubmit={handleSubmit} className="formulario">
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                id="inputEmail"
-                name="email"
-                placeholder="email"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="password"
-                className="form-control"
-                id="inputPassword"
-                name="password"
-                placeholder="password"
-                onChange={handleChange}
-              />
-            </div>
-            <button type="submit" className="btn btn-success buttonLogin">
-              Iniciar sesión
-            </button>
-            <div className="butLink">
+        <div className="row">
+          <div className="col-12 col-md-6 px-5">
+            <img src={portatil}/>
+          </div>
+          <div className="col-12 col-md-6 px-5">
+            <h1 className="loginTitle">Inicio de Sesión</h1>
+            <form onSubmit={handleSubmit} className="formulario">
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputEmail"
+                  name="email"
+                  placeholder="email"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="password"
+                  className="form-control"
+                  id="inputPassword"
+                  name="password"
+                  placeholder="password"
+                  onChange={handleChange}
+                />
+              </div>
+              <button type="submit" className="btn btn-success buttonLogin">
+                Iniciar sesión
+              </button>
+            </form>
+            <div className="text-center">
               <Link to="/checkin" className="link">
                 ¿Aún no estás registrado?
               </Link>
             </div>
-          </form>
+          </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

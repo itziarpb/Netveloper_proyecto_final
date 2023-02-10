@@ -2,6 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
+
+//---Modal de los videos guardados (en Profile)----//
+
 export const ModalLater = (props) => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
@@ -56,7 +59,7 @@ export const ModalLater = (props) => {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-success me-auto"
+              className="btn btn-success me-auto buttonPlayList"
               aria-label="Close"
               data-bs-dismiss="modal"
               onClick={() => handlenavigate()}
@@ -65,7 +68,7 @@ export const ModalLater = (props) => {
             </button>
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-danger"
               onClick={() => handleDelete()}
               data-bs-dismiss="modal"
             >
@@ -73,7 +76,7 @@ export const ModalLater = (props) => {
             </button>
             <button
               type="button"
-              className="btn btn-danger"
+              className="btn btn-dark"
               data-bs-dismiss="modal"
             >
               Cerrar

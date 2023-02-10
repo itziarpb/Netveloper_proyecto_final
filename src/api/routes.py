@@ -10,10 +10,7 @@ import os  #libreria para trabajar con el sistema operativo
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity #añadido para hacer el login
 
 
-
 api = Blueprint('api', __name__)
-
-
 
 
 #POST PARA INTRODUCIR LOS DATOS A LA BASE DE DATOS A TRAVES DE POSTMAN O SIMILAR
@@ -32,28 +29,21 @@ def get_addinfo():
 
     response = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id={id_list}&key={API_KEY}')
 
-
     data = response.json()
-    # data['items'][0]['snippet']['channelId'] (otra variante para el código de debajo)
     channel_id = data.get('items')[0].get('snippet').get('channelId')
     
     # Buscamos toda la informacion del channel en youtube
     channel_response = requests.get(f'https://youtube.googleapis.com/youtube/v3/channels?part=brandingSettings&id={channel_id}&key={API_KEY}')
     channel_data = channel_response.json()
     channel_title = channel_data.get('items')[0].get('brandingSettings').get('channel').get('title')    
-    channel_image = channel_data.get('items')[0].get('brandingSettings').get('image').get('bannerExternalUrl')
-    
-    
-   
+    channel_image = channel_data.get('items')[0].get('brandingSettings').get('image').get('bannerExternalUrl')  
 
     # Buscar en nuestra base de datos si exite un channel con ese id, si no existe ningun lo creamos de lo contrario no creamos nuevamente el channel
     channel = Channel.query.filter_by(channelid=channel_id).first()
     if not channel:
         channel = Channel(channelid=channel_id, channelbanner=channel_image, channeltitle=channel_title)
         db.session.add(channel)
-        db.session.commit()
-
-    
+        db.session.commit()   
 
     # Buscamos en nuestra base de datos si existe la playlist
     lista = PlayListItems.query.filter_by(playlistid=id_list).first()
@@ -84,32 +74,10 @@ def get_addinfo():
             video = Video(videoid=video_id, videotitle=video_title, videodescription=video_description, playlistitems_id=lista.id, category_id=category.id)
             db.session.add(video)
             db.session.commit()
-      
-      
+            
     return jsonify({"message":"ok"}), 200
+#POST PARA INTRODUCIR LOS DATOS A LA BASE DE DATOS A TRAVES DE POSTMAN O SIMILAR
 
-
-#POST PARA LOGIN
-@api.route('/login', methods=['POST'])
-def login():
-    data = request.json
-    
-    user = User.query.filter_by(email=data['email'], password=data['password']).first()
-    if user:
-        #expires = datetime.timedelta(minutes=600)
-        token = create_access_token(identity=user.id ) #fresh= False expires_delta=datetime.timedelta(minutes=5)
-        #return jsonify(data), 200 #devuelve el dato
-        return jsonify({"access_token": token}), 200
-    
-    return jsonify({"message": "Email/contraseña incorrecta"}), 400
-
-#GET RESTRINGIDO DEL USUARIO
-@api.route('/user', methods=['GET'])
-@jwt_required()
-def get_user():
-    user_id = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
-    return jsonify(user.serialize()), 200
 
 #GET DE LOS CANALES PARA EL JUMBOTRON
 @api.route('/channel', methods=['GET'])
@@ -148,7 +116,7 @@ def get_videos():
     
     return jsonify(data), 200
 
-
+#GET DE LOS VIDEOS DE UNA PLAYLIST
 @api.route('/playlist/<int:id>', methods=['GET'])
 def get_videosbyplaylist(id):
 
@@ -157,7 +125,51 @@ def get_videosbyplaylist(id):
     
     return jsonify(data), 200
 
+#GET DE LOS LIKES DE UN VIDEO
+@api.route('/countlikes/<videoid>', methods=['GET'])
+def get_count_likes(videoid):
+    likes = Like.query.filter_by(video_id=videoid)
+    data = likes.count()
+    
+    return jsonify(data), 200
 
+#POST PARA REGISTRARSE
+@api.route('/user', methods=['POST'])
+def register_user():  
+    try:
+        data = request.json
+        user = User(username=data["username"], email=data["email"], password=data["password"])
+        db.session.add(user)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        return jsonify({"message": "No se pudo registrar"}), 400
+    return jsonify({"message": "Usuario registrado"}), 200
+
+#POST PARA LOGIN
+@api.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    
+    user = User.query.filter_by(email=data['email'], password=data['password']).first()
+    if user:
+        #expires = datetime.timedelta(minutes=600)
+        token = create_access_token(identity=user.id ) #fresh= False expires_delta=datetime.timedelta(minutes=5)
+        #return jsonify(data), 200 #devuelve el dato
+        return jsonify({"access_token": token}), 200
+    
+    return jsonify({"message": "Email/contraseña incorrecta"}), 400
+
+#GET RESTRINGIDO DEL USUARIO
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify(user.serialize()), 200
+
+
+#POST RESTRINGIDO PARA DAR LIKE
 @api.route('/like', methods=['POST'])
 @jwt_required()
 def like_video():
@@ -167,7 +179,7 @@ def like_video():
     db.session.add(like)
     db.session.commit()
 
-
+#GET RESTRINGIDO PARA COMBROBAR SI ESTA DADO LIKE
 @api.route('/like/<id>', methods=['GET'])
 @jwt_required()
 def get_likes_id(id):
@@ -176,12 +188,7 @@ def get_likes_id(id):
     
     return jsonify(like.serialize() if like else None), 200
 
-@api.route('/playLater/<id>', methods=['GET'])
-@jwt_required()
-def get_playLaters_id(id):
-    userid = get_jwt_identity()
-    playLater = PlayLater.query.filter_by(user_id=userid, video_id=id).first()    
-
+#GET RESTRINGIDO PRA OBTENER TODOS LOS LIKES DE UN USUARIO
 @api.route('/like', methods=['GET'])
 @jwt_required()
 def get_likes():
@@ -191,9 +198,28 @@ def get_likes():
     
     return jsonify(data), 200
 
-    
+#POST RESTRINGIDO PARA VER MAS TARDE UN VIDEO
+@api.route('/playLater', methods=['POST'])
+@jwt_required()
+def save_playLater():
+    data = request.json
+    userid = get_jwt_identity()
+    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
+    db.session.add(playLater)
+    db.session.commit()
 
-#GET RESTRINGIDO DE LOS VIDEOS PARA VER MAS TARDE
+    return jsonify({"mensaje": "guardado para más tarde correctamente"})
+    
+#GET RESTRINGIDO PARA COMBROBAR SI UN VIDEO ESTA GUARDADO
+@api.route('/playLater/<id>', methods=['GET'])
+@jwt_required()
+def get_playLaters_id(id):
+    userid = get_jwt_identity()
+    playLater = PlayLater.query.filter_by(user_id=userid, video_id=id).first()
+
+    return jsonify(playLater.serialize() if playLater else None), 200
+
+#GET RESTRINGIDO DE TODOS LOS VIDEOS GUARDADOS DE UN USUARIO
 @api.route('/playLater', methods=['GET'])
 @jwt_required()
 def get_playLaters():
@@ -203,7 +229,7 @@ def get_playLaters():
     
     return jsonify(data), 200
 
-
+#DELETE PARA BORRAR UN VIDEO GUARDADO
 @api.route('/playLater/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_videplayLater(id):
@@ -218,17 +244,7 @@ def delete_videplayLater(id):
 
     return jsonify(message)
 
-@api.route('/playLater', methods=['POST'])
-@jwt_required()
-def save_playLater():
-    data = request.json
-    userid = get_jwt_identity()
-    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
-    db.session.add(playLater)
-    db.session.commit()
-
-    return jsonify({"mensaje": "guardado para más tarde correctamente"})
-
+#DELETE PARA BORRAR UN VIDEO GUARDADO
 @api.route('/playLater', methods=['DELETE'])
 @jwt_required()
 def delete_playLater():
@@ -240,18 +256,7 @@ def delete_playLater():
 
     return jsonify({"mensaje": "borrado de ver más tarde correctamente"})
 
-#POST PARA REGISTRARSE
-@api.route('/user', methods=['POST'])
-def register_user():  
-    try:
-        data = request.json
-        user = User(username=data["username"], email=data["email"], password=data["password"])
-        db.session.add(user)
-        db.session.commit()
-    except Exception as e:
-        print(e)
-        return jsonify({"message": "No se pudo registrar"}), 400
-    return jsonify({"message": "Usuario registrado"}), 200
+
 
 
 

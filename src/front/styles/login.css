@@ -1,0 +1,40 @@
+.login {
+  background-color: white;
+}
+.loginTitle {
+  color: #474b4e;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  border-left: 2px solid #474b4e;
+  width: 100%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.login img {
+  width: 80%;
+  height: auto;
+}
+
+.buttonLogin {
+  margin-left: 35%;
+  width: 30%;
+  background-color: #42c920;
+}
+
+.modal-dialog {
+  color: black;
+}
+.butLink {
+  margin-left: 40%;
+  margin-top: 20px;
+}
+.link {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  /* width: 200px; */
+}
+.link:hover {
+  color: #474b4e;
+}
