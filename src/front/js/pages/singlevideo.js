@@ -157,32 +157,35 @@ export const SingleVideo = () => {
                     allowfullscreen
                   ></iframe>
                 </div>
-                <div className="icons mt-1 row justify-content-center">
+                <div className="py-3 row espacio">
                   {store.token != null && (
                     <>
-                      <div className="rounded-pill col-lg-3  color d-flex">
-                      <p className="texto1">
+                      <div className="rounded-pill colorpills col-lg-3 col-md-3 col-sm-3 d-flex">
+                      <p className="texto1pills">
                         {likes} likes
                       </p>
                       <i
-                        className={`iconsChild ${statelike} border-start border-dark px-4`}
+                        className={`iconsChild ${statelike} border-start border-dark ps-3`}
                         onClick={likeVideo}
                       ></i>
                       </div>
-                      <div className="rounded-pill col-lg-3  color d-flex mx-3">
+                      <div className="rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3  d-flex">
                       <i
-                        className={`iconsChild ${state} border-end border-dark px-4  `}
+                        className={`iconsChild ${state} border-end border-dark pe-3`}
                         onClick={seeLater}
                       ></i>
-                      <p className="d-flex texto2">
+                      <p className="texto2pills">
                         Ver más tarde
                       </p>
                       </div>
-                      <div className="dropdown col-lg-2 rounded-pill color">
-                        <a className="dropdown-toggle"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      
+                      <div className="dropdown rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3 d-flex">
+                      <i className="fas fa-external-link iconsChild"></i>
+                        <a className="dropdown-toggle texto2pills"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Compartir
                         </a>
-                        <ul className="dropdown-menu mx-auto" aria-labelledby="dropdownMenuButton1">
+                        
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a className="my-2 dropdown-item fab fa-telegram-plane cursorpointer" href="#">telegram</a></li>
                           <li><a className="my-2 dropdown-item fab fa-whatsapp" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}>whatsapp</a></li>
                         </ul>
@@ -200,8 +203,8 @@ export const SingleVideo = () => {
               <div className="row">
                   <div className="col-lg-6 col-md-4 d-flex align-items-center">
                       <div>
-                        <h3 className="texto1">¡No olvides iniciar sesión!</h3>
-                        <h4 className="texto2">Podrás crear tus propias listas de reproducción, dar a me gusta a tus videos favoritos y acceder a muchas más funcionalidades</h4>
+                        <h3 className="textoprincipalbanner">¡No olvides iniciar sesión!</h3>
+                        <h4 className="textosecundariobanner">Podrás crear tus propias listas de reproducción, dar a me gusta a tus videos favoritos y acceder a muchas más funcionalidades</h4>
                         <a className="btn btn-warning btn-lg" href="/login">Iniciar sesión</a>
                       </div>
                   </div>

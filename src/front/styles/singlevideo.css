@@ -9,7 +9,10 @@
 .text {
   color: white;
 }
-
+.textopildora{
+  margin:auto;
+  font-size: 2.5vw;
+}
 .hover {
   border-color: azure;
 }
@@ -18,18 +21,9 @@
   height: 150px;
 }
 
-.icons {
 
-  font-size: 30px;
-  
-  padding-top: 15px;
-  padding-bottom: 15px;
-  /*background:#FED049;*/
- 
-  
-}
 .iconsChild {
-  margin: auto;
+  margin:auto;
   font-size: 2.5vw;
   
 }
@@ -45,11 +39,18 @@
 
 .fondobanner {
   background:white;
- 
-  text-align: left;
-  
+  text-align: left;  
   display: flex;
+}
 
+.textoprincipalbanner{
+  font-size: 2.3vw;
+  color:black;
+}
+.textosecundariobanner{
+  font-family: "Montserrat";
+  color: black;
+  font-size: 1.4vw;
 }
 
 a, i {
@@ -61,31 +62,28 @@ a:hover, i:hover {
   /* color: #42c920; */
 }
 
-.texto1{
-  font-size: 2.4vw;
-  color:black;
-  margin: auto;
-  width: 70%;
-  
-}
-.texto2{
-  font-size: 1.5vw;
-  color:black;
-  margin: auto;
-  
-}
 
 
-.color{
+
+.colorpills{
   background-color: #bebec0;
 }
 
-.prueba{
-align-items: center;
-justify-content: center;
+.texto1pills{
+  font-size: 2vw;
+  color:black;
+  width: 70%;
+  margin:auto;
 }
 
-* {
-  border: 1px dashed red;
-  min-height: 10px;
-} 
+.texto2pills{
+  font-size: 1.7vw;
+  color:black;
+  width: 70%;
+  margin:auto;
+}
+
+.espacio{
+  justify-content: space-around;
+
+}
