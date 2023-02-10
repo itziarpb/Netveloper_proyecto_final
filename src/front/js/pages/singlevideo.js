@@ -110,7 +110,7 @@ export const SingleVideo = () => {
       },
     });
     console.log(video.id);
-    setState("fas fa-save");
+    setState("fas fa-save cursornotallowed");
   };
 
   /*----------------Function me gusta un video-----------------*/
@@ -180,7 +180,7 @@ export const SingleVideo = () => {
                       </div>
                       
                       <div className="dropdown rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3 d-flex">
-                      <i className="fas fa-external-link iconsChild"></i>
+                      <i className="fas fa-external-link iconsChild cursornotallowed "></i>
                         <a className="dropdown-toggle texto2pills"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Compartir
                         </a>

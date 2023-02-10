@@ -37,10 +37,10 @@ export const Profile = () => {
         navigate("/login")
       ) : (
         <div className="container-fluid">
-          <div className="text-center userTitle mt-4 ms-auto">
+          {/* <div className="text-center userTitle mt-4 ms-auto">
             <h2>Mi perfil</h2>
             <h1 className="">{store.dataUser.username}</h1>
-          </div>
+          </div>  */}
           <div className="container row">
             <div className="col-12 ">
               <h5 className="titleLikes">

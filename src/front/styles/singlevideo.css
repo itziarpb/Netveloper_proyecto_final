@@ -34,7 +34,7 @@
 
 .cursornotallowed {
   pointer-events: none;
-  color: red;
+  color: #3e3e3f ;
 }
 
 .fondobanner {
