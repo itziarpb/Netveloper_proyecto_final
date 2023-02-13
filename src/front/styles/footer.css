@@ -1,29 +1,26 @@
-.fondofooter1 {
-    background: #02012e;
-  }
-
-.fondofooter {
-    background: #01000e;
-    
- }
-
-.maxwidth{
-    max-width: 400px;
-    
+h4 {
+  color: #f7c815;
+}
+.footer {
+  color: white;
 }
 
+.maxwidth {
+  max-width: 400px;
+}
+.cursorpointer {
+  cursor: pointer;
+}
 .iconosrrss {
-    display: flex;
-    font-size: 30px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    justify-content:space-around;
-    margin-bottom: 30px;
-  }
-
-
-
-
-
-
+  display: flex;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  color: white;
+}
+a:hover {
+  color: rgb(204, 194, 194);
+}

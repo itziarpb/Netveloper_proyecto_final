@@ -1,172 +1,264 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import "../../styles/singlevideo.css"
+import { Context } from "../store/appContext";
+import "../../styles/singlevideo.css";
 import { Coments } from "../component/coments";
+import { ModalContact } from "../component/modalcontacto";
+import chico from "../../img/chico.png";
 
 export const SingleVideo = () => {
-
+  const { store, actions } = useContext(Context);
   const params = useParams();
   const [video, setVideo] = useState();
   const [playlist, setPlayList] = useState([]);
   const [state, setState] = useState();
   const [playlater, setPlayLater] = useState();
   const [statelike, setStateLike] = useState();
-
+  const [likes, setLikes] = useState();
 
   const urlWhatsapp = process.env.BACKEND_URL + "/singlevideo/" + params.theid;
 
   useEffect(() => {
-
-/*-------------------Llamada a playlist para recuperar videos-----------------*/
+    /*-------------------Llamada a playlist para recuperar videos-----------------*/
 
     fetch(process.env.BACKEND_URL + "/api/playlist/" + params.theid)
-    .then((response) => {
+      .then((response) => {
         /*console.log(response.ok);*/ // will be true if the response is successfull
         console.log(response.status); // the status code = 200 or code = 400 etc.
         return response.json();
-    }).then((response) => {
-        console.log(response)  
-        setVideo(response[0])
-        setPlayList(response)
-       listar(response[0].id)
-       listarLikes(response[0].id)
-    }).catch((error) => console.error("Error:", error));
-
+      })
+      .then((response) => {
+        console.log(response);
+        setVideo(response[0]);
+        setPlayList(response);
+        listar(response[0].id);
+        listarLikes(response[0].id);
+        allLikes(response[0].id);
+      })
+      .catch((error) => console.error("Error:", error));
   }, []);
 
-/*----------------Llamada para listar los PlayLater guardados por cada user-----------------*/
-  const listar =(id)=>{
+  /*----------------Llamada para listar los PlayLater guardados por cada user-----------------*/
+  const listar = (id) => {
     const token = localStorage.getItem("token");
     fetch(process.env.BACKEND_URL + `/api/playLater/${id}`, {
-
-      method: "GET",      
-      headers:{
+      method: "GET",
+      headers: {
         "Content-Type": "application/json",
-        Authorization: 'Bearer ' +token,
-      }
-      
-    }).then((response)=>{
-      console.log(response.status)
-      return response.json();
-
-    }).then((response)=>{
-      setPlayLater(response)
-      console.log(playlater)
-
-      response === null ? setState("far fa-list-alt icons-left cursorpointer"): setState("fas fa-list-alt icons-left cursornotallowed")
+        Authorization: "Bearer " + token,
+      },
     })
-  }
+      .then((response) => {
+        console.log("comprobar si esta en play later", response.status);
+        return response.json();
+      })
+      .then((response) => {
+        // setPlayLater(response);
+        console.log("prueba listar", response);
+        response === null
+          ? setState("far fa-save  cursorpointer")
+          : setState("fas fa-save  cursornotallowed");
+      });
+  };
   /*----------------Llamada para listar los Likes guardados por cada user-----------------*/
-  const listarLikes =(id)=>{
+  const listarLikes = (id) => {
     const token = localStorage.getItem("token");
     fetch(process.env.BACKEND_URL + `/api/like/${id}`, {
-
-      method: "GET",      
-      headers:{
+      method: "GET",
+      headers: {
         "Content-Type": "application/json",
-        Authorization: 'Bearer ' +token,
-      }
-      
-    }).then((response)=>{
-      console.log(response.status)
-      return response.json();
-
-    }).then((response)=>{
-       response === null ? setStateLike("far fa-heart icons-left cursorpointer"): setStateLike ("fas fa-heart icons-left cursornotallowed")
+        Authorization: "Bearer " + token,
+      },
     })
-  }
+      .then((response) => {
+        console.log(response.status);
+        return response.json();
+      })
+      .then((response) => {
+        response === null
+          ? setStateLike("far fa-heart cursorpointer")
+          : setStateLike("fas fa-heart cursornotallowed");
+      });
+  };
+
+  /*----------------Llamada para listar todos los likes de ese video-----------------*/
+  const allLikes = (id) => {
+    fetch(process.env.BACKEND_URL + `/api/countlikes/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response.status);
+        return response.json();
+      })
+      .then((response) => {
+        setLikes(response);
+      });
+  };
 
   /*----------------Function guardar video para ver más tarde-----------------*/
-  const seeLater = ()=>{
+  const seeLater = () => {
     const token = localStorage.getItem("token");
     fetch(process.env.BACKEND_URL + "/api/playLater", {
-
       method: "POST",
-      body: JSON.stringify({"video_id":`${video.id}`}),
-      headers:{
+      body: JSON.stringify({ video_id: `${video.id}` }),
+      headers: {
         "Content-Type": "application/json",
-        Authorization: 'Bearer ' +token,
-      }
-    })
-    console.log(video.id)
-    setState("fas fa-list-alt icons-left cursornotallowed")
-  }
+        Authorization: "Bearer " + token,
+      },
+    });
+    console.log(video.id);
+    setState("fas fa-save cursornotallowed");
+  };
 
-  /*----------------Function me gusta un video-----------------*/  
-  const likeVideo= ()=>{
+  /*----------------Function me gusta un video-----------------*/
+  const likeVideo = () => {
     const token = localStorage.getItem("token");
     fetch(process.env.BACKEND_URL + "/api/like", {
-
       method: "POST",
-      body: JSON.stringify({"video_id":`${video.id}`}),
-      headers:{
+      body: JSON.stringify({ video_id: `${video.id}` }),
+      headers: {
         "Content-Type": "application/json",
-        Authorization: 'Bearer ' +token,
-      }
-    })
-    console.log(video.id)
-    setStateLike("fas fa-heart icons-left cursornotallowed")
-  }
-    
+        Authorization: "Bearer " + token,
+      },
+    });
+    console.log(video.id);
+    setStateLike("fas fa-heart cursornotallowed");
+    setLikes(likes+1);
+  };
 
-    
-    
-  
-   return (
-  <>
-    <div class="container-fluid">
-      {
-        video ? (
+  /*----------------Function scroll inicio-----------------*/
+  const handleClickScroll = () => {
+    const element = document.getElementById("start");
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <>
+      <div className="container-fluid">
+        {video ? (
           <>
-          <div className="container">
-            <h1 className="colortitles pb-4 pt-4">{video.videotitle}</h1>
+            <div className="container">
+              <h1 className="colortitles mb-4 pb-2 mt-4 pt-2" id="start">
+                {video.videotitle}
+              </h1>
               <div className="row">
-                  
                 <div className="ratio ratio-16x9">
-                    <iframe src={`https://www.youtube.com/embed/${video.video_id}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.video_id}`}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
                 </div>
-                             
-                <div className="icons">
-                    <i className={state} onClick={seeLater}></i>
-                    <i className={statelike} onClick={likeVideo}></i>   
-                    <i class="fab fa-telegram-plane cursorpointer"></i>
-                    <a class="fab fa-whatsapp -plane cursorpointer" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}></a>
-                </div>
+                <div className="py-3 row espacio">
+                  {store.token != null && (
+                    <>
+                      <div className="rounded-pill colorpills col-lg-3 col-md-3 col-sm-3 d-flex">
+                      <p className="texto1pills">
+                        {likes} likes
+                      </p>
+                      <i
+                        className={`iconsChild ${statelike} border-start border-dark ps-3`}
+                        onClick={likeVideo}
+                      ></i>
+                      </div>
+                      <div className="rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3  d-flex">
+                      <i
+                        className={`iconsChild ${state} border-end border-dark pe-3`}
+                        onClick={seeLater}
+                      ></i>
+                      <p className="texto2pills">
+                        Ver más tarde
+                      </p>
+                      </div>
+                      
+                      <div className="dropdown rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3 d-flex">
+                      <i className="fas fa-external-link iconsChild cursornotallowed "></i>
+                        <a className="dropdown-toggle texto2pills"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Compartir
+                        </a>
+                        
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a className="my-2 dropdown-item fab fa-telegram-plane cursorpointer" href="#">telegram</a></li>
+                          <li><a className="my-2 dropdown-item fab fa-whatsapp" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}>whatsapp</a></li>
+                        </ul>
+                      </div>
 
-              </div>  
+
+                    </>
+                  )}
+                  </div>
+                </div>
+              </div>
+                  {store.token == null && (
+          <div className="container-fluid fondobanner py-3 my-3">        
+            <div className="container fondobanner ">
+              <div className="row">
+                  <div className="col-lg-6 col-md-4 d-flex align-items-center">
+                      <div>
+                        <h3 className="textoprincipalbanner">¡No olvides iniciar sesión!</h3>
+                        <h4 className="textosecundariobanner">Podrás crear tus propias listas de reproducción, dar a me gusta a tus videos favoritos y acceder a muchas más funcionalidades</h4>
+                        <a className="btn btn-warning btn-lg" href="/login">Iniciar sesión</a>
+                      </div>
+                  </div>
+                    
+                  <div className="col-lg-6 col-md-4 chico">
+                    <img src={chico}></img>
+                  </div>              
+              </div>        
+            </div>     
           </div>
+                    
+                  )}
+                
               
-            <div className="container-fluid fondobanner pt-4 pb-4">
-            <div className="d-flex justify-content-center"><p>¿Te gustaría subir tu contenido para ponerte a prueba?</p></div>
-            <div className="d-flex justify-content-center"><button type="button" className="btn btn-primary d-flex justify-content-center">Contacta con nosotros</button></div>
-            </div>
+           
           
-          <div className="container pt-5 pb-5">
-            <div><h2 className="colortitles pb-4 pt-4">Curso completo</h2></div>
+          
 
-            <div className="row">
-              {
-                playlist.map((value, index)=>{
-                    return (
+            <div className="container pt-5 pb-5">
+              <div>
+                <h2 className="colortitles mb-2 pb-2 mt-2 pt-2">
+                  Curso completo
+                </h2>
+              </div>
+
+              <div className="row">
+                {playlist.map((value, index) => {
+                  return (
                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 pb-4 pt-4">
-                      <img className="cursorpointer" key={index} id={value.video_id} src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`} height="100%" classname="hover" onClick={()=>{
-                        setVideo(value)
-                        listar(value.id)
-                        listarLikes(value.id)
-                        
-                        
-                      }} />
+                      <img
+                        className="cursorpointer"
+                        key={index}
+                        id={value.video_id}
+                        src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`}
+                        height="100%"
+                        classname="hover"
+                        onClick={() => {
+                          setVideo(value);
+                          listar(value.id);
+                          listarLikes(value.id);
+                          allLikes(value.id);
+                          handleClickScroll();
+                        }}
+                      />
                     </div>
-                    )
-                })
-              }
+                  );
+                })}
               </div>
-              </div>
+            </div>
           </>
-        ) : ""
-      } 
-    
-    </div>
-   </>
+        ) : (
+          ""
+        )}
+      </div>
+    </>
   );
 };

@@ -1,9 +1,12 @@
+
 .landing {
   justify-content: center;
 }
 
+.imagen {
+  opacity: 100%;
+}
 .block {
-  background-color: rgba(0, 0, 0, 0.7);
   margin-top: 1em;
 }
 .lgo2 {
@@ -12,16 +15,20 @@
 .slogan {
   margin-top: 0.2 em;
   margin-right: auto;
-  font-family: "Oswald", sans-serif;
-  text-decoration: bold;
+  margin-left: 50px;
+
   font-size: 4vw;
-  color: #42c920;
+  color: white;
 }
 .sloganText {
   margin-top: 0.2 em;
   margin-right: auto;
-  font-family: "Oswald", sans-serif;
-  font-size: 3vw;
+  margin-left: 50px;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+ 
+
+  font-size: 2vw;
 }
 
 /* PARA HACER RESPONSIVE LOS TEXTOS */
@@ -36,23 +43,26 @@
 @media only screen and (max-width: 576px) {
   .slogan {
     font-size: 6vw;
+    
   }
   .sloganText {
     font-size: 5vw;
+    
   }
 }
 .allbutton {
   background-color: rgba(0, 0, 0, 0.664);
   font-family: "Montserrat", sans-serif;
   width: 8em;
+  color: white;
+  text-decoration: none;
+  color:white;
+  
 }
 
-.link {
-  text-decoration: none;
+button{
   color: white;
-  width: 200px;
+
 }
-.link:hover {
-  text-decoration: none;
-  color: #42c920;
-}
+
+

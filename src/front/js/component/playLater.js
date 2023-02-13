@@ -29,11 +29,9 @@ export const PlayLater = () => {
   //Obtener la lista de videos guardados
 
   return (
-    <div className="container p-0">
-      <h3 className="title">Mis videos guardados:</h3>
+    <div className="container p-0 mb-5">
+      <h3 className="titlePlayLater"><i className="fas fa-save heartLikes"></i> LISTA DE VIDEOS GUARDADOS</h3>
       <div className="borde row">
-        {playLater?.length === 0 && (
-          <div className="textProfile">Aún no hay videos guardados</div>)}
         {playLater?.map((video, index) => (
           <div className="row justify-content-center">
             <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
