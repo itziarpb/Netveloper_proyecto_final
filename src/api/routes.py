@@ -244,17 +244,32 @@ def delete_videplayLater(id):
 
     return jsonify(message)
 
-#DELETE PARA BORRAR UN VIDEO GUARDADO
-@api.route('/playLater', methods=['DELETE'])
+#DELETE PARA BORRAR UN like
+@api.route('/like/<int:id>', methods=['DELETE'])
 @jwt_required()
-def delete_playLater():
-    data = request.json
-    userid = get_jwt_identity()
-    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
-    db.session.delete(playLater)
-    db.session.commit()
+def delete_like(id):
+    try:
+        userid = get_jwt_identity()
+        me = Like.query.filter_by(video_id=id, user_id=userid).first()
+        db.session.delete(me)
+        db.session.commit()
+        message = {"message": "Like eliminado"}
+    except Exception as e:
+        message = {"message": "El video no tiene like"}
 
-    return jsonify({"mensaje": "borrado de ver más tarde correctamente"})
+    return jsonify(message)
+
+#DELETE PARA BORRAR UN VIDEO GUARDADO
+# @api.route('/playLater', methods=['DELETE'])
+# @jwt_required()
+# def delete_playLater():
+#     data = request.json
+#     userid = get_jwt_identity()
+#     playLater = PlayLater(video_id=data["video_id"], user_id=userid)
+#     db.session.delete(playLater)
+#     db.session.commit()
+
+#     return jsonify({"mensaje": "borrado de ver más tarde correctamente"})
 
 
 

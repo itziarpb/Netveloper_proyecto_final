@@ -2,15 +2,15 @@
   font-family: "Oswald", sans-serif;
   font-weight: bold;
   color: #474b4e;
-  border-left: solid #474b4e;;
+  border-left: solid #474b4e;
   padding-left: 10px;
   margin-bottom: 20px;
 }
 .text {
   color: white;
 }
-.textopildora{
-  margin:auto;
+.textopildora {
+  margin: auto;
   font-size: 2.5vw;
 }
 .hover {
@@ -21,69 +21,68 @@
   height: 150px;
 }
 
-
 .iconsChild {
-  margin:auto;
+  margin: auto;
   font-size: 2.5vw;
-  
 }
 
 .cursorpointer {
   cursor: pointer;
 }
 
-.cursornotallowed {
+.savenotallowed {
   pointer-events: none;
-  color: #3e3e3f ;
+  color: #3e3e3f;
+}
+.likeoff {
+  color: #3e3e3f;
 }
 
 .fondobanner {
-  background:white;
-  text-align: left;  
+  background: white;
+  text-align: left;
   display: flex;
 }
 
-.textoprincipalbanner{
+.textoprincipalbanner {
   font-size: 2.3vw;
-  color:black;
+  color: black;
 }
-.textosecundariobanner{
+.textosecundariobanner {
   font-family: "Montserrat";
   color: black;
   font-size: 1.4vw;
 }
 
-a, i {
+a,
+i {
   text-decoration: none;
   /*color: black;*/
 }
-a:hover, i:hover {
+a:hover,
+i:hover {
   text-decoration: none;
   /* color: #42c920; */
 }
 
-
-
-
-.colorpills{
+.colorpills {
   background-color: #bebec0;
 }
 
-.texto1pills{
+.texto1pills {
   font-size: 2vw;
-  color:black;
+  color: black;
   width: 70%;
-  margin:auto;
+  margin: auto;
 }
 
-.texto2pills{
+.texto2pills {
   font-size: 1.7vw;
-  color:black;
+  color: black;
   width: 70%;
-  margin:auto;
+  margin: auto;
 }
 
-.espacio{
+.espacio {
   justify-content: space-around;
-
 }
