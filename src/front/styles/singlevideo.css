@@ -1,15 +1,18 @@
 .colortitles {
   font-family: "Oswald", sans-serif;
   font-weight: bold;
-  color: #fed049;
-  border-left: solid #fed049;
+  color: #474b4e;
+  border-left: solid #474b4e;;
   padding-left: 10px;
   margin-bottom: 20px;
 }
 .text {
   color: white;
 }
-
+.textopildora{
+  margin:auto;
+  font-size: 2.5vw;
+}
 .hover {
   border-color: azure;
 }
@@ -18,20 +21,11 @@
   height: 150px;
 }
 
-.icons {
-  display: flex;
-  font-size: 30px;
-  padding-left: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  /* background:#FED049; */
-  margin-bottom: 30px;
-  justify-content: center;
-}
+
 .iconsChild {
   margin:auto;
   font-size: 2.5vw;
-  height: auto;
+  
 }
 
 .cursorpointer {
@@ -40,20 +34,56 @@
 
 .cursornotallowed {
   pointer-events: none;
-  color: red;
+  color: #3e3e3f ;
 }
 
 .fondobanner {
-  background: #02012e;
-  font-size: 30px;
-  text-align: center;
+  background:white;
+  text-align: left;  
+  display: flex;
+}
+
+.textoprincipalbanner{
+  font-size: 2.3vw;
+  color:black;
+}
+.textosecundariobanner{
+  font-family: "Montserrat";
+  color: black;
+  font-size: 1.4vw;
 }
 
 a, i {
   text-decoration: none;
-  color: white;
+  /*color: black;*/
 }
 a:hover, i:hover {
   text-decoration: none;
   /* color: #42c920; */
+}
+
+
+
+
+.colorpills{
+  background-color: #bebec0;
+}
+
+.texto1pills{
+  font-size: 2vw;
+  color:black;
+  width: 70%;
+  margin:auto;
+}
+
+.texto2pills{
+  font-size: 1.7vw;
+  color:black;
+  width: 70%;
+  margin:auto;
+}
+
+.espacio{
+  justify-content: space-around;
+
 }

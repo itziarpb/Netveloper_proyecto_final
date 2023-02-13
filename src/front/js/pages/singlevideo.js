@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/singlevideo.css";
 import { Coments } from "../component/coments";
 import { ModalContact } from "../component/modalcontacto";
+import chico from "../../img/chico.png";
 
 export const SingleVideo = () => {
   const { store, actions } = useContext(Context);
@@ -139,11 +140,11 @@ export const SingleVideo = () => {
 
   return (
     <>
-      <div class="container-fluid">
+      <div className="container-fluid">
         {video ? (
           <>
             <div className="container">
-              <h1 className="colortitles mb-2 pb-2 mt-2 pt-2" id="start">
+              <h1 className="colortitles mb-4 pb-2 mt-4 pt-2" id="start">
                 {video.videotitle}
               </h1>
               <div className="row">
@@ -156,51 +157,71 @@ export const SingleVideo = () => {
                     allowfullscreen
                   ></iframe>
                 </div>
-                <div className="icons mt-1 row">
+                <div className="py-3 row espacio">
                   {store.token != null && (
                     <>
-                      <p className="iconsChild col-12 col-md-3">
+                      <div className="rounded-pill colorpills col-lg-3 col-md-3 col-sm-3 d-flex">
+                      <p className="texto1pills">
                         {likes} likes
                       </p>
                       <i
-                        className={`iconsChild ${state} col-6 col-sm-3 col-md-2`}
-                        onClick={seeLater}
-                      ></i>
-                      <i
-                        className={`iconsChild ${statelike} col-6 col-sm-3 col-md-2`}
+                        className={`iconsChild ${statelike} border-start border-dark ps-3`}
                         onClick={likeVideo}
                       ></i>
-                      <a className="fab fa-telegram-plane cursorpointer iconsChild col-6  col-sm-3 col-md-2"></a>
-                      <a
-                        className="fab fa-whatsapp -plane cursorpointer iconsChild col-6 col-sm-3 col-md-2"
-                        href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
-                      ></a>
+                      </div>
+                      <div className="rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3  d-flex">
+                      <i
+                        className={`iconsChild ${state} border-end border-dark pe-3`}
+                        onClick={seeLater}
+                      ></i>
+                      <p className="texto2pills">
+                        Ver más tarde
+                      </p>
+                      </div>
+                      
+                      <div className="dropdown rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3 d-flex">
+                      <i className="fas fa-external-link iconsChild cursornotallowed "></i>
+                        <a className="dropdown-toggle texto2pills"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Compartir
+                        </a>
+                        
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a className="my-2 dropdown-item fab fa-telegram-plane cursorpointer" href="#">telegram</a></li>
+                          <li><a className="my-2 dropdown-item fab fa-whatsapp" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}>whatsapp</a></li>
+                        </ul>
+                      </div>
+
+
                     </>
                   )}
-                  {store.token == null && (
-                    <div className="iconsChild text-center">
-                      <Link to="/login" className="link">
-                        Inicia sesión para poder interactuar
-                      </Link>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="container-fluid fondobanner pt-4 pb-4">
-              <div className="d-flex justify-content-center">
-                <p>¿Te gustaría subir tu contenido para ponerte a prueba?</p>
-              </div>
-              <div className="d-flex justify-content-center">
-                <button
-                  type="button"
-                  className="btn btn-primary d-flex justify-content-center"
-                >
-                  Contacta con nosotros
-                </button>
-              </div>
-            </div>
+                  {store.token == null && (
+          <div className="container-fluid fondobanner py-3 my-3">        
+            <div className="container fondobanner ">
+              <div className="row">
+                  <div className="col-lg-6 col-md-4 d-flex align-items-center">
+                      <div>
+                        <h3 className="textoprincipalbanner">¡No olvides iniciar sesión!</h3>
+                        <h4 className="textosecundariobanner">Podrás crear tus propias listas de reproducción, dar a me gusta a tus videos favoritos y acceder a muchas más funcionalidades</h4>
+                        <a className="btn btn-warning btn-lg" href="/login">Iniciar sesión</a>
+                      </div>
+                  </div>
+                    
+                  <div className="col-lg-6 col-md-4 chico">
+                    <img src={chico}></img>
+                  </div>              
+              </div>        
+            </div>     
+          </div>
+                    
+                  )}
+                
+              
+           
+          
+          
 
             <div className="container pt-5 pb-5">
               <div>

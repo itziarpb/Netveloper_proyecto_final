@@ -1,7 +1,7 @@
 h4 {
   color: #f7c815;
 }
-footer {
+.footer {
   color: white;
 }
 
@@ -19,6 +19,7 @@ footer {
   padding-bottom: 10px;
   justify-content: space-around;
   margin-bottom: 30px;
+  color: white;
 }
 a:hover {
   color: rgb(204, 194, 194);
