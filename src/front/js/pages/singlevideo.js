@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/singlevideo.css";
 import { Coments } from "../component/coments";
-import { ModalContact } from "../component/modalcontacto";
 import chico from "../../img/chico.png";
 
 export const SingleVideo = () => {
@@ -12,11 +11,8 @@ export const SingleVideo = () => {
   const [video, setVideo] = useState();
   const [playlist, setPlayList] = useState([]);
   const [state, setState] = useState();
-  const [playlater, setPlayLater] = useState();
-  const [statelike, setStateLike] = useState();
+  const [stateLike, setStateLike] = useState();
   const [likes, setLikes] = useState();
-
-  const urlWhatsapp = process.env.BACKEND_URL + "/singlevideo/" + params.theid;
 
   useEffect(() => {
     /*-------------------Llamada a playlist para recuperar videos-----------------*/
@@ -57,7 +53,7 @@ export const SingleVideo = () => {
         console.log("prueba listar", response);
         response === null
           ? setState("far fa-save  cursorpointer")
-          : setState("fas fa-save  cursornotallowed");
+          : setState("fas fa-save  savenotallowed");
       });
   };
   /*----------------Llamada para listar los Likes guardados por cada user-----------------*/
@@ -77,7 +73,7 @@ export const SingleVideo = () => {
       .then((response) => {
         response === null
           ? setStateLike("far fa-heart cursorpointer")
-          : setStateLike("fas fa-heart cursornotallowed");
+          : setStateLike("fas fa-heart likeoff");
       });
   };
 
@@ -110,23 +106,45 @@ export const SingleVideo = () => {
       },
     });
     console.log(video.id);
-    setState("fas fa-save cursornotallowed");
+    setState("fas fa-save savenotallowed");
   };
 
   /*----------------Function me gusta un video-----------------*/
   const likeVideo = () => {
     const token = localStorage.getItem("token");
-    fetch(process.env.BACKEND_URL + "/api/like", {
-      method: "POST",
-      body: JSON.stringify({ video_id: `${video.id}` }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    });
-    console.log(video.id);
-    setStateLike("fas fa-heart cursornotallowed");
-    setLikes(likes+1);
+    if (stateLike == "far fa-heart cursorpointer") {
+      fetch(process.env.BACKEND_URL + "/api/like", {
+        method: "POST",
+        body: JSON.stringify({ video_id: `${video.id}` }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+      setStateLike("fas fa-heart likeoff");
+      setLikes(likes + 1);
+    }
+    if (stateLike == "fas fa-heart likeoff") {
+      console.log("hola");
+      fetch(process.env.BACKEND_URL + "/api/like/" + `${video.id}`, {
+        method: "DELETE",
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: "Bearer " + store.token, //localStorage.getItem("token"),
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Hubo un error");
+          } else {
+            setStateLike("far fa-heart cursorpointer");
+            setLikes(likes - 1);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   /*----------------Function scroll inicio-----------------*/
@@ -161,67 +179,85 @@ export const SingleVideo = () => {
                   {store.token != null && (
                     <>
                       <div className="rounded-pill colorpills col-lg-3 col-md-3 col-sm-3 d-flex">
-                      <p className="texto1pills">
-                        {likes} likes
-                      </p>
-                      <i
-                        className={`iconsChild ${statelike} border-start border-dark ps-3`}
-                        onClick={likeVideo}
-                      ></i>
+                        <p className="texto1pills">{likes} likes</p>
+                        <i
+                          className={`iconsChild ${stateLike} border-start border-dark ps-3`}
+                          onClick={likeVideo}
+                        ></i>
                       </div>
                       <div className="rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3  d-flex">
-                      <i
-                        className={`iconsChild ${state} border-end border-dark pe-3`}
-                        onClick={seeLater}
-                      ></i>
-                      <p className="texto2pills">
-                        Ver más tarde
-                      </p>
+                        <i
+                          className={`iconsChild ${state} border-end border-dark pe-3`}
+                          onClick={seeLater}
+                        ></i>
+                        <p className="texto2pills">Ver más tarde</p>
                       </div>
-                      
+
                       <div className="dropdown rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3 d-flex">
-                      <i className="fas fa-external-link iconsChild cursornotallowed "></i>
-                        <a className="dropdown-toggle texto2pills"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className="fas fa-external-link iconsChild cursornotallowed "></i>
+                        <a
+                          className="dropdown-toggle texto2pills"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
                           Compartir
                         </a>
-                        
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a className="my-2 dropdown-item fab fa-telegram-plane cursorpointer" href="#">telegram</a></li>
-                          <li><a className="my-2 dropdown-item fab fa-whatsapp" href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}>whatsapp</a></li>
+
+                        <ul
+                          className="dropdown-menu"
+                          aria-labelledby="dropdownMenuButton1"
+                        >
+                          <li>
+                            <a
+                              className="my-2 dropdown-item fab fa-telegram-plane cursorpointer"
+                              href="#"
+                            >
+                              telegram
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="my-2 dropdown-item fab fa-whatsapp"
+                              href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
+                            >
+                              whatsapp
+                            </a>
+                          </li>
                         </ul>
                       </div>
-
-
                     </>
                   )}
+                </div>
+              </div>
+            </div>
+            {store.token == null && (
+              <div className="container-fluid fondobanner py-3 my-3">
+                <div className="container fondobanner ">
+                  <div className="row">
+                    <div className="col-lg-6 col-md-4 d-flex align-items-center">
+                      <div>
+                        <h3 className="textoprincipalbanner">
+                          ¡No olvides iniciar sesión!
+                        </h3>
+                        <h4 className="textosecundariobanner">
+                          Podrás crear tus propias listas de reproducción, dar a
+                          me gusta a tus videos favoritos y acceder a muchas más
+                          funcionalidades
+                        </h4>
+                        <a className="btn btn-warning btn-lg" href="/login">
+                          Iniciar sesión
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6 col-md-4 chico">
+                      <img src={chico}></img>
+                    </div>
                   </div>
                 </div>
               </div>
-                  {store.token == null && (
-          <div className="container-fluid fondobanner py-3 my-3">        
-            <div className="container fondobanner ">
-              <div className="row">
-                  <div className="col-lg-6 col-md-4 d-flex align-items-center">
-                      <div>
-                        <h3 className="textoprincipalbanner">¡No olvides iniciar sesión!</h3>
-                        <h4 className="textosecundariobanner">Podrás crear tus propias listas de reproducción, dar a me gusta a tus videos favoritos y acceder a muchas más funcionalidades</h4>
-                        <a className="btn btn-warning btn-lg" href="/login">Iniciar sesión</a>
-                      </div>
-                  </div>
-                    
-                  <div className="col-lg-6 col-md-4 chico">
-                    <img src={chico}></img>
-                  </div>              
-              </div>        
-            </div>     
-          </div>
-                    
-                  )}
-                
-              
-           
-          
-          
+            )}
 
             <div className="container pt-5 pb-5">
               <div>
