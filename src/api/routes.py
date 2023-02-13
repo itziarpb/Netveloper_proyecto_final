@@ -7,7 +7,8 @@ from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayLi
 from api.utils import generate_sitemap, APIException
 import requests # libreria para realizar peticiones youtube
 import os  #libreria para trabajar con el sistema operativo
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity #añadido para hacer el login
+#añadido para hacer el login
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, create_refresh_token
 
 
 api = Blueprint('api', __name__)
@@ -153,12 +154,33 @@ def login():
     
     user = User.query.filter_by(email=data['email'], password=data['password']).first()
     if user:
-        #expires = datetime.timedelta(minutes=600)
-        token = create_access_token(identity=user.id ) #fresh= False expires_delta=datetime.timedelta(minutes=5)
-        #return jsonify(data), 200 #devuelve el dato
+        token = create_access_token(identity=user.id)
+        
         return jsonify({"access_token": token}), 200
     
     return jsonify({"message": "Email/contraseña incorrecta"}), 400
+
+# #POST PARA LOGIN
+# @api.route('/login', methods=['POST'])
+# def login():
+#     data = request.json
+    
+#     user = User.query.filter_by(email=data['email'], password=data['password']).first()
+#     if user:
+#         token = create_access_token(identity=user.id, fresh=True)
+#         refresh_token = create_refresh_token(user.id)
+        
+#         return jsonify({"access_token": token, "refresh_token": refresh_token}), 200
+    
+#     return jsonify({"message": "Email/contraseña incorrecta"}), 400
+
+# #GET  REFRESH 
+# @api.route('/refresh', methods=['GET'])
+# @jwt_required(refresh=True)
+# def get_refresh():
+#     user_id = get_jwt_identity()
+#     new_token = create_access_token(identity=user.id, fresh=True)
+#     return jsonify(user.serialize()), 200
 
 #GET RESTRINGIDO DEL USUARIO
 @api.route('/user', methods=['GET'])
