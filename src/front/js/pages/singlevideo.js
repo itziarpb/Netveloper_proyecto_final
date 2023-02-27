@@ -178,6 +178,7 @@ export const SingleVideo = () => {
                 <div className="py-3 row espacio">
                   {store.token != null && (
                     <>
+                      <div>
                       <div className="rounded-pill colorpills col-lg-3 col-md-3 col-sm-3 d-flex">
                         <p className="texto1pills">{likes} likes</p>
                         <i
@@ -225,6 +226,10 @@ export const SingleVideo = () => {
                             </a>
                           </li>
                         </ul>
+                      </div>
+                      </div>
+                      <div>
+                        <Coments videoid={video.id} />
                       </div>
                     </>
                   )}

@@ -132,10 +132,11 @@ class PlayLater(db.Model):
 
 class Coment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    coment = db.Column(db.String(120), unique=True, nullable=False)
+    coment = db.Column(db.String(600), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     user = db.relationship(User)
+    video = db.relationship(Video)
     
     def __repr__(self):
         return f'<Coments {self.title}>'
@@ -144,4 +145,6 @@ class Coment(db.Model):
         return {
             "id": self.id,
             "coment": self.coment,
+            "video": self.video.serialize(),
+            "user": self.user.serialize(),
         }
