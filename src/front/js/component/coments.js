@@ -20,8 +20,7 @@ export const Coments = (props) => {
         console.log("id video", props.videoid )
       })
       .catch((error) => console.error("Error:", error));
-      console.log("comentarios en coments",coments)
-  }, []);
+  }, [props.videoid]); //añadimos props al useEffect para que se actualice cuando cambia la props
 
 
   return (
@@ -31,7 +30,6 @@ export const Coments = (props) => {
           {coments?.map((item, index) => {
             return (
               <div>
-                <div>{props.videoid}</div>
                 <div>Usuario: {item.user.username}</div>
                 <div>Comentario: {item.coment}</div>
               </div>
