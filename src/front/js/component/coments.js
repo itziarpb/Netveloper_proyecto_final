@@ -44,7 +44,7 @@ export const Coments = (props) => {
       .then((response) => {
         console.log("Success:", response);
         get_coment();
-        setTextValue("");
+        // setTextValue("");
       });
   };
 
