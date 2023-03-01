@@ -218,17 +218,17 @@ def save_playLater():
 
     return jsonify({"mensaje": "guardado para más tarde correctamente"})
 
-# #POST RESTRINGIDO PARA COMENTAR UN VIDEO
-# @api.route('/coment', methods=['POST'])
-# @jwt_required()
-# def coment_video():
-#     data = request.json
-#     userid = get_jwt_identity()
-#     coment = Coment(video_id=data["video_id"], user_id=userid)
-#     db.session.add(playLater)
-#     db.session.commit()
+#POST RESTRINGIDO PARA COMENTAR UN VIDEO
+@api.route('/coment/<videoid>', methods=['POST'])
+@jwt_required()
+def coment_video(videoid):
+    data = request.json
+    userid = get_jwt_identity()
+    coment = Coment(video_id=videoid, user_id=userid, coment=data["coment"])
+    db.session.add(coment)
+    db.session.commit()
 
-    return jsonify({"mensaje": "guardado para más tarde correctamente"})
+    return jsonify({"mensaje": "comentario guardado correctamente"})
     
 #GET RESTRINGIDO PARA COMBROBAR SI UN VIDEO ESTA GUARDADO
 @api.route('/playLater/<id>', methods=['GET'])

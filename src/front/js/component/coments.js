@@ -6,8 +6,10 @@ import "../../styles/coments.css";
 export const Coments = (props) => {
   const { store, actions } = useContext(Context);
   const [coments, setComents] = useState();
+  const [comentData, setComentData] = useState();
+  const [textValue, setTextValue] = useState();
 
-  useEffect(() => {
+  const get_coment = () => {
     fetch(process.env.BACKEND_URL + "/api/coments/" + props.videoid)
       .then((response) => {
         console.log(response.ok); // will be true if the response is successfull
@@ -16,12 +18,35 @@ export const Coments = (props) => {
       })
       .then((response) => {
         setComents(response);
-        console.log("comentarios response", response);
-        console.log("id video", props.videoid )
       })
       .catch((error) => console.error("Error:", error));
+  };
+  useEffect(() => {
+    get_coment();
   }, [props.videoid]); //añadimos props al useEffect para que se actualice cuando cambia la props
 
+  const handleChange = (event) => {
+    setComentData({ ...comentData, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch(process.env.BACKEND_URL + "/api/coment/" + props.videoid, {
+      method: "POST",
+      body: JSON.stringify(comentData),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + store.token,
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error("Error:", error))
+      .then((response) => {
+        console.log("Success:", response);
+        get_coment();
+        setTextValue("");
+      });
+  };
 
   return (
     <>
@@ -29,18 +54,30 @@ export const Coments = (props) => {
         <div className="row comentarios justify-content-center">
           {coments?.map((item, index) => {
             return (
-              <div>
-                <div>Usuario: {item.user.username}</div>
-                <div>Comentario: {item.coment}</div>
+              <div className="row">
+                <div className="col-10">
+                  <div className="fw-bold">{item.user.username}:</div>
+                  <div>{item.coment}</div>
+                </div>
+                <div className="col-1">
+                <div className="fa fa-trash"></div>
+                </div>
               </div>
             );
           })}
           <form
+            onSubmit={handleSubmit}
             action=""
             className="form_comentarios d-flex justify-content-end flex-wrap"
           >
-            <textarea name="" id="" placeholder="Comentario"></textarea>
-            <button className="btn" type="button">
+            <textarea
+              name="coment"
+              id=""
+              placeholder="Comentario"
+              onChange={handleChange}
+              value={textValue}
+            ></textarea>
+            <button className="btn" type="submit">
               Comentar
             </button>
           </form>

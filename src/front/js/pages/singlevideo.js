@@ -168,11 +168,11 @@ export const SingleVideo = () => {
               <div className="row">
                 <div className="ratio ratio-16x9">
                   <iframe
-                    src={`https://www.youtube.com/embed/${video.video_id}`}
+                    src={`https://www.youtube.com/embed/${video.video_id}?fs=1`}
                     title="YouTube video player"
                     frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    allowfullscreen webkitallowfullscreen mozallowfullscreen
                   ></iframe>
                 </div>
                 <div className="py-3 row espacio">

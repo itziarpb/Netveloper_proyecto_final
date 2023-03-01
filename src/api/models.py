@@ -137,9 +137,6 @@ class Coment(db.Model):
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     user = db.relationship(User)
     video = db.relationship(Video)
-    
-    def __repr__(self):
-        return f'<Coments {self.title}>'
 
     def serialize(self):
         return {
@@ -148,3 +145,16 @@ class Coment(db.Model):
             "video": self.video.serialize(),
             "user": self.user.serialize(),
         }
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    opinion = db.Column(db.String(800), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "opinion": self.opinion,
+            "email": self.email,
+        }
+
