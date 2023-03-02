@@ -57,7 +57,7 @@ def get_addinfo():
         db.session.commit()
 
     # Buscamos en youtube todos los videos de una lista
-    response_videos = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&part=id&playlistId={id_list}&key={API_KEY}')
+    response_videos = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=40&part=id&playlistId={id_list}&key={API_KEY}')
     data_videos = response_videos.json()
 
     list_of_videos = data_videos.get('items') # array de videos
