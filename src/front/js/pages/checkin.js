@@ -8,6 +8,8 @@ import { Context } from "../store/appContext";
 export const Checkin = () => {
   const { store, actions } = useContext(Context);
   const [formData, setFormData] = useState({});
+  const [showPassword, setShowPassword] = useState("password");
+  const [iconPassword, setIconPassword] = useState("fa-eye");
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -27,6 +29,17 @@ export const Checkin = () => {
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", response));
     navigate("/login");
+  };
+
+  const handlePassword = () => {
+    if (iconPassword == "fa-eye") {
+      setIconPassword("fa-eye-slash");
+      setShowPassword("text");
+    }
+    else if (iconPassword == "fa-eye-slash") {
+      setIconPassword("fa-eye");
+      setShowPassword("password");
+    }
   };
 
   return (
@@ -72,12 +85,16 @@ export const Checkin = () => {
               </label>
               <div className="col-sm-10">
                 <input
-                  type="password"
+                  type={showPassword}
                   className="form-control"
                   id="inputPassword"
                   name="password"
                   onChange={handleChange}
                 />
+                <span
+                    className={`password-icon fa fa-fw ${iconPassword}`}
+                    onClick={() => handlePassword()}
+                  ></span>
               </div>
             </div>
             <button
