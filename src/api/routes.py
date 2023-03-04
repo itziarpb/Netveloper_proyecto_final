@@ -279,6 +279,21 @@ def delete_like(id):
 
     return jsonify(message)
 
+#DELETE PARA BORRAR UN VIDEO GUARDADO
+@api.route('/coment/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_coment(id):
+    try:
+        user_id = get_jwt_identity()
+        me = Coment.query.filter_by(id=id).first()
+        db.session.delete(me)
+        db.session.commit()
+        message = {"message": "Comentario eliminado"}
+    except Exception as e:
+        message = {"message": "El comentario no se encuentra"}
+
+    return jsonify(message)
+
 
 
 
