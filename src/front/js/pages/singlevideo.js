@@ -166,20 +166,20 @@ export const SingleVideo = () => {
                 {video.videotitle}
               </h2>
               <div className="row">
-                <div className="col-lg-8 ">
-                  <iframe
+                <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 ">
+                  <iframe width="800" height="450"
                     src={`https://www.youtube.com/embed/${video.video_id}?fs=1`}
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                     
                   ></iframe>
-                  </div>
-                 <div className="col-lg-4">
-                  <div className="width overflow-auto">
+                </div>
+                 <div className="col-xl-4 col-lg-6 col-md-12  col-sm-12  py-1 bg-secondary bg-opacity-10 rounded-3 width overflow-auto">
+                  
                 {playlist.map((value, index) => {
                   return (
-                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 pb-4 pt-4">
+                    <div className="pb-4 pt-4">
                       <img
                         className="cursorpointer"
                         key={index}
@@ -200,7 +200,7 @@ export const SingleVideo = () => {
                 })}
                 </div>
               
-                </div>
+                
                 <div className="py-3 row espacio">
                   {store.token != null && (
                     <>
