@@ -162,18 +162,44 @@ export const SingleVideo = () => {
         {video ? (
           <>
             <div className="container">
-              <h1 className="colortitles mb-4 pb-2 mt-4 pt-2" id="start">
+              <h2 className="colortitles mb-4 pb-2 mt-4 pt-2" id="start">
                 {video.videotitle}
-              </h1>
+              </h2>
               <div className="row">
-                <div className="ratio ratio-16x9">
+                <div className="col-lg-8 ">
                   <iframe
                     src={`https://www.youtube.com/embed/${video.video_id}?fs=1`}
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    allowfullscreen webkitallowfullscreen mozallowfullscreen
+                    
                   ></iframe>
+                  </div>
+                 <div className="col-lg-4">
+                  <div className="width overflow-auto">
+                {playlist.map((value, index) => {
+                  return (
+                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 pb-4 pt-4">
+                      <img
+                        className="cursorpointer"
+                        key={index}
+                        id={value.video_id}
+                        src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`}
+                        height="100%"
+                        classname="hover"
+                        onClick={() => {
+                          setVideo(value);
+                          listar(value.id);
+                          listarLikes(value.id);
+                          allLikes(value.id);
+                          handleClickScroll();
+                        }}
+                      />
+                    </div>
+                  );
+                })}
+                </div>
+              
                 </div>
                 <div className="py-3 row espacio">
                   {store.token != null && (
@@ -264,37 +290,7 @@ export const SingleVideo = () => {
               </div>
             )}
 
-            <div className="container pt-5 pb-5">
-              <div>
-                <h2 className="colortitles mb-2 pb-2 mt-2 pt-2">
-                  Curso completo
-                </h2>
-              </div>
-
-              <div className="row">
-                {playlist.map((value, index) => {
-                  return (
-                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 pb-4 pt-4">
-                      <img
-                        className="cursorpointer"
-                        key={index}
-                        id={value.video_id}
-                        src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`}
-                        height="100%"
-                        classname="hover"
-                        onClick={() => {
-                          setVideo(value);
-                          listar(value.id);
-                          listarLikes(value.id);
-                          allLikes(value.id);
-                          handleClickScroll();
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            
           </>
         ) : (
           ""

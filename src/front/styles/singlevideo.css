@@ -86,3 +86,7 @@ i:hover {
 .espacio {
   justify-content: space-around;
 }
+
+.width{
+  height: 450px;
+}
