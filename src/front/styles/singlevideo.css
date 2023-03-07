@@ -91,3 +91,52 @@ i:hover {
   height: 450px;
 }
 
+* {
+  border: 1px dashed red;
+  min-height: 10px;
+}
+.mi-iframe {
+  width: 850px;
+  height: 650px;
+}
+/* CSS pantallas de 320px o superior */
+@media (min-width: 423px) {
+
+  .mi-iframe {
+    width: 350px;
+    height: 200px;
+  } 
+
+}
+
+/* CSS pantallas de 320px o superior */
+@media (min-width: 551px) {
+
+  .mi-iframe {
+    width: 490px;
+    height: 250px;
+  } 
+
+}
+
+/* CSS pantallas de 320px o superior */
+@media (min-width: 768px) {
+
+  .mi-iframe {
+    width: 680px;
+    height: 350px;
+  } 
+
+}
+
+/* 
+
+/* CSS pantalla 768px o superior */
+@media (min-width: 1400px) {
+
+  .mi-iframe {
+    width: 850px;
+    height: 550px;
+  } 
+
+}
