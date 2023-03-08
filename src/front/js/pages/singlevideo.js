@@ -189,7 +189,7 @@ export const SingleVideo = () => {
                   </span>
                   
                   <span class="badge rounded-pill bg-primary texto1pills ps-3"><i className="fas fa-external-link iconsChild cursornotallowed "></i> <a
-                          className="dropdown-toggle texto2pills"
+                          className="dropdown-toggle texto2pills align-text-top ps-2 cursorpointer"
                           id="dropdownMenuButton1"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
