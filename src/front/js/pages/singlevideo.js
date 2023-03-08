@@ -225,7 +225,7 @@ export const SingleVideo = () => {
 
 
                 
-                 <div className="col-xl-4 col-lg-12 col-md-12  col-sm-12  py-1 bg-secondary bg-opacity-10 rounded-3 width overflow-auto">
+                 <div className="col-xl-4 col-lg-12 col-md-12  col-sm-12  bg-secondary bg-opacity-10 rounded-3 width overflow-auto">
                   
                 {playlist.map((value, index) => {
                   return (
@@ -251,7 +251,7 @@ export const SingleVideo = () => {
                 </div>
               
                 
-                <div className="py-5 row espacio">
+                <div className="py-2 row espacio">
                   {store.token != null && (
                     <>
                       <div>                
