@@ -167,14 +167,63 @@ export const SingleVideo = () => {
               </h2>
               <div className="row">
                 <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12">
-                  <iframe width="800px" height="450px"
+                  <iframe 
                     src={`https://www.youtube.com/embed/${video.video_id}?fs=1`}
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                     className="mi-iframe"
                   ></iframe>
+                     {store.token != null && (
+                    <>
+                  <div className="d-flex justify-content-evenly py-2">
+                  <span class="badge rounded-pill bg-primary texto1pills ps-3"><p className="d-inline align-baseline pe-2">{likes} likes</p> <i
+                          className={`iconsChild ${stateLike} border-start border-white ps-3`}
+                          onClick={likeVideo}
+                        ></i>
+                  </span>
+                  <span class="dropdown badge rounded-pill bg-primary texto1pills ps-3 "><i
+                          className={`iconsChild ${state} border-end border-white pe-3`}
+                          onClick={seeLater}
+                        ></i><p className="d-inline align-text-top ps-2">Ver más tarde</p>
+                  </span>
+                  
+                  <span class="badge rounded-pill bg-primary texto1pills ps-3"><i className="fas fa-external-link iconsChild cursornotallowed "></i> <a
+                          className="dropdown-toggle texto2pills"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Compartir
+                        </a><ul
+                          className="dropdown-menu"
+                          aria-labelledby="dropdownMenuButton1"
+                        >
+                          <li>
+                            <a
+                              className="my-2 dropdown-item fab fa-telegram-plane cursorpointer"
+                              href="#"
+                            >
+                              telegram
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="my-2 dropdown-item fab fa-whatsapp"
+                              href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
+                            >
+                              whatsapp
+                            </a>
+                          </li>
+                        </ul>
+                  </span>
+                  </div>  
+                  </>)}
+                  
                 </div>
+
+
+                
                  <div className="col-xl-4 col-lg-12 col-md-12  col-sm-12  py-1 bg-secondary bg-opacity-10 rounded-3 width overflow-auto">
                   
                 {playlist.map((value, index) => {
@@ -201,60 +250,10 @@ export const SingleVideo = () => {
                 </div>
               
                 
-                <div className="py-3 row espacio">
+                <div className="py-5 row espacio">
                   {store.token != null && (
                     <>
-                      <div>
-                      <div className="rounded-pill colorpills col-lg-3 col-md-3 col-sm-3 d-flex">
-                        <p className="texto1pills">{likes} likes</p>
-                        <i
-                          className={`iconsChild ${stateLike} border-start border-dark ps-3`}
-                          onClick={likeVideo}
-                        ></i>
-                      </div>
-                      <div className="rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3  d-flex">
-                        <i
-                          className={`iconsChild ${state} border-end border-dark pe-3`}
-                          onClick={seeLater}
-                        ></i>
-                        <p className="texto2pills">Ver más tarde</p>
-                      </div>
-
-                      <div className="dropdown rounded-pill colorpills  col-lg-3 col-md-3 col-sm-3 d-flex">
-                        <i className="fas fa-external-link iconsChild cursornotallowed "></i>
-                        <a
-                          className="dropdown-toggle texto2pills"
-                          id="dropdownMenuButton1"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Compartir
-                        </a>
-
-                        <ul
-                          className="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton1"
-                        >
-                          <li>
-                            <a
-                              className="my-2 dropdown-item fab fa-telegram-plane cursorpointer"
-                              href="#"
-                            >
-                              telegram
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              className="my-2 dropdown-item fab fa-whatsapp"
-                              href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
-                            >
-                              whatsapp
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      </div>
-                      <div>
+                      <div>                
                         <Coments videoid={video.id} />
                       </div>
                     </>
