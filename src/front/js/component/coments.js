@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { ComentModal } from "./comentsModal";
 import "../../styles/coments.css";
 
 export const Coments = (props) => {
@@ -28,12 +29,12 @@ export const Coments = (props) => {
 
   const handleChange = (event) => {
     setComentData({ ...comentData, [event.target.name]: event.target.value });
-    setInputValue(event.target.value)
+    setInputValue(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setInputValue("")
+    setInputValue("");
     fetch(process.env.BACKEND_URL + "/api/coment/" + props.videoid, {
       method: "POST",
       body: JSON.stringify(comentData),
@@ -49,6 +50,23 @@ export const Coments = (props) => {
         get_coment();
       });
   };
+  const handleEdit = (id) => {
+    fetch(process.env.BACKEND_URL + "/api/newcoment/" + id, {
+      method: "PUT",
+      body: JSON.stringify(),
+      headers: {
+        // "Content-Type": "application/json",
+        Authorization: "Bearer " + store.token, //localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error("Error:", error))
+      .then((response) => {
+        console.log("Success:", response);
+        get_coment();
+      });
+  };
+
   const handleDelete = (id) => {
     fetch(process.env.BACKEND_URL + "/api/coment/" + id, {
       method: "DELETE",
@@ -82,6 +100,12 @@ export const Coments = (props) => {
                 </div>
                 {store.dataUser.username == item.user.username && (
                   <div className="col-1">
+                    <div
+                      className="fa fa-edit"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalComent"
+                    ></div>
+                    <ComentModal/>
                     <div
                       className="fa fa-trash"
                       onClick={() => handleDelete(item.id)}

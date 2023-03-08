@@ -229,6 +229,22 @@ def coment_video(videoid):
     db.session.commit()
 
     return jsonify({"mensaje": "comentario guardado correctamente"})
+
+#PUT MODIFICAR COMENTARIO
+@api.route('/newcoment/<int:id>', methods=['PUT'])
+@jwt_required()
+def put_newcoment(id):
+    try:
+        user_id = get_jwt_identity()
+        newcoment = Coment.query.get(id)
+        coment = request.json['coment']
+        newcoment.coment=coment
+        db.session.commit()
+        message = {"message": "Comentario modificado"}
+    except Exception as e:
+        message = {"message": "El comentario no se encuentra"}
+
+    return jsonify(message)
     
 #GET RESTRINGIDO PARA COMBROBAR SI UN VIDEO ESTA GUARDADO
 @api.route('/playLater/<id>', methods=['GET'])
@@ -279,7 +295,7 @@ def delete_like(id):
 
     return jsonify(message)
 
-#DELETE PARA BORRAR UN VIDEO GUARDADO
+#DELETE PARA BORRAR UN CMENTARIO
 @api.route('/coment/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_coment(id):
