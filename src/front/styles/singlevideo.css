@@ -82,6 +82,10 @@ i:hover {
   color: white;
  
 }
+.texto3pills{
+  font-size: 0.8rem;
+  color: black;
+}
 
 .espacio {
   justify-content: space-around;
@@ -97,6 +101,15 @@ i:hover {
   height: 650px;
 }
 /* CSS pantallas de 320px o superior */
+@media (min-width: 320px) {
+
+  .mi-iframe {
+    width: 320px;
+    height: 200px;
+  } 
+
+}
+
 @media (min-width: 423px) {
 
   .mi-iframe {
@@ -126,7 +139,9 @@ i:hover {
 
 }
 
-/* 
+/*
+
+
 
 /* CSS pantalla 768px o superior */
 @media (min-width: 1400px) {

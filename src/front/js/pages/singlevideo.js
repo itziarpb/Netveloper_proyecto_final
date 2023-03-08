@@ -176,23 +176,24 @@ export const SingleVideo = () => {
                   ></iframe>
                      {store.token != null && (
                     <>
-                  <div className="d-flex justify-content-evenly py-2">
-                  <span class="badge rounded-pill bg-primary texto1pills ps-3"><p className="d-inline align-baseline pe-2">{likes} likes</p> <i
+                  <div className="d-flex justify-content-evenly row py-2 mx-auto">
+                  <div class="badge rounded-pill bg-primary texto1pills ps-3 my-2 col-lg-3 col-sm-12"><p className="d-inline align-baseline pe-2">{likes} likes</p> <i
                           className={`iconsChild ${stateLike} border-start border-white ps-3`}
                           onClick={likeVideo}
                         ></i>
-                  </span>
-                  <span class="dropdown badge rounded-pill bg-primary texto1pills ps-3 "><i
+                  </div>
+                  <span class="dropdown badge rounded-pill bg-primary texto1pills my-2 ps-3 col-lg-3 col-sm-12"><i
                           className={`iconsChild ${state} border-end border-white pe-3`}
                           onClick={seeLater}
                         ></i><p className="d-inline align-text-top ps-2">Ver más tarde</p>
                   </span>
                   
-                  <span class="badge rounded-pill bg-primary texto1pills ps-3"><i className="fas fa-external-link iconsChild cursornotallowed "></i> <a
+                  <div class="badge rounded-pill bg-primary texto1pills my-2  ps-3 col-lg-3 col-sm-12"><i className="fas fa-external-link iconsChild cursornotallowed "></i> <a
                           className="dropdown-toggle texto2pills align-text-top ps-2 cursorpointer"
                           id="dropdownMenuButton1"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
+                          
                         >
                           Compartir
                         </a><ul
@@ -201,7 +202,7 @@ export const SingleVideo = () => {
                         >
                           <li>
                             <a
-                              className="my-2 dropdown-item fab fa-telegram-plane cursorpointer"
+                              className="my-2 dropdown-item fab fa-telegram-plane texto3pills cursorpointer"
                               href="#"
                             >
                               telegram
@@ -209,14 +210,14 @@ export const SingleVideo = () => {
                           </li>
                           <li>
                             <a
-                              className="my-2 dropdown-item fab fa-whatsapp"
+                              className="my-2  dropdown-item fab fa-whatsapp texto3pills cursorpointer"
                               href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
                             >
                               whatsapp
                             </a>
                           </li>
                         </ul>
-                  </span>
+                  </div>
                   </div>  
                   </>)}
                   
