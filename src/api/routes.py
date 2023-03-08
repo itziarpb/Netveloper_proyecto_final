@@ -141,6 +141,20 @@ def get_all_coment(videoid):
     
     return jsonify(data), 200
 
+#POST DE FORMULARIO DE CONTACTO
+@api.route('/contact', methods=['POST'])
+def contact():  
+    
+        data = request.json
+        contact = Contact(email=data["email"], opinion=data["textarea"])
+        db.session.add(contact)
+        db.session.commit()
+   
+       
+        return jsonify({"message": "Mensaje enviado"}), 200
+
+
+
 #POST PARA REGISTRARSE
 @api.route('/user', methods=['POST'])
 def register_user():  

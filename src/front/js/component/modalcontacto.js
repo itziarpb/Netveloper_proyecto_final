@@ -9,8 +9,8 @@ const handleChange = (event) => {
       };
 
 const handleSubmit = (event) => {
-        event.preventDefault();
-        fetch(process.env.BACKEND_URL + "/api/user", {
+        
+        fetch(process.env.BACKEND_URL + "/api/contact", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -35,7 +35,7 @@ const handleSubmit = (event) => {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div className="modal-body">
-                                    <form className="row g-3">
+                                    <form onSubmit={handleSubmit} className="row g-3" >
                                         <div className="col-12">
                                             <label for="inputEmail4" className="form-label">Email</label>
                                             <input type="email" className="form-control" id="inputEmail4" onChange={handleChange} ></input>
