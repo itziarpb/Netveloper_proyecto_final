@@ -10,7 +10,7 @@ export const Navbar = () => {
   const handleClick = () => {
     actions.logout();
   };
-
+let inicial = String(store.dataUser.username)
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
 
@@ -30,15 +30,22 @@ export const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
             {store.token != null && (
               <>
                 <li className="nav-item">
                   <Link to="/profile" className="nav-link">
-                    Mi Perfil
+                    <div className="containerperfil">
+                      
+                      <div className="circle2">{inicial.charAt(0)}</div>
+                      <div className="ms-3 pe-3 name d-none d-lg-block">{store.dataUser.username}</div>
+                    </div>
+                    
+                  
+                  
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item containerperfil">
                   <Link to="/home" onClick={handleClick} className="nav-link">
                     Cerrar sesion
                   </Link>
