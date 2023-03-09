@@ -9,7 +9,7 @@ export const Checkin = () => {
   const { store, actions } = useContext(Context);
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState("password");
-  const [iconPassword, setIconPassword] = useState("fa-eye");
+  const [iconPassword, setIconPassword] = useState("fa-eye-slash");
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -32,12 +32,12 @@ export const Checkin = () => {
   };
 
   const handlePassword = () => {
-    if (iconPassword == "fa-eye") {
-      setIconPassword("fa-eye-slash");
+    if (iconPassword == "fa-eye-slash") {
+      setIconPassword("fa-eye");
       setShowPassword("text");
     }
-    else if (iconPassword == "fa-eye-slash") {
-      setIconPassword("fa-eye");
+    else if (iconPassword == "fa-eye") {
+      setIconPassword("fa-eye-slash");
       setShowPassword("password");
     }
   };

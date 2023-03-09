@@ -14,7 +14,7 @@
   border: 3px solid #474b4e
 }
 .heartLikes {
-  color: #474b4e;
+  color: #1a9820;
 }
 .imgPlayLater {
   height: 100px;
@@ -24,12 +24,12 @@
   cursor: pointer;
 }
 .titleLikes{
-  color: #474b4e;
+  color: #000000;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  font-size: 2.5vw;
-  margin-top: 15px;
-  padding-left: 5px;
+  font-size: 1vw;
+
+
 }
 .titlePlayLater {
   color: #474b4e;
@@ -87,3 +87,38 @@
 .modal-footer {
   border-top: 1px solid #fed049;
 }
+
+
+.circle{
+  background-color: #37bc16;
+  color: #F5F5F5;
+  font-weight: 800;
+  font-size: 24px;
+  text-align: center;
+  line-height: 80px;
+  width: 96px;
+  height: 9containerInfo6px;
+  border-radius: 50%;
+  border: 8px solid #1a9820;
+  display: block;
+}
+
+.circle2{
+  background-color: #37bc16;
+  color: #F5F5F5;
+  font-weight: 800;
+  font-size: 12px;
+  text-align: center;
+  line-height: 35px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #1a9820;
+}
+.containerperfil{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+}
+
+
