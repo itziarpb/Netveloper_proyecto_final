@@ -231,7 +231,7 @@ export const SingleVideo = () => {
                   return (
                     <div className="pb-4 pt-4">
                       <img
-                        className="cursorpointer"
+                        className="cursorpointer "
                         key={index}
                         id={value.video_id}
                         src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`}
@@ -266,7 +266,7 @@ export const SingleVideo = () => {
               <div className="container-fluid fondobanner py-3 my-3">
                 <div className="container fondobanner ">
                   <div className="row">
-                    <div className="col-lg-6 col-md-4 d-flex align-items-center">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex align-items-center">
                       <div>
                         <h3 className="textoprincipalbanner">
                           ¡No olvides iniciar sesión!
@@ -282,8 +282,8 @@ export const SingleVideo = () => {
                       </div>
                     </div>
 
-                    <div className="col-lg-6 col-md-4 chico">
-                      <img src={chico}></img>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-4">
+                      <img className="img-fluid" src={chico}></img>
                     </div>
                   </div>
                 </div>
