@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from datetime import timedelta
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category
+from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category, Contact
 from api.utils import generate_sitemap, APIException
 import requests # libreria para realizar peticiones youtube
 import os  #libreria para trabajar con el sistema operativo
@@ -140,6 +140,20 @@ def get_all_coment(videoid):
     data = [coment.serialize() for coment in coments]
     
     return jsonify(data), 200
+
+#POST DE FORMULARIO DE CONTACTO
+@api.route('/contact', methods=['POST'])
+def contact():  
+        
+        data = request.json
+        contact = Contact(opinion=data["textarea"],email=data["email"])
+        db.session.add(contact)
+        db.session.commit()
+   
+       
+        return jsonify({"message": "Mensaje enviado"}), 200
+
+
 
 #POST PARA REGISTRARSE
 @api.route('/user', methods=['POST'])

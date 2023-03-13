@@ -11,7 +11,7 @@
 }
 .textopildora {
   margin: auto;
-  font-size: 2.5vw;
+  font-size: 1.5vw;
 }
 .hover {
   border-color: azure;
@@ -23,7 +23,7 @@
 
 .iconsChild {
   margin: auto;
-  font-size: 2.5vw;
+  font-size: 1.5rem;
 }
 
 .cursorpointer {
@@ -32,10 +32,10 @@
 
 .savenotallowed {
   pointer-events: none;
-  color: #3e3e3f;
+  color: white;
 }
 .likeoff {
-  color: #3e3e3f;
+  color: white;
 }
 
 .fondobanner {
@@ -70,19 +70,85 @@ i:hover {
 }
 
 .texto1pills {
-  font-size: 2vw;
-  color: black;
-  width: 70%;
-  margin: auto;
+  font-size: 1rem;
+
+  padding-right: 10px;
+  margin-right: 10px;
+  
 }
 
 .texto2pills {
-  font-size: 1.7vw;
+  font-size: 1rem;
+  color: white;
+ 
+}
+.texto3pills{
+  font-size: 0.8rem;
   color: black;
-  width: 70%;
-  margin: auto;
 }
 
 .espacio {
   justify-content: space-around;
+}
+
+.width{
+  height: 450px;
+}
+
+
+.mi-iframe {
+  width: 850px;
+  height: 650px;
+}
+/* CSS pantallas de 320px o superior */
+@media (min-width: 320px) {
+
+  .mi-iframe {
+    width: 320px;
+    height: 200px;
+  } 
+
+}
+
+@media (min-width: 423px) {
+
+  .mi-iframe {
+    width: 350px;
+    height: 200px;
+  } 
+
+}
+
+/* CSS pantallas de 320px o superior */
+@media (min-width: 551px) {
+
+  .mi-iframe {
+    width: 490px;
+    height: 250px;
+  } 
+
+}
+
+/* CSS pantallas de 320px o superior */
+@media (min-width: 768px) {
+
+  .mi-iframe {
+    width: 680px;
+    height: 350px;
+  } 
+
+}
+
+/*
+
+
+
+/* CSS pantalla 768px o superior */
+@media (min-width: 1400px) {
+
+  .mi-iframe {
+    width: 850px;
+    height: 550px;
+  } 
+
 }

@@ -94,22 +94,17 @@ export const Coments = (props) => {
           {coments?.map((item, index) => {
             return (
               <div className="row">
-                <div className="col-10">
+                <div className="col-11 py-3 border-bottom border-light">
                   <div className="fw-bold">{item.user.username}:</div>
                   <div>{item.coment}</div>
                 </div>
                 {store.dataUser.username == item.user.username && (
-                  <div className="col-1">
-                    <div
-                      className="fa fa-edit"
-                      data-bs-toggle="modal"
-                      data-bs-target="#modalComent"
-                    ></div>
-                    <ComentModal/>
-                    <div
-                      className="fa fa-trash"
+
+                  <div className="col-1 align-bottom d-inline ">
+                    <p
+                      // className="fa fa-trash align-bottom d-inline "
                       onClick={() => handleDelete(item.id)}
-                    ></div>
+                    >x</p>
                   </div>
                 )}
               </div>
