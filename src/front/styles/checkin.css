@@ -27,4 +27,9 @@ background-color: white;
   width: 90%;
   height: auto;
 }
-
+.password-icon {
+  float: right;
+  position: relative;
+  margin: -25px 10px 0 0;
+  cursor: pointer;
+}

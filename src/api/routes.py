@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from datetime import timedelta
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category
+from api.models import db, User, Video, Like, PlayLater, Coment, Channel, PlayListItems, Category, Contact
 from api.utils import generate_sitemap, APIException
 import requests # libreria para realizar peticiones youtube
 import os  #libreria para trabajar con el sistema operativo
@@ -57,7 +57,7 @@ def get_addinfo():
         db.session.commit()
 
     # Buscamos en youtube todos los videos de una lista
-    response_videos = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&part=id&playlistId={id_list}&key={API_KEY}')
+    response_videos = requests.get(f'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=40&part=id&playlistId={id_list}&key={API_KEY}')
     data_videos = response_videos.json()
 
     list_of_videos = data_videos.get('items') # array de videos
@@ -132,6 +132,28 @@ def get_count_likes(videoid):
     data = likes.count()
     
     return jsonify(data), 200
+
+#GET DE LOS COMENTARIOS DE UN VIDEO
+@api.route('/coments/<videoid>', methods=['GET'])
+def get_all_coment(videoid):
+    coments = Coment.query.filter_by(video_id=videoid)
+    data = [coment.serialize() for coment in coments]
+    
+    return jsonify(data), 200
+
+#POST DE FORMULARIO DE CONTACTO
+@api.route('/contact', methods=['POST'])
+def contact():  
+        
+        data = request.json
+        contact = Contact(opinion=data["textarea"],email=data["email"])
+        db.session.add(contact)
+        db.session.commit()
+   
+       
+        return jsonify({"message": "Mensaje enviado"}), 200
+
+
 
 #POST PARA REGISTRARSE
 @api.route('/user', methods=['POST'])
@@ -209,6 +231,18 @@ def save_playLater():
     db.session.commit()
 
     return jsonify({"mensaje": "guardado para más tarde correctamente"})
+
+#POST RESTRINGIDO PARA COMENTAR UN VIDEO
+@api.route('/coment/<videoid>', methods=['POST'])
+@jwt_required()
+def coment_video(videoid):
+    data = request.json
+    userid = get_jwt_identity()
+    coment = Coment(video_id=videoid, user_id=userid, coment=data["coment"])
+    db.session.add(coment)
+    db.session.commit()
+
+    return jsonify({"mensaje": "comentario guardado correctamente"})
     
 #GET RESTRINGIDO PARA COMBROBAR SI UN VIDEO ESTA GUARDADO
 @api.route('/playLater/<id>', methods=['GET'])
@@ -244,17 +278,36 @@ def delete_videplayLater(id):
 
     return jsonify(message)
 
-#DELETE PARA BORRAR UN VIDEO GUARDADO
-@api.route('/playLater', methods=['DELETE'])
+#DELETE PARA BORRAR UN like
+@api.route('/like/<int:id>', methods=['DELETE'])
 @jwt_required()
-def delete_playLater():
-    data = request.json
-    userid = get_jwt_identity()
-    playLater = PlayLater(video_id=data["video_id"], user_id=userid)
-    db.session.delete(playLater)
-    db.session.commit()
+def delete_like(id):
+    try:
+        userid = get_jwt_identity()
+        me = Like.query.filter_by(video_id=id, user_id=userid).first()
+        db.session.delete(me)
+        db.session.commit()
+        message = {"message": "Like eliminado"}
+    except Exception as e:
+        message = {"message": "El video no tiene like"}
 
-    return jsonify({"mensaje": "borrado de ver más tarde correctamente"})
+    return jsonify(message)
+
+#DELETE PARA BORRAR UN VIDEO GUARDADO
+@api.route('/coment/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_coment(id):
+    try:
+        user_id = get_jwt_identity()
+        me = Coment.query.filter_by(id=id).first()
+        db.session.delete(me)
+        db.session.commit()
+        message = {"message": "Comentario eliminado"}
+    except Exception as e:
+        message = {"message": "El comentario no se encuentra"}
+
+    return jsonify(message)
+
 
 
 

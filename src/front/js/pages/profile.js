@@ -30,29 +30,34 @@ export const Profile = () => {
   useEffect(() => {
     getLikes();
   }, []);
-
+let inicial = String(store.dataUser.username)
   return (
     <div className="">
       {!store.token ? (
         navigate("/login")
       ) : (
-        <div className="container-fluid">
-          {/* <div className="text-center userTitle mt-4 ms-auto">
-            <h2>Mi perfil</h2>
-            <h1 className="">{store.dataUser.username}</h1>
-          </div>  */}
-          <div className="container row">
-            <div className="col-12 ">
-              <h5 className="titleLikes">
-                <i className="fas fa-heart heartLikes"></i> {likes} likes{" "}
-              </h5>
-              {/* {likes === 0 ? (
-              <div className="textProfile">Aún no hay likes</div>
-            ) : (
-              <div className="textProfile">{likes} videos</div>
-            )} */}
+        <div className="container-fluid ">
+          <div className="d-flex justify-content-between flex-wrap my-5 mb-5 ">
+            <div className="col-12  d-flex "> 
+              <span class="circle">{inicial.charAt(0)}</span>
+              <div class="d-flex flex-column align-self-center mx-4 ">
+                        <h3 class="fw-normal h2 ">{store.dataUser.username}</h3>
+                        <div className="titleLikes">
+                        <i className="fas fa-heart heartLikes"></i> {likes} likes{" "}
+                        </div>
+                        <div>
+                            <div class="btn btn-sm btn-outline-primary text-gray-200 py-0 px-3 fw-bold rounded-2 ">
+                                  <small>
+                                    {likes <=7 ? "Junior" : "Senior"} 
+                                  </small>
+                            </div>
+                        </div>
+                    </div>           
+            
             </div>
-
+          </div> 
+          <div className="container row">
+           
             <div className="col-12">
               <div>
                 <PlayLater />

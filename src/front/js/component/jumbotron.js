@@ -8,7 +8,6 @@ export const Jumbotron = () => {
   const [channelActive, setChannelActive] = useState([]);
   const [channel, setChannel] = useState([]);
 
-
   /*---------------------------------------------------------------*/
   /* Llamada al backend para listar el array con los elementos de la tabla Channel*/
   /*---------------------------------------------------------------*/
@@ -19,22 +18,36 @@ export const Jumbotron = () => {
         console.log(response.ok); // will be true if the response is successfull
         console.log(response.status); // the status code = 200 or code = 400 etc.
         return response.json();
-        
       })
 
-/*Solo nos quedamos con los elementos del array necesarios*/
+      /*Solo nos quedamos con los elementos del array necesarios*/
       .then((response) => {
-        setChannelActive(response[2])        
-        setChannel([response[4],response[5],response[6],response[8],response[11],response[12]])
-        console.log(response)
-        
-        
-       
+        for (var i = 0; i < response.length; i++) {
+          console.log(response[i].channeltitle);
+          if (response[i].channeltitle === "yacklyon") {
+            setChannelActive(response[i]);
+          }
+          if (response[i].channeltitle === "Fazt") {
+            setChannel((channel) => [...channel, response[i]]);
+          }
+          if (response[i].channeltitle === "pildorasinformaticas") {
+            setChannel((channel) => [...channel, response[i]]);
+          }
+          if (response[i].channeltitle === "FalconMasters") {
+            setChannel((channel) => [...channel, response[i]]);
+          }
+          if (response[i].channeltitle === "Carlos Alfaro") {
+            setChannel((channel) => [...channel, response[i]]);
+          }
+          if (response[i].channeltitle === "TodoCode") {
+            setChannel((channel) => [...channel, response[i]]);
+          }
+        }
       })
       .catch((error) => console.error("Error:", error));
   }, []);
 
-   return (
+  return (
     <>
       <div
         id="carouselExampleIndicators"
@@ -42,50 +55,46 @@ export const Jumbotron = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators"
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
             data-bs-slide-to="0"
             className="active"
             aria-current="true"
             aria-label="Slide 1"
           ></button>
-                     
-                 { 
-                  channel.slice(1).map((value,index)=>{
-                  return(<button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to={index+1}
-                    aria-label="Slide 2"
-                  ></button>)
-                    })    
-                  }     
+
+          {channel.slice(1).map((value, index) => {
+            return (
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to={index + 1}
+                aria-label="Slide 2"
+              ></button>
+            );
+          })}
         </div>
 
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={channelActive.channelbanner +`=w1920`}
+              src={channelActive.channelbanner + `=w1920`}
               className="d-block w-100 clasejumbotron"
             ></img>
           </div>
 
-          {
-            channel.slice(1).map((value,index)=>{
-              return(
-            
-            <div className="carousel-item">
-              <img
-                src={value.channelbanner + `=w1920`}
-                className="d-block w-100 clasejumbotron"
+          {channel.slice(1).map((value, index) => {
+            return (
+              <div className="carousel-item">
+                <img
+                  src={value.channelbanner + `=w1920`}
+                  className="d-block w-100 clasejumbotron"
                 ></img>
-              </div>)
-            })
-          }          
+              </div>
+            );
+          })}
         </div>
-
-
-
-
 
         <button
           className="carousel-control-prev"
