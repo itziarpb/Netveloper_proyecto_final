@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/checkin.css";
-import ilustracion from "../../img/ilustracion.jpg";
 import programador from "../../img/programador.jpg";
 import { Context } from "../store/appContext";
 

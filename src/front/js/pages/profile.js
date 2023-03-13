@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/profile.css";
-import imgperfil from "../../img/imgperfil.jpg"
 import { PlayLater } from "../component/playLater";
 
 export const Profile = () => {
