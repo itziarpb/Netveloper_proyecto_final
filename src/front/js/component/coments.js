@@ -89,8 +89,9 @@ export const Coments = (props) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container mt-3">
         <div className="row comentarios justify-content-center">
+          <h5 className="colortitles">Comentarios</h5>
           {coments?.map((item, index) => {
             return (
               <div className="row">
@@ -100,7 +101,7 @@ export const Coments = (props) => {
                 </div>
                 {store.dataUser.username == item.user.username && (
 
-                  <div className="col-1 align-bottom d-inline ">
+                  <div className="col-1 align-bottom d-inline comentDeletex">
                     <p
                       // className="fa fa-trash align-bottom d-inline "
                       onClick={() => handleDelete(item.id)}
@@ -118,11 +119,11 @@ export const Coments = (props) => {
             <textarea
               name="coment"
               id=""
-              placeholder="Comentario"
+              placeholder="Añadir comentario"
               onChange={handleChange}
               value={inputValue}
             ></textarea>
-            <button className="btn" type="submit">
+            <button className="btn comentButton" type="submit">
               Comentar
             </button>
           </form>

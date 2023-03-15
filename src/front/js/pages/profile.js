@@ -45,7 +45,7 @@ let inicial = String(store.dataUser.username)
                         <i className="fas fa-heart heartLikes"></i> {likes} likes{" "}
                         </div>
                         <div>
-                            <div class="btn btn-sm btn-outline-primary text-gray-200 py-0 px-3 fw-bold rounded-2 ">
+                            <div className="text-gray-200 py-0 px-3 fw-bold rounded-2 likesCategory">
                                   <small>
                                     {likes <=7 ? "Junior" : "Senior"} 
                                   </small>

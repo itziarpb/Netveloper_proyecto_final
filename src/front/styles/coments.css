@@ -1,35 +1,35 @@
 .body {
-    background: #f2f2f2;
-
+  background: #f2f2f2;
 }
 
-.comentarios{
-    margin-left: 20px 0;
+.comentarios {
+  margin-left: 20px 0;
 }
-
 
 .form_comentarios textarea {
-    width: 100%;
-    height: 84px;
-    max-width: 100%;
-    min-width: 100%;
-    min-height: 84px;
-    max-height: 300px;
-    padding: 10px;
-    line-height: 30px;
-    border: 1px solid #4b65d1;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 84px;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 84px;
+  max-height: 300px;
+  padding: 10px;
+  line-height: 30px;
+  border: 1px solid #474b4e;
+  margin-bottom: 20px;
 }
 
 .form_comentarios .btn {
-    background: #4b65d1;
-    border-radius: 0;
-    color: #fff;
-    margin-bottom: 20px;
-
+  background: #474b4e;
+  border-radius: 0;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .form_comentarios .btn:hover {
-    box-shadow: 0px 0px 9px rgba(0, 0, 0, 35);
-    
+  box-shadow: 0px 0px 9px #f7c815;
+}
+
+.comentDeletex:hover {
+  cursor: pointer;
 }
