@@ -167,94 +167,100 @@ export const SingleVideo = () => {
               </h2>
               <div className="row">
                 <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12">
-                  <iframe 
+                  <iframe
                     src={`https://www.youtube.com/embed/${video.video_id}?fs=1`}
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                     className="mi-iframe"
                   ></iframe>
-                     {store.token != null && (
+                  {store.token != null && (
                     <>
-                  <div className="d-flex justify-content-evenly row py-2 mx-auto">
-                  <div class="badge rounded-pill bg-primary texto1pills ps-3 my-2 col-lg-3 col-sm-12"><p className="d-inline align-baseline pe-2">{likes} likes</p> <i
-                          className={`iconsChild ${stateLike} border-start border-white ps-3`}
-                          onClick={likeVideo}
-                        ></i>
-                  </div>
-                  <span class="dropdown badge rounded-pill bg-primary texto1pills my-2 ps-3 col-lg-3 col-sm-12"><i
-                          className={`iconsChild ${state} border-end border-white pe-3`}
-                          onClick={seeLater}
-                        ></i><p className="d-inline align-text-top ps-2">Ver más tarde</p>
-                  </span>
-                  
-                  <div class="badge rounded-pill bg-primary texto1pills my-2  ps-3 col-lg-3 col-sm-12"><i className="fas fa-external-link iconsChild cursornotallowed "></i> <a
-                          className="dropdown-toggle texto2pills align-text-top ps-2 cursorpointer"
-                          id="dropdownMenuButton1"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                          
-                        >
-                          Compartir
-                        </a><ul
-                          className="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton1"
-                        >
-                          <li>
-                            <a
-                              className="my-2 dropdown-item fab fa-telegram-plane texto3pills cursorpointer"
-                              href="#"
-                            >
-                              telegram
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              className="my-2  dropdown-item fab fa-whatsapp texto3pills cursorpointer"
-                              href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
-                            >
-                              whatsapp
-                            </a>
-                          </li>
-                        </ul>
-                  </div>
-                  </div>  
-                  </>)}
-                  
+                      <div className="d-flex justify-content-evenly row py-2 mx-auto">
+                        <div className="badge  bg-secondary texto1pills ps-3 my-2 col-lg-3 col-sm-12">
+                          <p className="d-inline align-text-top pe-2">
+                            {likes} likes
+                          </p>{" "}
+                          <i
+                            className={`iconsChild ${stateLike} border-start border-white ps-3`}
+                            onClick={likeVideo}
+                          ></i>
+                        </div>
+                        <span className="dropdown badge bg-secondary texto1pills my-2 ps-3 col-lg-3 col-sm-12">
+                          <i
+                            className={`iconsChild ${state} border-end border-white pe-3`}
+                            onClick={seeLater}
+                          ></i>
+                          <p className="d-inline align-text-top ps-2">
+                            Ver más tarde
+                          </p>
+                        </span>
+
+                        <div className="badge  bg-secondary texto1pills my-2  ps-3 col-lg-3 col-sm-12">
+                          <i className="fas fa-external-link iconsChild cursornotallowed "></i>{" "}
+                          <a
+                            className="dropdown-toggle texto2pills align-text-top ps-2 cursorpointer"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Compartir
+                          </a>
+                          <ul
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            <li>
+                              <a
+                                className="my-2 dropdown-item fab fa-telegram-plane texto3pills cursorpointer"
+                                href="#"
+                              >
+                                telegram
+                              </a>
+                            </li>
+                            <li>
+                              <a
+                                className="my-2  dropdown-item fab fa-whatsapp texto3pills cursorpointer"
+                                href={`https://api.whatsapp.com/send?text=https://${window.location.hostname}/share/${params.theid}/${video.video_id}`}
+                              >
+                                whatsapp
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
-
-                
-                 <div className="col-xl-4 col-lg-12 col-md-12  col-sm-12  bg-secondary bg-opacity-10 rounded-3 width overflow-auto">
-                  
-                {playlist.map((value, index) => {
-                  return (
-                    <div className="pb-4 pt-4">
-                      <img
-                        className="cursorpointer "
-                        key={index}
-                        id={value.video_id}
-                        src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`}
-                        height="100%"
-                        classname="hover"
-                        onClick={() => {
-                          setVideo(value);
-                          listar(value.id);
-                          listarLikes(value.id);
-                          allLikes(value.id);
-                          handleClickScroll();
-                        }}
-                      />
-                    </div>
-                  );
-                })}
+                <div className="col-xl-4 col-lg-12 col-md-12  col-sm-12  bg-secondary bg-opacity-10 rounded-3 width overflow-auto">
+                  {playlist.map((value, index) => {
+                    return (
+                      <div className="pb-4 pt-4">
+                        <img
+                          className="cursorpointer "
+                          key={index}
+                          id={value.video_id}
+                          src={`https://i.ytimg.com/vi/${value.video_id}/mqdefault.jpg`}
+                          height="100%"
+                          classname="hover"
+                          onClick={() => {
+                            setVideo(value);
+                            listar(value.id);
+                            listarLikes(value.id);
+                            allLikes(value.id);
+                            handleClickScroll();
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
-              
-                
+
                 <div className="py-2 row espacio">
                   {store.token != null && (
                     <>
-                      <div>                
+                      <div>
                         <Coments videoid={video.id} />
                       </div>
                     </>
@@ -289,8 +295,6 @@ export const SingleVideo = () => {
                 </div>
               </div>
             )}
-
-            
           </>
         ) : (
           ""

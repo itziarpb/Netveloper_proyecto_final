@@ -28,9 +28,11 @@
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 1vw;
-
-
 }
+.likesCategory {
+  color:#37bc16
+}
+
 .titlePlayLater {
   color: #474b4e;
   border-bottom: 2px solid #474b4e;

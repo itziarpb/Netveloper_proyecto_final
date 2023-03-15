@@ -65,24 +65,19 @@ i:hover {
   /* color: #42c920; */
 }
 
-.colorpills {
-  background-color: #bebec0;
-}
-
 .texto1pills {
   font-size: 1rem;
-
+  background-color: rgba(221, 23, 23, 0.719);
   padding-right: 10px;
   margin-right: 10px;
-  
+  border: 1px solid #f7c815;
 }
 
 .texto2pills {
   font-size: 1rem;
   color: white;
- 
 }
-.texto3pills{
+.texto3pills {
   font-size: 0.8rem;
   color: black;
 }
@@ -91,10 +86,9 @@ i:hover {
   justify-content: space-around;
 }
 
-.width{
+.width {
   height: 450px;
 }
-
 
 .mi-iframe {
   width: 850px;
@@ -102,41 +96,33 @@ i:hover {
 }
 /* CSS pantallas de 320px o superior */
 @media (min-width: 320px) {
-
   .mi-iframe {
     width: 320px;
     height: 200px;
-  } 
-
+  }
 }
 
 @media (min-width: 423px) {
-
   .mi-iframe {
     width: 350px;
     height: 200px;
-  } 
-
+  }
 }
 
 /* CSS pantallas de 320px o superior */
 @media (min-width: 551px) {
-
   .mi-iframe {
     width: 490px;
     height: 250px;
-  } 
-
+  }
 }
 
 /* CSS pantallas de 320px o superior */
 @media (min-width: 768px) {
-
   .mi-iframe {
     width: 680px;
     height: 350px;
-  } 
-
+  }
 }
 
 /*
@@ -145,10 +131,8 @@ i:hover {
 
 /* CSS pantalla 768px o superior */
 @media (min-width: 1400px) {
-
   .mi-iframe {
     width: 850px;
     height: 550px;
-  } 
-
+  }
 }
